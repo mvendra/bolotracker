@@ -1,0 +1,19 @@
+
+[
+@data
+* name
+* minutes
+* date
+* subject (tags: project, subproject, task type, whatever)
+]
+
+[
+@table: tags
+* (preregistered tags)
+]
+
+[
+@table: name
+* (preregistered names)
+]
+
