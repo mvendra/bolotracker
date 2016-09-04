@@ -2,6 +2,7 @@
 * mission statement: this is to allow people to "bid" hours and time onto projects, with no guaranteed returns, by tracking spent time and money on it.
 
 * also track how much money certain person invested
+* also consider a more flexible field/table: assets provided (for bigger artwork, where hours worked are not available), or similar stuff - consider a third party who provided some sort of cover artwork, or logo, or even a software library or whatever - if the hours worked are lost, this could be a last resort.
 
 [
 @hours tracker
