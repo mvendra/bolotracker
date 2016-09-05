@@ -1,0 +1,6 @@
+*.swp
+
+# codelite project autogen stuff
+impl/bolotracker.mk
+impl/bolotracker.txt
+
