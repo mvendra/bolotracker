@@ -1,0 +1,36 @@
+
+[
+@table: investors
+* name
+* email
+* date of inclusion
+]
+
+[
+@table: subjects
+* tag (project, subproject, task type, whatever)
+* date of inclusion
+]
+
+[
+@table: invested_time
+* investor
+* minutes
+* date
+* subject
+]
+
+[
+@table: invested_money
+* short_name
+* description
+* 
+]
+
+[
+@table: invested_asset
+* short_name
+* description
+* subject
+]
+

@@ -13,14 +13,6 @@
 ]
 
 [
-@features
-* i wanna track hours worked, on what date, by whom, on what (kind of) activity
-* also track how much money certain person invested
-* also consider a more flexible field/table: assets provided (for bigger artwork, where hours worked are not available), or similar stuff - consider
- a third party who provided some sort of cover artwork, or logo, or even a software library or whatever - if the hours worked are lost, this could be a last resort.
-]
-
-[
 @time tracker
 ]
 
@@ -30,6 +22,7 @@
 
 [
 @asset tracker
+* the "last resort" tracker. intended for use with especially undilligent investors.
 ]
 
 [
