@@ -1,4 +1,6 @@
 
+* For bolotracker: what the heck, it can have several guis if i wanted it to. So doesnt really matter now. Make a frontends folder.
+
 * mission statement: this is to allow people to "bid" hours and time onto projects, with no guaranteed returns, by tracking spent time and money on it.
 
 * also track how much money certain person invested
