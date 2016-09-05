@@ -1,13 +1,15 @@
 
 #include <iostream>
 
-#include "sqlite3.h"
+#include "bolotracker.h"
 
 int main(int argc, char *argv[]){
 
     (void)argc; (void)argv; // silence warnings
 
-	std::cout << "BoloTracker hello." << std::endl;
+    BoloTracker bt {"/home/mateus/nuke/"}; // mvtodo: get the pwd and pass it here
+    bt.run();
+
 	return 0;
 
 }

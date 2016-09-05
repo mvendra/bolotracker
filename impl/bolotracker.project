@@ -30,6 +30,18 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="src/main.cpp"/>
+    <File Name="src/bolotracker.cpp"/>
+    <File Name="src/bolotracker.h"/>
+    <File Name="src/database.cpp"/>
+    <File Name="src/database.h"/>
+    <VirtualDirectory Name="exceptions">
+      <File Name="src/exceptions/ex_base.cpp"/>
+      <File Name="src/exceptions/ex_base.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="utils">
+      <File Name="src/utils/conversions.cpp"/>
+      <File Name="src/utils/conversions.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">
@@ -56,6 +68,7 @@
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="./third_party/sqlite/include"/>
+        <IncludePath Value="./src"/>
       </Compiler>
       <Linker Options="" Required="yes">
         <Library Value="pthread"/>
