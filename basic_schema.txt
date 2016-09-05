@@ -1,36 +1,43 @@
 
 [
-@table: investors
+@table: investors (freestanding)
+* pk_investor
 * name
 * email
 * date of inclusion
 ]
 
 [
-@table: subjects
+@table: subjects (freestanding, lookup)
+* pk_subject
 * tag (project, subproject, task type, whatever)
 * date of inclusion
 ]
 
 [
 @table: invested_time
-* investor
+* pk_invested_time
+* investor (fk -> investors.pk_investor)
 * minutes
 * date
-* subject
+* subject (fk -> subjects.pk_subject)
 ]
 
 [
 @table: invested_money
+* pk_invested_money
+* investor (fk -> investors.pk_investor)
 * short_name
 * description
-* 
+* subject (fk -> subjects.pk_subject)
 ]
 
 [
 @table: invested_asset
+* pk_invested_asset
+* investor (fk -> investors.pk_investor)
 * short_name
 * description
-* subject
+* subject (fk -> subjects.pk_subject)
 ]
 

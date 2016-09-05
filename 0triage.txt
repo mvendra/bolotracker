@@ -14,15 +14,24 @@
 
 [
 @time tracker
+* price per hour is out of the scope. must be negotiated later, when cashing out/accruing for reporting.
 ]
 
 [
 @money tracker
+* with short description.
+* more sophisticated stuff like inflation, monetary conversion or similar
 ]
 
 [
 @asset tracker
 * the "last resort" tracker. intended for use with especially undilligent investors.
+]
+
+[
+@tactical options:
+* git-like TUI
+* bolotracker --init, will spawn a new database from template.
 ]
 
 [
