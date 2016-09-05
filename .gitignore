@@ -4,3 +4,7 @@
 impl/bolotracker.mk
 impl/bolotracker.txt
 
+# build stuff
+impl/build/linux_x64_debug/
+impl/build/linux_x64_release/
+
