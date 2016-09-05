@@ -41,8 +41,14 @@
       <File Name="src/exceptions/ex_unsupported_platform.h"/>
       <File Name="src/exceptions/ex_utils_error.h"/>
     </VirtualDirectory>
-    <File Name="src/utils.cpp"/>
-    <File Name="src/utils.h"/>
+    <File Name="src/model.cpp"/>
+    <File Name="src/model.h"/>
+    <VirtualDirectory Name="utils">
+      <File Name="src/utils/datehelper.cpp"/>
+      <File Name="src/utils/datehelper.h"/>
+      <File Name="src/utils/utils.cpp"/>
+      <File Name="src/utils/utils.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">

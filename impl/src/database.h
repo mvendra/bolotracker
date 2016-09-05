@@ -4,6 +4,10 @@
 
 #include <string>
 
+#include "sqlite3.h"
+
+// this class is the system's Database Access Object
+
 class Database final {
 
 public:

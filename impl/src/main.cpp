@@ -1,7 +1,7 @@
 
 #include "bolotracker.h"
 
-#include "utils.h"
+#include "utils/utils.h"
 #include "exceptions/ex_base.h"
 
 #include <iostream>

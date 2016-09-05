@@ -3,7 +3,7 @@
 
 #include <sstream>
 
-#include "utils.h"
+#include "utils/utils.h"
 
 Ex_Base::Ex_Base(const Ex_Base &other):
 message{other.getMessage()}, function{other.getFunction()}, line{other.getLine()}{
