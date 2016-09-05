@@ -1,4 +1,6 @@
 
+* separar o model e o DAO
+
 [
 @mission statement
 * a tool to allow people to "invest" time/money/assets onto projects, by tracking invested stuff.
@@ -43,11 +45,11 @@
 * gtk+
 * qt
 * tkinder+python
+* could even be served via python+flask (rest api) and have a html+css frontend
 ]
 
 [
 @future
 * publish it later
-* try to "cloud" it later, with a web interface (html/css)
 ]
 

@@ -1,43 +1,95 @@
 
 [
-@table: investors (freestanding)
+@database blueprint
+* there must be one table per investment type. this is to avoid being forced to refactor a table, including new columns to accomodate any hypotethical future investment option.
+]
+
+[
+@table: investors
+* blueprint: a freestanding data container for investors.
+
 * pk_investor
 * name
 * email
+* description
 * date of inclusion
 ]
 
 [
-@table: subjects (freestanding, lookup)
+@table: subjects
+* blueprint: a freestanding, lookup table to enumerate subject tags
+
 * pk_subject
 * tag (project, subproject, task type, whatever)
+* description
+* date of inclusion
+]
+
+[
+@table: currencies
+* blueprint: a freestanding, lookup table to enumerate currency types
+
+* pk_currency
+* label
+* description
 * date of inclusion
 ]
 
 [
 @table: invested_time
+* blueprint: borrowed service time, intended to be paid later by a (pre) fixed or negotiated price per hour/minutes.
+
 * pk_invested_time
 * investor (fk -> investors.pk_investor)
-* minutes
+
 * date
+* description
+
+* comment (optional)
 * subject (fk -> subjects.pk_subject)
+
+* minutes
+* price per unit
+* currency type (fk -> currencies.pk_currency)
 ]
 
 [
 @table: invested_money
+* blueprint: obligation-free, lent money. this is NOT for financial instruments (stocks, bonds, options, etc).
+
 * pk_invested_money
 * investor (fk -> investors.pk_investor)
+
+* date
 * short_name
 * description
+
+* comment (optional)
 * subject (fk -> subjects.pk_subject)
+
+* amount
+* currency type (fk -> currencies.pk_currency)
 ]
 
 [
 @table: invested_asset
+* blueprint: this is for services/goods delivered, never to be returned - i.e. credit for items to be bought in the future.
+
 * pk_invested_asset
 * investor (fk -> investors.pk_investor)
+
+* date
 * short_name
 * description
+
+* comment (optional)
 * subject (fk -> subjects.pk_subject)
+
+* price
+* currency type (fk -> currencies.pk_currency)
 ]
+
+* data de validate pra a asset/money?
+
+* considerar fazer uma tabela pra coisas emprestadas ? data de entrada e data de saida por exemplo (tabela pra trackear por exemplo alguma maquina emprestada)
 
