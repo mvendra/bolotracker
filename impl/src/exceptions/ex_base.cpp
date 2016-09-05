@@ -3,7 +3,7 @@
 
 #include <sstream>
 
-#include "utils/conversions.h"
+#include "utils.h"
 
 Ex_Base::Ex_Base(const Ex_Base &other):
 message{other.getMessage()}, function{other.getFunction()}, line{other.getLine()}{
@@ -26,5 +26,5 @@ unsigned int Ex_Base::getLine() const {
 }
 
 std::string Ex_Base::prettyPrint() const {
-    return function + ":" + Conversions::uintToStr(line) + " - " + message;
+    return function + ":" + uintToStr(line) + " - " + message;
 }

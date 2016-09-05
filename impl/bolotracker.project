@@ -37,11 +37,12 @@
     <VirtualDirectory Name="exceptions">
       <File Name="src/exceptions/ex_base.cpp"/>
       <File Name="src/exceptions/ex_base.h"/>
+      <File Name="src/exceptions/ex_notreached.h"/>
+      <File Name="src/exceptions/ex_unsupported_platform.h"/>
+      <File Name="src/exceptions/ex_utils_error.h"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="utils">
-      <File Name="src/utils/conversions.cpp"/>
-      <File Name="src/utils/conversions.h"/>
-    </VirtualDirectory>
+    <File Name="src/utils.cpp"/>
+    <File Name="src/utils.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">

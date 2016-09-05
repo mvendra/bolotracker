@@ -1,15 +1,29 @@
 
+#include "bolotracker.h"
+
+#include "utils.h"
+#include "exceptions/ex_base.h"
+
 #include <iostream>
 
-#include "bolotracker.h"
+void bootstrap(){
+
+    std::string working_dir = getAppWorkingDir();
+    BoloTracker bt {working_dir};
+    bt.run();
+
+}
 
 int main(int argc, char *argv[]){
 
     (void)argc; (void)argv; // silence warnings
 
-    BoloTracker bt {"/home/mateus/nuke/"}; // mvtodo: get the pwd and pass it here
-    bt.run();
+    try {
+        bootstrap();
+    } catch (const Ex_Base &ex){
+        std::cout << ex.getMessage() << std::endl;
+    }
 
-	return 0;
+    return 0;
 
 }
