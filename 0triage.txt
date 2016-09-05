@@ -1,28 +1,51 @@
 
-* For bolotracker: what the heck, it can have several guis if i wanted it to. So doesnt really matter now. Make a frontends folder.
-
-* mission statement: this is to allow people to "bid" hours and time onto projects, with no guaranteed returns, by tracking spent time and money on it.
-
-* also track how much money certain person invested
-* also consider a more flexible field/table: assets provided (for bigger artwork, where hours worked are not available), or similar stuff - consider a third party who provided some sort of cover artwork, or logo, or even a software library or whatever - if the hours worked are lost, this could be a last resort.
+[
+@mission statement
+* a tool to allow people to "invest" time/money/assets onto projects, by tracking invested stuff.
+]
 
 [
-@hours tracker
-* For hours tracker: first complete a fully working version console plus backend only, with no dependency on ui whatsoever. Only then plugin a cegui/other ui. Maybe even on separate repos.
+@tech/arch
+* mvc-like so i can replace frontends if need be
+* will start with a console TUI
 * will use sqlite, users should repo-around the dumped database file
-* C++
-* CEGUI, or others. see the pre-made repo
-* publish it later
-* Also make a console for the hours tracker app. Undependent of the gui frontend
+* first strike: controller-and-view console, and the backend (model) using sqlite. that's it.
 ]
-
-///////////////////////////////////////////////
 
 [
-* roll out your own little gui tool to track hours, using c++ and CEGUI (1), fltk (2), wxwidgets (3), qt (4), tkinder+python (5)
-* make it MVC-like so i can eventually replace the widgets library if ever necessary.
+@features
+* i wanna track hours worked, on what date, by whom, on what (kind of) activity
+* also track how much money certain person invested
+* also consider a more flexible field/table: assets provided (for bigger artwork, where hours worked are not available), or similar stuff - consider
+ a third party who provided some sort of cover artwork, or logo, or even a software library or whatever - if the hours worked are lost, this could be a last resort.
 ]
 
-* i wanna track hours worked, on what date, by whom, on what (kind of) activity
+[
+@time tracker
+]
 
+[
+@money tracker
+]
+
+[
+@asset tracker
+]
+
+[
+@gui debacle
+* what the heck, it can have several guis if i wanted it to. So doesnt really matter now. Make a frontends folder.
+* CEGUI
+* fltk
+* wxwidgets
+* gtk+
+* qt
+* tkinder+python
+]
+
+[
+@future
+* publish it later
+* try to "cloud" it later, with a web interface (html/css)
+]
 
