@@ -7,18 +7,15 @@
 DateHelper::DateHelper(const unsigned short _day,
                        const unsigned short _month,
                        const unsigned short _year):
-day{_day}, month{_month}, year{_year}{
-
-    if (!isValidDate(_day, _month, _year)){
-        EX_THROW(Ex_Invalid_Date, "Invalid date: " + convertFromNumbers(_day, _month, _year));
-    }
-
+day{0}, month{0}, year{0}
+{
+    setDate(_day, _month, _year);
 }
 
-DateHelper::DateHelper(const std::string &textdate):day{0}, month{0}, year{0}{
-    if (!isValidDate(textdate)){
-        EX_THROW(Ex_Invalid_Date, "Invalid date: " + textdate);
-    }
+DateHelper::DateHelper(const std::string &textdate):
+day{0}, month{0}, year{0}
+{
+    setDate(textdate);
 }
 
 bool DateHelper::isValidDate(const std::string &textdate) {

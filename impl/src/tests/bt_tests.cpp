@@ -76,15 +76,39 @@ bool test_datehelper(){
 
     // should throw exacly that type of exception
     each = false;
-    try {
-        DateHelper dh{7, 80, 1978};
-        std::cout << "Should raise exception" << std::endl;
-    } catch (const Ex_Invalid_Date& ex){
-        each = true;
+    {
+        try {
+            DateHelper dh{7, 80, 1978};
+            std::cout << "Should raise exception" << std::endl;
+        } catch (const Ex_Invalid_Date& ex){
+            each = true;
+        }
     }
     total &= each;
 
-    // mvtodo: add s'more tests
+    // should throw exception when trying to set bad date
+    each = false;
+    {
+        DateHelper dh{7, 5, 1985};
+        try {
+            dh.setDate("35/20/2000");
+            std::cout << "Should raise exception" << std::endl;
+        } catch (const Ex_Invalid_Date& ex){
+            each = true;
+        }
+    }
+    total &= each;
+
+    // should return the same text date as the one passed during construction
+    {
+        const std::string templ = "03/03/1993";
+        DateHelper dh{templ};
+        each = (dh.getDateString() == templ);
+        if (!each){
+            std::cout << "Init date and later fetched date should match" << std::endl;
+        }
+    }
+    total &= each;
 
     return total;
 
