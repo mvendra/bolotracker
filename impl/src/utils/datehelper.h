@@ -17,7 +17,7 @@ public:
                const unsigned short _month,
                const unsigned short _year);
 
-    ~DateHelper();
+    ~DateHelper(){}
 
     DateHelper(const DateHelper&) = delete;
     DateHelper(DateHelper&&) = delete;
