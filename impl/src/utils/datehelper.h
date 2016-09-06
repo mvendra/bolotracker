@@ -37,10 +37,10 @@ public:
                                           const unsigned short _month,
                                           const unsigned short _year);
 
-    bool setDate(const std::string &textdate);
-    bool setDate(const unsigned short _day,
+    void setDate(const std::string &textdate);
+    void setDate(const unsigned short _day,
                  const unsigned short _month,
-                 const unsigned short _year) const;
+                 const unsigned short _year);
 
     std::string getDateString() const;
     void getDateNumbers(unsigned short &_day,

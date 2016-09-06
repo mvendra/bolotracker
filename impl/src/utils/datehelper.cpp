@@ -77,32 +77,43 @@ std::string DateHelper::convertFromNumbers(const unsigned short _day,
 
 }
 
-bool DateHelper::setDate(const std::string &textdate){
-    // mvtodo: finish this
-    (void)textdate; // mvdebug
-    return false; // mvdebug
+void DateHelper::setDate(const std::string &textdate){
+
+    if (!isValidDate(textdate)){
+        EX_THROW(Ex_Invalid_Date, "Invalid date: " + textdate);
+    }
+
+    unsigned short _d{0}, _m{0}, _y{0};
+    convertFromText(textdate, _d, _m, _y);
+
+    this->day = _d;
+    this->month = _m;
+    this->year = _y;
+
 }
 
-bool DateHelper::setDate(const unsigned short _day,
+void DateHelper::setDate(const unsigned short _day,
              const unsigned short _month,
-             const unsigned short _year) const {
-    // mvtodo: finish this
-    (void)_day; // mvdebug
-    (void)_month; // mvdebug
-    (void)_year; // mvdebug
-    return false; // mvdebug
+             const unsigned short _year) {
+
+    if (!isValidDate(_day, _month, _year)){
+        EX_THROW(Ex_Invalid_Date, "Invalid date: " + convertFromNumbers(_day, _month, _year));
+    }
+
+    this->day = _day;
+    this->month = _month;
+    this->year = _year;
+
 }
 
 std::string DateHelper::getDateString() const {
-    // mvtodo: finish this
-    return "mvdebug";
+    return convertFromNumbers(day, month, year);
 }
 
 void DateHelper::getDateNumbers(unsigned short &_day,
                     unsigned short &_month,
                     unsigned short &_year) const {
-    // mvtodo: finish this
-    _day = 0; // mvdebug
-    _month = 0; // mvdebug
-    _year = 0; // mvdebug
+    _day = day;
+    _month = month;
+    _year = year;
 }
