@@ -2,8 +2,6 @@
 #ifndef __UNIT_TEST_H__
 #define __UNIT_TEST_H__
 
-#include "utils/conversions.h"
-
 #include <string>
 #include <iostream>
 #include <sstream>
