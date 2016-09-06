@@ -1,4 +1,6 @@
 
+* Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
+
 * separar o model e o DAO
 
 [
