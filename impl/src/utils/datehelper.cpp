@@ -24,6 +24,17 @@ bool DateHelper::isValidDate(const std::string &textdate) {
 bool DateHelper::isValidDate(const unsigned short _day,
                  const unsigned short _month,
                  const unsigned short _year) {
+
+    tm test_time;
+    test_time.tm_mday = _day;
+    test_time.tm_mon = _month;
+    test_time.tm_year = _year;
+
+    (void)test_time; // mvdebug
+
+    time_t r = mktime(&test_time);
+    (void)r; // mvdebug
+
     // mvtodo: finish this
     (void)_day; // mvdebug
     (void)_month; // mvdebug

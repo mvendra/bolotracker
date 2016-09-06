@@ -89,7 +89,3 @@
 * currency type (fk -> currencies.pk_currency)
 ]
 
-* data de validate pra a asset/money?
-
-* considerar fazer uma tabela pra coisas emprestadas ? data de entrada e data de saida por exemplo (tabela pra trackear por exemplo alguma maquina emprestada)
-

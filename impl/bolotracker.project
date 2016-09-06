@@ -49,6 +49,10 @@
       <File Name="src/utils/utils.cpp"/>
       <File Name="src/utils/utils.h"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="tests">
+      <File Name="src/tests/bt_tests.h"/>
+      <File Name="src/tests/bt_tests.cpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">
@@ -158,4 +162,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Linux x64 Debug"/>
+  <Dependencies Name="Linux x64 Release"/>
 </CodeLite_Project>

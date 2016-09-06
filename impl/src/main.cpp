@@ -6,6 +6,11 @@
 
 #include <iostream>
 
+#ifndef NDEBUG
+#define TESTS_ONLY
+#include "tests/bt_tests.h"
+#endif // NDEBUG
+
 void bootstrap(){
 
     std::string working_dir = getAppWorkingDir();
@@ -18,6 +23,16 @@ int main(int argc, char *argv[]){
 
     (void)argc; (void)argv; // silence warnings
 
+#ifdef TESTS_ONLY
+
+    if (test_all()){
+        std::cout << "Result: Success." << std::endl; 
+    } else {
+        std::cout << "Result: Fail." << std::endl; 
+    }
+
+#else
+
     try {
         bootstrap();
     } catch (const Ex_Base &ex){
@@ -25,5 +40,7 @@ int main(int argc, char *argv[]){
     }
 
     return 0;
+
+#endif // TESTS_ONLY
 
 }

@@ -13,7 +13,7 @@ bool Model::add_new_investor(const std::string& name, const std::string &email,
     (void)name; // mvdebug
     (void)email; // mvdebug
     (void)desc; // mvdebug
-    (void) date_inclusion; // mvdebug
+    (void)date_inclusion; // mvdebug
 
     // mvtodo: finish this
     return false; // mvdebug
