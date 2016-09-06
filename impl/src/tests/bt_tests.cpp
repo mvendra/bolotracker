@@ -140,7 +140,7 @@ bool test_datehelper(){
     };
 
     //test_ex<Ex_Invalid_Date>(total, "Should raise exception", p);
-    test_nex<Ex_Invalid_Date>(total, "Should not raise exception", [](){ DateHelper dh{7, 5, 1985}; });
+    test_no_ex<Ex_Invalid_Date>(total, "Should not raise exception", [](){ DateHelper dh{7, 5, 1985}; });
     test_ex<Ex_Invalid_Date>(total, "Should raise exception", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
 
     test_ex<Ex_NotReached>(total, "mvdebug", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
