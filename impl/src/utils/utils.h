@@ -9,7 +9,9 @@
 #endif // __linux__
 
 unsigned int strToUint(const std::string &src);
+unsigned short strToUshort(const std::string &src);
 std::string uintToStr(const unsigned int num);
+std::string ushortToStr(const unsigned int num);
 std::string getAppWorkingDir();
 
 #endif // __UTILS_H__

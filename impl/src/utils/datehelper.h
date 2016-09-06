@@ -29,6 +29,14 @@ public:
                      const unsigned short _month,
                      const unsigned short _year);
 
+    static void convertFromText(const std::string &textdate,
+                                unsigned short &_day,
+                                unsigned short &_month,
+                                unsigned short &_year);
+    static std::string convertFromNumbers(const unsigned short _day,
+                                          const unsigned short _month,
+                                          const unsigned short _year);
+
     bool setDate(const std::string &textdate);
     bool setDate(const unsigned short _day,
                  const unsigned short _month,
