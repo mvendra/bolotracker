@@ -20,7 +20,7 @@ bool test_datehelper(){
 
     // test date validator
     bool total = true;
-    bool each = true;
+    bool each = true; // mvtodo: remove this, port all old tests to unit_test
 
     // date should be valid
     {
