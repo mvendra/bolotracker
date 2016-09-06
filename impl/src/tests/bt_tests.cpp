@@ -5,6 +5,8 @@
 
 #include "exceptions/ex_invalid_date.h"
 
+#include "utils/unit_test.h"
+
 #include <iostream>
 
 bool test_all(){
@@ -100,7 +102,7 @@ bool test_datehelper(){
     total &= each;
 
     // should return the same text date as the one passed during construction
-    {
+    /*{
         const std::string templ = "03/03/1993";
         DateHelper dh{templ};
         each = (dh.getDateString() == templ);
@@ -108,7 +110,16 @@ bool test_datehelper(){
             std::cout << "Init date and later fetched date should match" << std::endl;
         }
     }
-    total &= each;
+    total &= each;*/
+
+    //////////////////////////////////////////////////////////
+
+    // should return the same text date as the one passed during construction
+    {
+        const std::string templ = "03/03/1993";
+        DateHelper dh{templ};
+        test_eq(total, "Init date and later fetched date should match", templ, dh.getDateString());
+    }
 
     return total;
 

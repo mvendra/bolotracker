@@ -47,8 +47,11 @@
     <VirtualDirectory Name="utils">
       <File Name="src/utils/datehelper.cpp"/>
       <File Name="src/utils/datehelper.h"/>
-      <File Name="src/utils/utils.cpp"/>
-      <File Name="src/utils/utils.h"/>
+      <File Name="src/utils/unit_test.h"/>
+      <File Name="src/utils/sysutils.cpp"/>
+      <File Name="src/utils/sysutils.h"/>
+      <File Name="src/utils/conversions.cpp"/>
+      <File Name="src/utils/conversions.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="tests">
       <File Name="src/tests/bt_tests.h"/>

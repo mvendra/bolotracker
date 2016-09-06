@@ -1,17 +1,13 @@
 
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef __CONVERSIONS_H__
+#define __CONVERSIONS_H__
 
 #include <string>
 
-#ifdef __linux__
-#include <unistd.h>
-#endif // __linux__
 
 unsigned int strToUint(const std::string &src);
 unsigned short strToUshort(const std::string &src);
 std::string uintToStr(const unsigned int num);
 std::string ushortToStr(const unsigned int num);
-std::string getAppWorkingDir();
 
-#endif // __UTILS_H__
+#endif // __CONVERSIONS_H__
