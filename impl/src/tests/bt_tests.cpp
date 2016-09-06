@@ -4,6 +4,7 @@
 #include "utils/datehelper.h"
 
 #include "exceptions/ex_invalid_date.h"
+#include "exceptions/ex_notreached.h"
 
 #include "utils/unit_test.h"
 
@@ -20,6 +21,8 @@ bool test_datehelper(){
     // test date validator
     bool total = true;
     bool each = true;
+
+    // port all the older tests to unit_test
 
     // date should be valid
     each = DateHelper::isValidDate(22, 6, 1997);
@@ -120,6 +123,43 @@ bool test_datehelper(){
         DateHelper dh{templ};
         test_eq(total, "Init date and later fetched date should match", templ, dh.getDateString());
     }
+
+    {
+        int one = 1;
+        int two = 1;
+        auto comp = [](auto p1, auto p2) { return (p1 == p2); };
+        test(total, "must be same", one, two, comp);
+    }
+
+    /////////////////////////////////////////
+
+    // should throw exception when trying to set bad date
+    auto p = [](){ 
+        DateHelper dh{7, 5, 1985};
+        //dh.setDate("35/20/2000");
+    };
+
+    //test_ex<Ex_Invalid_Date>(total, "Should raise exception", p);
+    test_nex<Ex_Invalid_Date>(total, "Should not raise exception", [](){ DateHelper dh{7, 5, 1985}; });
+    test_ex<Ex_Invalid_Date>(total, "Should raise exception", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
+
+    test_ex<Ex_NotReached>(total, "mvdebug", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
+
+    /*each = false;
+    {
+        
+        try {
+            
+            std::cout << "Should raise exception" << std::endl;
+        } catch (const Ex_Invalid_Date& ex){
+            each = true;
+        }
+    }
+    total &= each;*/
+
+    /////////////////////////////
+
+    //test_nex<Ex_
 
     return total;
 

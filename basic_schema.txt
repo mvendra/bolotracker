@@ -54,24 +54,6 @@
 ]
 
 [
-@table: invested_money
-* blueprint: obligation-free, lent money. this is NOT for financial instruments (stocks, bonds, options, etc).
-
-* pk_invested_money
-* investor (fk -> investors.pk_investor)
-
-* date
-* short_name
-* description
-
-* comment (optional)
-* subject (fk -> subjects.pk_subject)
-
-* amount
-* currency type (fk -> currencies.pk_currency)
-]
-
-[
 @table: invested_asset
 * blueprint: this is for services/goods delivered, never to be returned - i.e. credit for items to be bought in the future.
 
@@ -86,6 +68,24 @@
 * subject (fk -> subjects.pk_subject)
 
 * price
+* currency type (fk -> currencies.pk_currency)
+]
+
+[
+@table: invested_money
+* blueprint: obligation-free, lent money. this is NOT for financial instruments (stocks, bonds, options, etc).
+
+* pk_invested_money
+* investor (fk -> investors.pk_investor)
+
+* date
+* short_name
+* description
+
+* comment (optional)
+* subject (fk -> subjects.pk_subject)
+
+* amount
 * currency type (fk -> currencies.pk_currency)
 ]
 
