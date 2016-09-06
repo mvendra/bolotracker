@@ -22,13 +22,10 @@ bool test_datehelper(){
     bool total = true;
     bool each = true;
 
-    // port all the older tests to unit_test
-
     // date should be valid
-    each = DateHelper::isValidDate(22, 6, 1997);
-    if (!each){
-        std::cout << "Date should be valid." << std::endl;
-        total = false;
+    {
+        //test_eq("Date should be valid", DateHelper::isValidDate(22, 6, 1997), true);
+        test_true(total, "Date should be valid", DateHelper::isValidDate(22, 6, 1997));
     }
 
     // date should be invalid
