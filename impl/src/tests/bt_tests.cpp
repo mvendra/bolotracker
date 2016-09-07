@@ -10,10 +10,160 @@
 
 #include <iostream>
 
-bool test_all(){
-    bool acc = true;
-    acc &= test_datehelper();
-    return acc;
+#define TEST_FLAG(BOOL_EXPR) if (!BOOL_EXPR) { std::cout << "Incorrect flag!" << std::endl; return false; }
+
+bool test_unit_test(){
+
+    // TEST
+    {
+        bool ret = true;
+        int one = 1;
+        int uno = 1;
+        auto comp = [](auto p1, auto p2) { return (p1 == p2); };
+        test(ret, "Must be same", one, uno, comp);
+        TEST_FLAG(ret); // must be true
+    }
+
+    // TEST_EQ
+    {
+        bool ret = true;
+        int first = 1;
+        int primero = 1;
+        test_eq(ret, "Init date and later fetched date should match", first, primero);
+        TEST_FLAG(ret); // must be true
+    }
+
+    // TEST_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_NO_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_ANY_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_ANY_NO_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_TRUE
+    {
+        // mvtodo
+    }
+
+    // TEST_FALSE
+    {
+        // mvtodo
+    }
+
+    // TEST_EQ
+    {
+        // mvtodo
+    }
+
+    // TEST_GT
+    {
+        // mvtodo
+    }
+
+    // TEST_GE
+    {
+        // mvtodo
+    }
+
+    // TEST_LT
+    {
+        // mvtodo
+    }
+
+    // TEST_LE
+    {
+        // mvtodo
+    }
+
+    // TEST_NE
+    {
+        // mvtodo
+    }
+
+
+    // (BOOL WRAPPED):
+
+    // TEST
+    {
+        // mvtodo
+    }
+
+    // TEST_TRUE
+    {
+        // mvtodo
+    }
+
+    // TEST_FALSE
+    {
+        // mvtodo
+    }
+
+    // TEST_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_NO_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_ANY_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_ANY_NO_EX
+    {
+        // mvtodo
+    }
+
+    // TEST_EQ
+    {
+        // mvtodo
+    }
+
+    // TEST_GT
+    {
+        // mvtodo
+    }
+
+    // TEST_GE
+    {
+        // mvtodo
+    }
+
+    // TEST_LT
+    {
+        // mvtodo
+    }
+
+    // TEST_LE
+    {
+        // mvtodo
+    }
+
+    // TEST_NE
+    {
+        // mvtodo
+    }
+
+
+    return true;
+
 }
 
 bool test_datehelper(){
@@ -160,4 +310,18 @@ bool test_datehelper(){
 
     return total;
 
+}
+
+bool test_accrue(bool &flag_holder, bool func){
+    flag_holder &= func;
+}
+
+bool test_all(){
+
+    bool acc = true;
+
+    test_accrue(acc, test_unit_test());
+    //test_accrue(acc, test_datehelper());
+
+    return acc;
 }
