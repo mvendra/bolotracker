@@ -14,153 +14,201 @@
 
 bool test_unit_test(){
 
+
+    ///////////////////
+    // BOOL NOT WRAPPED
+    ///////////////////
+
+
     // TEST
     {
         bool ret = true;
-        int one = 1;
-        int uno = 1;
+        // mvtodo
+    }
+
+    // TEST_TRUE
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_FALSE
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_EX
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_NO_EX
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_ANY_EX
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_ANY_NO_EX
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_EQ
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_NE
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_GT
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_GE
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_LT
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+    // TEST_LE
+    {
+        bool ret = true;
+        // mvtodo
+    }
+
+
+    ///////////////
+    // BOOL WRAPPED
+    ///////////////
+
+
+    // TEST
+    {
+        bool ret = true;
         auto comp = [](auto p1, auto p2) { return (p1 == p2); };
-        test(ret, "Must be same", one, uno, comp);
-        TEST_FLAG(ret); // must be true
+        test(ret, "Must be same", 1, 1, comp);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_EQ
     {
         bool ret = true;
-        int first = 1;
-        int primero = 1;
-        test_eq(ret, "Init date and later fetched date should match", first, primero);
-        TEST_FLAG(ret); // must be true
-    }
-
-    // TEST_EX
-    {
-        // mvtodo
-    }
-
-    // TEST_NO_EX
-    {
-        // mvtodo
-    }
-
-    // TEST_ANY_EX
-    {
-        // mvtodo
-    }
-
-    // TEST_ANY_NO_EX
-    {
-        // mvtodo
-    }
-
-    // TEST_TRUE
-    {
-        // mvtodo
-    }
-
-    // TEST_FALSE
-    {
-        // mvtodo
-    }
-
-    // TEST_EQ
-    {
-        // mvtodo
-    }
-
-    // TEST_GT
-    {
-        // mvtodo
-    }
-
-    // TEST_GE
-    {
-        // mvtodo
-    }
-
-    // TEST_LT
-    {
-        // mvtodo
-    }
-
-    // TEST_LE
-    {
-        // mvtodo
+        test_eq(ret, "Must be same", 1, 1);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_NE
     {
-        // mvtodo
-    }
-
-
-    // (BOOL WRAPPED):
-
-    // TEST
-    {
-        // mvtodo
-    }
-
-    // TEST_TRUE
-    {
-        // mvtodo
-    }
-
-    // TEST_FALSE
-    {
-        // mvtodo
+        bool ret = true;
+        test_ne(ret, "Must not be equal", 2, 4);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_EX
     {
-        // mvtodo
+        bool ret = true;
+        auto p = []() { throw 1; };
+        test_ex<int>(ret, "Must throw int", p);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_NO_EX
     {
-        // mvtodo
+        bool ret = true;
+        auto p = []() { throw 1; };
+        test_no_ex<double>(ret, "Must NOT throw double", p);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_ANY_EX
     {
-        // mvtodo
+        bool ret = true;
+        auto p = []() { /* i dont throw */ };
+        test_any_ex(ret, "IF THIS FAILS, IT'S A SUCCESS! Should fail when no exception is thrown", p);
+        TEST_FLAG(!ret); // expected: false
     }
 
     // TEST_ANY_NO_EX
     {
-        // mvtodo
+        bool ret = true;
+        auto p_int = []() { throw 1; };
+        auto p_double = []() { throw 1.1; };
+        test_any_no_ex(ret, "IF THIS FAILS, IT'S A SUCCESS! Should fail when INT exception is thrown", p_int);
+        TEST_FLAG(!ret); // expected: false
+        test_any_no_ex(ret, "IF THIS FAILS, IT'S A SUCCESS! Should fail when DOUBLE exception is thrown", p_double);
+        TEST_FLAG(!ret); // expected: false
+    }
+
+    // TEST_TRUE
+    {
+        bool ret = true;
+        test_true(ret, "Must be true", true);
+        TEST_FLAG(ret);// expected: true
+    }
+
+    // TEST_FALSE
+    {
+        bool ret = true;
+        test_false(ret, "Must be false", false);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_EQ
     {
-        // mvtodo
+        bool ret = true;
+        test_eq(ret, "Must be equal", true, true);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_GT
     {
-        // mvtodo
+        bool ret = true;
+        test_gt(ret, "Must be greater than", 2, 1);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_GE
     {
-        // mvtodo
+        bool ret = true;
+        test_ge(ret, "Must be greater-or-equal", 2, 2);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_LT
     {
-        // mvtodo
+        bool ret = true;
+        test_lt(ret, "Must be lesser than", 1, 2);
+        TEST_FLAG(ret); // expected: true
     }
 
     // TEST_LE
     {
-        // mvtodo
+        bool ret = true;
+        test_le(ret, "Must be lesser-or-equal", 2, 2);
+        TEST_FLAG(ret); // expected: true
     }
-
-    // TEST_NE
-    {
-        // mvtodo
-    }
-
 
     return true;
 
