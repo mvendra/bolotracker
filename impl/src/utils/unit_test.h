@@ -53,7 +53,7 @@ bool test(const std::string &msg, X param1, Y param2, auto func){
     // reporting
     std::string t1 = handy_conversion(param1);
     std::string t2 = handy_conversion(param2);
-    std::string msg_plus_params = msg + ". (" + t1 + ", " + t2 + ")";
+    std::string msg_plus_params = msg + " (" + t1 + ", " + t2 + ")";
 
     // testing
     if (func(param1, param2)){ PASS(msg_plus_params); }
@@ -142,6 +142,12 @@ bool test_eq(const std::string &msg, X param1, Y param2){
 }
 
 template <typename X, typename Y>
+bool test_ne(const std::string &msg, X param1, Y param2){
+    auto comp_ne = [](auto p1, auto p2) { return (p1 != p2); };
+    return test(msg, param1, param2, comp_ne);
+}
+
+template <typename X, typename Y>
 bool test_gt(const std::string &msg, X param1, Y param2){
     auto comp_gt = [](auto p1, auto p2) { return (p1 > p2); };
     return test(msg, param1, param2, comp_gt);
@@ -165,12 +171,6 @@ bool test_le(const std::string &msg, X param1, Y param2){
     return test(msg, param1, param2, comp_le);
 }
 
-template <typename X, typename Y>
-bool test_ne(const std::string &msg, X param1, Y param2){
-    auto comp_ne = [](auto p1, auto p2) { return (p1 != p2); };
-    return test(msg, param1, param2, comp_ne);
-}
-
 // INTERFACE EXTENSIONS
 
 template <typename X, typename Y>
@@ -180,12 +180,12 @@ void test(bool &total, const std::string &msg, X param1, Y param2, auto func){
 
 template <typename X>
 void test_true(bool &total, const std::string &msg, X param){
-    total &= test_true(msg, param);
+    total &= test_true<X>(msg, param);
 }
 
 template <typename X>
 void test_false(bool &total, const std::string &msg, X param){
-    total &= test_false(msg, param);
+    total &= test_false<X>(msg, param);
 }
 
 template <typename T>
@@ -202,14 +202,18 @@ void test_any_ex(bool &total, const std::string &msg, auto testcase){
     total &= test_any_ex(msg, testcase);
 }
 
-template <typename T>
 void test_any_no_ex(bool &total, const std::string &msg, auto testcase){
-    total &= test_any_no_ex<T>(msg, testcase);
+    total &= test_any_no_ex(msg, testcase);
 }
 
 template <typename X, typename Y>
 void test_eq(bool &total, const std::string &msg, X param1, Y param2){
     total &= test_eq<X, Y>(msg, param1, param2);
+}
+
+template <typename X, typename Y>
+void test_ne(bool &total, const std::string &msg, X param1, Y param2){
+    total &= test_ne<X, Y>(msg, param1, param2);
 }
 
 template <typename X, typename Y>
@@ -230,11 +234,6 @@ void test_lt(bool &total, const std::string &msg, X param1, Y param2){
 template <typename X, typename Y>
 void test_le(bool &total, const std::string &msg, X param1, Y param2){
     total &= test_le<X, Y>(msg, param1, param2);
-}
-
-template <typename X, typename Y>
-void test_ne(bool &total, const std::string &msg, X param1, Y param2){
-    total &= test_ne<X, Y>(msg, param1, param2);
 }
 
 #endif // __UNIT_TEST_H__
