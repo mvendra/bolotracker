@@ -178,16 +178,6 @@ void test(bool &total, const std::string &msg, X param1, Y param2, auto func){
     total &= test<X, Y>(msg, param1, param2, func);
 }
 
-template <typename X>
-void test_true(bool &total, const std::string &msg, X param){
-    total &= test_true<X>(msg, param);
-}
-
-template <typename X>
-void test_false(bool &total, const std::string &msg, X param){
-    total &= test_false<X>(msg, param);
-}
-
 template <typename T>
 void test_ex(bool &total, const std::string &msg, auto testcase){
     total &= test_ex<T>(msg, testcase);
@@ -204,6 +194,16 @@ void test_any_ex(bool &total, const std::string &msg, auto testcase){
 
 void test_any_no_ex(bool &total, const std::string &msg, auto testcase){
     total &= test_any_no_ex(msg, testcase);
+}
+
+template <typename X>
+void test_true(bool &total, const std::string &msg, X param){
+    total &= test_true<X>(msg, param);
+}
+
+template <typename X>
+void test_false(bool &total, const std::string &msg, X param){
+    total &= test_false<X>(msg, param);
 }
 
 template <typename X, typename Y>
