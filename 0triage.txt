@@ -1,8 +1,4 @@
 
-* print_neutral(...) does not need to print another color_white at the end
-* and test the testing framework big time
-* reactivate -werror: [-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC]
-
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
 
 * separar o model e o DAO
