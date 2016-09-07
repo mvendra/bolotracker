@@ -1,11 +1,9 @@
 
 #include "tests/unit_test_tests.h"
 
-//#include "utils/unit_test.h" // mvdebug
+#include "utils/unit_test.h"
 
 #include <iostream>
-
-#if 0 // mvdebug
 
 bool test_unit_test(){
 
@@ -206,5 +204,3 @@ bool test_unit_test(){
     return true;
 
 }
-
-#endif // mvdebug

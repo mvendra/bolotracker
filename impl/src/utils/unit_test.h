@@ -11,20 +11,12 @@
 #define COLOR_RED    "\033[31m"
 #define COLOR_GREEN  "\033[32m"
 
-void print_error(const std::string &msg){
-    std::cout << COLOR_RED << msg << COLOR_WHITE << std::endl;
-}
+#define PRINT_ERROR(MSG) std::cout << COLOR_RED << MSG << COLOR_WHITE << std::endl;
+#define PRINT_SUCCESS(MSG) std::cout << COLOR_GREEN << MSG << COLOR_WHITE << std::endl;
+#define PRINT_NEUTRAL(MSG) std::cout << COLOR_WHITE << MSG << std::endl;
 
-void print_success(const std::string &msg){
-    std::cout << COLOR_GREEN << msg << COLOR_WHITE << std::endl;
-}
-
-void print_neutral(const std::string &msg){
-    std::cout << COLOR_WHITE << msg << COLOR_WHITE << std::endl;
-}
-
-#define PASS(MSG) print_success("Passed: " + MSG); return true;
-#define FAIL(MSG) print_error("FAILED: " + MSG); return false;
+#define PASS(MSG) PRINT_SUCCESS("Passed: " + MSG); return true;
+#define FAIL(MSG) PRINT_ERROR("FAILED: " + MSG); return false;
 
 // THE PRAGMA BELOW IS TO ALLOW THE USE OF AUTO AS A FUNCTION PARAMETER
 #ifdef __GNUC__
