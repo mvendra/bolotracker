@@ -124,15 +124,15 @@ bool test_any_no_ex(const std::string &msg, auto testcase){
 // HELPERS
 
 template <typename X>
-bool test_true(const std::string &msg, X param1){
+bool test_true(const std::string &msg, X param){
     auto comp_eq = [](auto p1, auto p2) { return (p1 == p2); };
-    return test(msg, param1, true, comp_eq);
+    return test(msg, param, true, comp_eq);
 }
 
 template <typename X>
-bool test_false(const std::string &msg, X param1){
+bool test_false(const std::string &msg, X param){
     auto comp_eq = [](auto p1, auto p2) { return (p1 == p2); };
-    return test(msg, param1, false, comp_eq);
+    return test(msg, param, false, comp_eq);
 }
 
 template <typename X, typename Y>
@@ -179,13 +179,13 @@ void test(bool &total, const std::string &msg, X param1, Y param2, auto func){
 }
 
 template <typename X>
-void test_true(bool &total, const std::string &msg, X param1){
-    total &= test_true(msg, param1);
+void test_true(bool &total, const std::string &msg, X param){
+    total &= test_true(msg, param);
 }
 
 template <typename X>
-void test_false(bool &total, const std::string &msg, X param1){
-    total &= test_false(msg, param1);
+void test_false(bool &total, const std::string &msg, X param){
+    total &= test_false(msg, param);
 }
 
 template <typename T>
