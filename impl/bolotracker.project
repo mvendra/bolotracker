@@ -54,8 +54,12 @@
       <File Name="src/utils/conversions.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="tests">
-      <File Name="src/tests/bt_tests.h"/>
-      <File Name="src/tests/bt_tests.cpp"/>
+      <File Name="src/tests/unit_test_tests.cpp"/>
+      <File Name="src/tests/unit_test_tests.h"/>
+      <File Name="src/tests/datehelper_tests.cpp"/>
+      <File Name="src/tests/datehelper_tests.h"/>
+      <File Name="src/tests/bolotracker_tests.h"/>
+      <File Name="src/tests/bolotracker_tests.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">

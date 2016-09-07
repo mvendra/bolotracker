@@ -8,7 +8,7 @@
 
 #ifndef NDEBUG
 #define TESTS_ONLY
-#include "tests/bt_tests.h"
+#include "tests/bolotracker_tests.h"
 #endif // NDEBUG
 
 void bootstrap(){
