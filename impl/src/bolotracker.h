@@ -2,13 +2,14 @@
 #ifndef __BOLOTRACKER_H__
 #define __BOLOTRACKER_H__
 
-#include "database.h"
+#include <vector>
+#include <string>
 
 class BoloTracker final {
 
 public:
 
-    BoloTracker(const std::string &db_params);
+    BoloTracker(const std::vector<std::string> &cmdline_params);
     ~BoloTracker();
 
     BoloTracker(const BoloTracker&) = delete;
@@ -20,7 +21,7 @@ public:
 
 private:
 
-    Database db;
+    std::string get_db_path(const std::vector<std::string> &cmdline_params);
 
 };
 

@@ -1,15 +1,16 @@
 
 #include "bolotracker.h"
 
-#include "utils/sysutils.h"
 #include "exceptions/ex_base.h"
 
+#include <string>
+#include <vector>
 #include <iostream>
 
 // choose only one...
 //#define TEST_ONLY
-//#define TEST_AND_RUN
-#define RUN_ONLY
+#define TEST_AND_RUN
+//#define RUN_ONLY
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #include "tests/bolotracker_tests.h"
@@ -23,17 +24,28 @@ void runtests(){
 }
 #endif
 
-void bootstrap(){
+using vstr = std::vector<std::string>;
 
-    std::string working_dir = getAppWorkingDir();
-    BoloTracker bt {working_dir};
+void bootstrap(const vstr& cmdline_params){
+    BoloTracker bt {cmdline_params};
     bt.run();
+}
+
+vstr parse_cmdline_args(const int argc, char * const argv[]){
+
+    vstr ret;
+    std::string cmdp;
+    for (int i=0; i<argc; i++){
+        cmdp = argv[i];
+        ret.push_back(cmdp);
+    }
+    return ret;
 
 }
 
 int main(int argc, char *argv[]){
 
-    (void)argc; (void)argv; // silence warnings
+    vstr r = parse_cmdline_args(argc, argv);
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY
@@ -45,9 +57,13 @@ int main(int argc, char *argv[]){
 #ifndef TEST_ONLY
 
     try {
-        bootstrap();
+        bootstrap(r);
     } catch (const Ex_Base &ex){
-        std::cout << ex.getMessage() << std::endl;
+        std::cout << "Exception caught: " << ex.getMessage() << std::endl;
+        return 1;
+    } catch (...){
+        std::cout << "Unexpected exception has been raised." << std::endl;
+        return 2;
     }
 
     return 0;

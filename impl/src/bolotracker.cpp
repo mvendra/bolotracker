@@ -1,10 +1,39 @@
 
 #include "bolotracker.h"
+#include "utils/sysutils.h"
 
-BoloTracker::BoloTracker(const std::string &db_params):db{db_params}{
+BoloTracker::BoloTracker(const std::vector<std::string> &cmdline_params){
+
+    std::string db_path = get_db_path(cmdline_params);
+    (void)db_path; // mvdebug
+
 }
 
 BoloTracker::~BoloTracker(){
+}
+
+std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_params){
+
+    std::string db_path;
+
+    // process the cmdline args
+    for (unsigned int i=0; i<cmdline_params.size(); i++){
+
+        // a working path has been specified
+        if (i == 1){
+            db_path = cmdline_params[i];
+        }
+
+    }
+
+    // no db has been specified on the cmdline
+    if (db_path.length() == 0){
+        std::string working_dir = getAppWorkingDir();
+        db_path = working_dir + "/" + "bolo.sql"; // default name
+    }
+
+    return db_path;
+
 }
 
 void BoloTracker::run(){
