@@ -10,7 +10,7 @@ void test_accrue(bool &flag_holder, bool func){
 
 bool test_all(){
 
-    bool result = true;
+    bool result {true};
 
     //test_accrue(result, test_unit_test());
     test_accrue(result, test_datehelper());

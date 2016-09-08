@@ -11,7 +11,7 @@
 bool test_datehelper(){
 
     // test date validator
-    bool total = true;
+    bool total {true};
 
     // date should be valid
     test_true(total, "Date should be valid", DateHelper::isValidDate(22, 6, 1997));
@@ -61,7 +61,7 @@ bool test_datehelper(){
 
     // should return the same text date as the one passed during construction
     {
-        const std::string templ = "03/03/1993";
+        const std::string templ {"03/03/1993"};
         DateHelper dh{templ};
         test_eq(total, "Init date and later fetched date should match", templ, dh.getDateString());
     }

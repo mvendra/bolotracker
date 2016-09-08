@@ -119,7 +119,7 @@ std::string DateHelper::convertFromNumbers(const unsigned short _day,
 
     char chdate[10]{0};
     sprintf(chdate, "%02d/%02d/%04d", _day, _month, _year);
-    std::string ret = chdate;
+    std::string ret {chdate};
     return ret;
 
 }

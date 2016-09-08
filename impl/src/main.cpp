@@ -9,8 +9,8 @@
 
 // choose only one...
 //#define TEST_ONLY
-//#define TEST_AND_RUN
-#define RUN_ONLY
+#define TEST_AND_RUN
+//#define RUN_ONLY
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #include "tests/bolotracker_tests.h"
@@ -45,7 +45,7 @@ vstr parse_cmdline_args(const int argc, char * const argv[]){
 
 int main(int argc, char *argv[]){
 
-    vstr r = parse_cmdline_args(argc, argv);
+    vstr r {parse_cmdline_args(argc, argv)};
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY

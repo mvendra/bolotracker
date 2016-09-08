@@ -34,7 +34,7 @@ T Tui::get_option() const {
 bool Tui::run() {
 
     print_main_menu();
-    int opt = get_option<int>();
+    int opt {get_option<int>()};
 
     switch (opt){
 

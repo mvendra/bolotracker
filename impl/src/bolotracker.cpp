@@ -32,7 +32,7 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
 
     // no db has been specified on the cmdline
     if (db_path.length() == 0){
-        std::string working_dir = getAppWorkingDir();
+        std::string working_dir {getAppWorkingDir()};
         db_path = working_dir + "/" + "bolo.sql"; // default name
     }
 
@@ -43,7 +43,7 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
 void BoloTracker::run(){
 
     Model md{dbpath};
-    std::unique_ptr<ControllerInterface> controller = std::make_unique<Tui>(md);
+    std::unique_ptr<ControllerInterface> controller {std::make_unique<Tui>(md)};
     while (controller->run()){}
 
 }
