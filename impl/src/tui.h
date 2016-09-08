@@ -22,7 +22,13 @@ private:
 
     void print_happy_talk() const;
     void print_main_menu() const;
-    int get_option() const;
+    template <typename T>
+    T get_option() const;
+
+    // submenus
+    void menu_add_something() const;
+    void menu_list_something() const;
+    void menu_remove_something() const;
 
 };
 

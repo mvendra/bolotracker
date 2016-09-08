@@ -4,6 +4,56 @@
 
 #include "exceptions/ex_invalid_date.h"
 
+#ifdef __linux__
+#include <time.h>
+#include <sys/time.h>
+#elif _WIN32
+#include <windows.h>
+#endif
+
+DateHelper::DateHelper():day{0}, month{0}, year{0}{
+
+#ifdef __linux__
+
+    struct timeval tv;
+    struct timezone tz;
+    struct tm *tm;
+
+    gettimeofday(&tv, &tz);
+    tm = localtime(&tv.tv_sec);
+
+    /*sysTime.m_seconds = tm->tm_sec;
+    sysTime.m_minutes = tm->tm_min;
+    sysTime.m_hours = tm->tm_hour;
+    sysTime.m_monthday = tm->tm_mday;
+    sysTime.m_month = tm->tm_mon+1;
+    sysTime.m_year = tm->tm_year%100;*/
+
+    this->day = tm->tm_mday;
+    this->month = tm->tm_mon+1;
+    this->year = tm->tm_year + 1900;
+
+#elif _WIN32
+    SYSTEMTIME stSysTime;
+    GetLocalTime(&stSysTime);
+
+    /*sysTime.m_seconds = stSysTime.wSecond;
+    sysTime.m_minutes = stSysTime.wMinute;
+    sysTime.m_hours = stSysTime.wHour;
+    sysTime.m_monthday = stSysTime.wDay;
+    sysTime.m_month = stSysTime.wMonth;
+    sysTime.m_year = stSysTime.wYear%100;*/
+
+    this->day = stSysTime.wDay;
+    this->month = stSysTime.wMonth;
+    this->year = stSysTime.wYear + 1900;
+
+#else
+    EX_THROW(Ex_Unsupported_Platform, "Present-date probing not implemented on this platform")
+#endif
+
+}
+
 DateHelper::DateHelper(const unsigned short _day,
                        const unsigned short _month,
                        const unsigned short _year):

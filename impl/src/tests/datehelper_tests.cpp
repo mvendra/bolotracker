@@ -69,6 +69,12 @@ bool test_datehelper(){
     test_ex<Ex_Invalid_Date>(total, "Should raise exception", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
     test_no_ex<Ex_Invalid_Date>(total, "Should not raise exception", [](){ DateHelper dh{7, 5, 1985}; });
 
+    // should be able to set its own date with the present
+    {
+        DateHelper dh{};
+        test_true(total, "Auto-built date should be valid", DateHelper::isValidDate(dh.getDateString()));
+    }
+
     return total;
 
 }

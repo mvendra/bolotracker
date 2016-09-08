@@ -15,9 +15,6 @@ public:
 
 protected:
 
-
-private:
-
     Model &model;
 
 };

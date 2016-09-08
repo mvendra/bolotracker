@@ -11,6 +11,8 @@ class DateHelper {
 
 public:
 
+    DateHelper(); // builds itself with the present date
+
     DateHelper(const std::string &textdate);
 
     DateHelper(const unsigned short _day,

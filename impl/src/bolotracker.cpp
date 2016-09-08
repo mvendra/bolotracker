@@ -7,6 +7,8 @@
 #include "exceptions/ex_base.h"
 #include "exceptions/ex_invalid_file.h"
 
+#include <memory>
+
 BoloTracker::BoloTracker(const std::vector<std::string> &cmdline_params):dbpath{get_db_path(cmdline_params)}{
     // mvtodo: need to check if file exists, and is a file (and not a directory)?
 }
@@ -41,8 +43,7 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
 void BoloTracker::run(){
 
     Model md{dbpath};
-    Tui tui{md};
-    while (tui.run()){
-    }
+    std::unique_ptr<ControllerInterface> controller = std::make_unique<Tui>(md);
+    while (controller->run()){}
 
 }
