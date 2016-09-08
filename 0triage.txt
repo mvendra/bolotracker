@@ -1,9 +1,5 @@
 
-[
-* Fork unit_test into its own repo, along with its self test files. And make some sample usages too.
-* Do fork it but keep it private for now
-* Add it as a submodule into bolotracker and enginekit_test
-]
+* include testforecho via submodule into bolotracker and enginekit and gatineau and else
 
 /////////////////////////////////////////
 
