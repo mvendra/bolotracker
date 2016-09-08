@@ -6,10 +6,22 @@
 
 #include <iostream>
 
-#ifndef NDEBUG
-#define TESTS_ONLY
+// choose only one...
+//#define TEST_ONLY
+//#define TEST_AND_RUN
+#define RUN_ONLY
+
+#if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #include "tests/bolotracker_tests.h"
-#endif // NDEBUG
+
+void runtests(){
+    if (test_all()){
+        std::cout << "Result: Success." << std::endl; 
+    } else {
+        std::cout << "Result: Fail." << std::endl; 
+    }
+}
+#endif
 
 void bootstrap(){
 
@@ -23,15 +35,14 @@ int main(int argc, char *argv[]){
 
     (void)argc; (void)argv; // silence warnings
 
-#ifdef TESTS_ONLY
+#if defined(TEST_ONLY) || defined(TEST_AND_RUN)
+#ifndef RUN_ONLY
+    runtests();
+#endif
+#endif
 
-    if (test_all()){
-        std::cout << "Result: Success." << std::endl; 
-    } else {
-        std::cout << "Result: Fail." << std::endl; 
-    }
-
-#else
+#if defined(TEST_AND_RUN) || defined(RUN_ONLY)
+#ifndef TEST_ONLY
 
     try {
         bootstrap();
@@ -41,6 +52,7 @@ int main(int argc, char *argv[]){
 
     return 0;
 
-#endif // TESTS_ONLY
+#endif
+#endif
 
 }

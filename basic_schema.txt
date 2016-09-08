@@ -72,6 +72,23 @@
 ]
 
 [
+@table: bonuses
+* blueprint: this is for rewarding outstanding help - preferably unexpectedly by the receiving party. to defend against soaring expectations when a contributor is being of great help, but is only getting regular (invested_time) entries.
+
+* pk_bonus
+* investor (fk -> investors.pk_investor)
+
+* date
+* short_name
+* description
+
+* comment (optional)
+* subject (fk -> subjects.pk_subject)
+
+* reward
+]
+
+[
 @table: invested_money
 * blueprint: obligation-free, lent money. this is NOT for financial instruments (stocks, bonds, options, etc).
 
