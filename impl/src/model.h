@@ -12,7 +12,7 @@ class Model final {
 
 public:
 
-    Model();
+    Model(const std::string &dbpath);
     ~Model();
 
     Model(const Model&) = delete;

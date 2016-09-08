@@ -22,6 +22,7 @@ public:
 private:
 
     std::string get_db_path(const std::vector<std::string> &cmdline_params);
+    std::string dbpath;
 
 };
 

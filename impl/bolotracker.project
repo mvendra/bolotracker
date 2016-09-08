@@ -41,6 +41,7 @@
       <File Name="src/exceptions/ex_unsupported_platform.h"/>
       <File Name="src/exceptions/ex_utils_error.h"/>
       <File Name="src/exceptions/ex_invalid_date.h"/>
+      <File Name="src/exceptions/ex_invalid_file.h"/>
     </VirtualDirectory>
     <File Name="src/model.cpp"/>
     <File Name="src/model.h"/>
@@ -61,6 +62,10 @@
       <File Name="src/tests/bolotracker_tests.h"/>
       <File Name="src/tests/bolotracker_tests.cpp"/>
     </VirtualDirectory>
+    <File Name="src/tui.cpp"/>
+    <File Name="src/tui.h"/>
+    <File Name="src/controller_interface.h"/>
+    <File Name="src/controller_interface.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">

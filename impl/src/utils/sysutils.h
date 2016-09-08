@@ -9,5 +9,6 @@
 #endif // __linux__
 
 std::string getAppWorkingDir();
+bool fileExists(const std::string &);
 
 #endif // __SYSUTILS_H__

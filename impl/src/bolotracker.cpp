@@ -1,12 +1,14 @@
 
 #include "bolotracker.h"
+#include "model.h"
+#include "tui.h"
 #include "utils/sysutils.h"
 
-BoloTracker::BoloTracker(const std::vector<std::string> &cmdline_params){
+#include "exceptions/ex_base.h"
+#include "exceptions/ex_invalid_file.h"
 
-    std::string db_path = get_db_path(cmdline_params);
-    (void)db_path; // mvdebug
-
+BoloTracker::BoloTracker(const std::vector<std::string> &cmdline_params):dbpath{get_db_path(cmdline_params)}{
+    // mvtodo: need to check if file exists, and is a file (and not a directory)?
 }
 
 BoloTracker::~BoloTracker(){
@@ -37,4 +39,10 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
 }
 
 void BoloTracker::run(){
+
+    Model md{dbpath};
+    Tui tui{md};
+    while (tui.run()){
+    }
+
 }

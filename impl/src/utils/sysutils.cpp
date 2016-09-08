@@ -5,6 +5,8 @@
 #include "exceptions/ex_unsupported_platform.h"
 #include "exceptions/ex_utils_error.h"
 
+#include <sys/stat.h>
+
 std::string getAppWorkingDir(){
 
 #ifdef __linux__
@@ -21,4 +23,10 @@ std::string getAppWorkingDir(){
 
     NOTREACHED("Could not detect current working directory")
 
+}
+
+bool fileExists(const std::string &fn){
+    // thanks to http://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c
+    struct stat buffer;   
+    return (stat (fn.c_str(), &buffer) == 0);
 }
