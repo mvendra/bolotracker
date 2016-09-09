@@ -1,12 +1,6 @@
 
-* cleanup include paths (by trial and error)
-
-* separate enginekit proj files
-* separate enginekit_test proj files
-* separate gatineau proj files
-
-* add plain makefiles to testforecho
-* add plain makefiles to bolotracker
+* bolotracker release is badly bugged
+* try to change on all projects: no .cpp.o, just .o please
 
 * include testforecho via submodule into bolotracker and enginekit and gatineau and else
 
