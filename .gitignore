@@ -1,8 +1,8 @@
 *.swp
 
 # codelite project autogen stuff
-impl/bolotracker.mk
-impl/bolotracker.txt
+impl/proj/codelite/bolotracker.mk
+impl/proj/codelite/bolotracker.txt
 
 # build stuff
 impl/build/linux_x64_debug/

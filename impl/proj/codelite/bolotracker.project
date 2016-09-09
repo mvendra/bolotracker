@@ -29,52 +29,52 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="src/main.cpp"/>
-    <File Name="src/bolotracker.cpp"/>
-    <File Name="src/bolotracker.h"/>
-    <File Name="src/database.cpp"/>
-    <File Name="src/database.h"/>
+    <File Name="../../src/main.cpp"/>
+    <File Name="../../src/bolotracker.cpp"/>
+    <File Name="../../src/bolotracker.h"/>
+    <File Name="../../src/database.cpp"/>
+    <File Name="../../src/database.h"/>
     <VirtualDirectory Name="exceptions">
-      <File Name="src/exceptions/ex_base.cpp"/>
-      <File Name="src/exceptions/ex_base.h"/>
-      <File Name="src/exceptions/ex_notreached.h"/>
-      <File Name="src/exceptions/ex_unsupported_platform.h"/>
-      <File Name="src/exceptions/ex_utils_error.h"/>
-      <File Name="src/exceptions/ex_invalid_date.h"/>
-      <File Name="src/exceptions/ex_invalid_file.h"/>
+      <File Name="../../src/exceptions/ex_base.cpp"/>
+      <File Name="../../src/exceptions/ex_base.h"/>
+      <File Name="../../src/exceptions/ex_notreached.h"/>
+      <File Name="../../src/exceptions/ex_unsupported_platform.h"/>
+      <File Name="../../src/exceptions/ex_utils_error.h"/>
+      <File Name="../../src/exceptions/ex_invalid_date.h"/>
+      <File Name="../../src/exceptions/ex_invalid_file.h"/>
     </VirtualDirectory>
-    <File Name="src/model.cpp"/>
-    <File Name="src/model.h"/>
+    <File Name="../../src/model.cpp"/>
+    <File Name="../../src/model.h"/>
     <VirtualDirectory Name="utils">
-      <File Name="src/utils/datehelper.cpp"/>
-      <File Name="src/utils/datehelper.h"/>
-      <File Name="src/utils/unit_test.h"/>
-      <File Name="src/utils/sysutils.cpp"/>
-      <File Name="src/utils/sysutils.h"/>
-      <File Name="src/utils/conversions.cpp"/>
-      <File Name="src/utils/conversions.h"/>
+      <File Name="../../src/utils/datehelper.cpp"/>
+      <File Name="../../src/utils/datehelper.h"/>
+      <File Name="../../src/utils/unit_test.h"/>
+      <File Name="../../src/utils/sysutils.cpp"/>
+      <File Name="../../src/utils/sysutils.h"/>
+      <File Name="../../src/utils/conversions.cpp"/>
+      <File Name="../../src/utils/conversions.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="tests">
-      <File Name="src/tests/unit_test_tests.cpp"/>
-      <File Name="src/tests/unit_test_tests.h"/>
-      <File Name="src/tests/datehelper_tests.cpp"/>
-      <File Name="src/tests/datehelper_tests.h"/>
-      <File Name="src/tests/bolotracker_tests.h"/>
-      <File Name="src/tests/bolotracker_tests.cpp"/>
+      <File Name="../../src/tests/unit_test_tests.cpp"/>
+      <File Name="../../src/tests/unit_test_tests.h"/>
+      <File Name="../../src/tests/datehelper_tests.cpp"/>
+      <File Name="../../src/tests/datehelper_tests.h"/>
+      <File Name="../../src/tests/bolotracker_tests.h"/>
+      <File Name="../../src/tests/bolotracker_tests.cpp"/>
     </VirtualDirectory>
-    <File Name="src/tui.cpp"/>
-    <File Name="src/tui.h"/>
-    <File Name="src/controller_interface.h"/>
-    <File Name="src/controller_interface.cpp"/>
+    <File Name="../../src/tui.cpp"/>
+    <File Name="../../src/tui.h"/>
+    <File Name="../../src/controller_interface.h"/>
+    <File Name="../../src/controller_interface.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="third_party">
     <VirtualDirectory Name="sqlite">
       <VirtualDirectory Name="src">
-        <File Name="third_party/sqlite/src/sqlite3.c"/>
+        <File Name="../../third_party/sqlite/src/sqlite3.c"/>
       </VirtualDirectory>
       <VirtualDirectory Name="include">
-        <File Name="third_party/sqlite/include/sqlite3.h"/>
-        <File Name="third_party/sqlite/include/sqlite3ext.h"/>
+        <File Name="../../third_party/sqlite/include/sqlite3.h"/>
+        <File Name="../../third_party/sqlite/include/sqlite3ext.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -93,15 +93,15 @@
     <Configuration Name="Linux x64 Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value="./third_party/sqlite/include"/>
-        <IncludePath Value="./src"/>
+        <IncludePath Value="../../third_party/sqlite/include"/>
+        <IncludePath Value="../../src"/>
       </Compiler>
       <Linker Options="" Required="yes">
         <Library Value="pthread"/>
         <Library Value="dl"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="./run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="./build/linux_x64_debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="./run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -136,7 +136,8 @@
     <Configuration Name="Linux x64 Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value="./third_party/sqlite/include"/>
+        <IncludePath Value="../../third_party/sqlite/include"/>
+        <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes">
@@ -144,7 +145,7 @@
         <Library Value="dl"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="./run/linux_x64_release/$(ProjectName)" IntermediateDirectory="./build/linux_x64_release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="./run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>

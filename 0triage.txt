@@ -1,4 +1,9 @@
 
+* separate bolotracker proj files
+* separate enginekit proj files
+* separate enginekit_test proj files
+* separate gatineau proj files
+
 * include testforecho via submodule into bolotracker and enginekit and gatineau and else
 
 /////////////////////////////////////////
