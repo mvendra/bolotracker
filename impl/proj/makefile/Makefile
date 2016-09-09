@@ -78,9 +78,8 @@ FULL_APP_NAME=$(RUN_FULL)/$(APPNAME)
 all: compile link 
 
 compile:
-	#$(foreach src,$(SRC),$(COMPILER) $(INCLUDES) $(CPPFLAGS) -c $(BASE_SRC)/$(src) -o $(BASE_OBJ_FULL)/$(src:.cpp=.o);)
 	$(foreach src,$(SRC),$(COMPILER) $(INCLUDES) $(CPPFLAGS) -c $(BASE_SRC)/$(src) -o $(BASE_OBJ_FULL)/$(notdir $(src:.cpp=.o));)
-	$(C_COMPILER) $(INCLUDES) $(SQLITE_CPPFLAGS) -c $(SRC_SQLITE) -o $(SRC_SQLITE:.c=.o)
+	$(C_COMPILER) $(INCLUDES) $(SQLITE_CPPFLAGS) -c $(SRC_SQLITE) -o $(BASE_OBJ_FULL)/$(notdir $(SRC_SQLITE:.c=.o))
 
 link:
 	$(COMPILER) -o $(FULL_APP_NAME) $(ALL_OBJS) $(LDFLAGS)
