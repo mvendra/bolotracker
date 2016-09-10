@@ -87,5 +87,6 @@ link:
 
 clean:
 	$(foreach objs,$(ALL_OBJS),rm -rf $(objs);)
+	rm -rf $(BASE_OBJ_FULL)/$(notdir $(SRC_SQLITE:.c=.o))
 	rm -rf $(FULL_APP_NAME)
 
