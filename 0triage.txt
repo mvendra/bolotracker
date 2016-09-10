@@ -1,9 +1,5 @@
 
-[
-* sqlite obj file is misplaced -> generic Makefile
-* try to change on all projects: no .cpp.o, just .o please
 * include testforecho via submodule into bolotracker and enginekit and gatineau and else
-]
 
 /////////////////////////////
 

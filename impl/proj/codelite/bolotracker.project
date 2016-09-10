@@ -48,15 +48,12 @@
     <VirtualDirectory Name="utils">
       <File Name="../../src/utils/datehelper.cpp"/>
       <File Name="../../src/utils/datehelper.h"/>
-      <File Name="../../src/utils/unit_test.h"/>
       <File Name="../../src/utils/sysutils.cpp"/>
       <File Name="../../src/utils/sysutils.h"/>
       <File Name="../../src/utils/conversions.cpp"/>
       <File Name="../../src/utils/conversions.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="tests">
-      <File Name="../../src/tests/unit_test_tests.cpp"/>
-      <File Name="../../src/tests/unit_test_tests.h"/>
       <File Name="../../src/tests/datehelper_tests.cpp"/>
       <File Name="../../src/tests/datehelper_tests.h"/>
       <File Name="../../src/tests/bolotracker_tests.h"/>
@@ -67,14 +64,19 @@
     <File Name="../../src/controller_interface.h"/>
     <File Name="../../src/controller_interface.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="third_party">
-    <VirtualDirectory Name="sqlite">
-      <VirtualDirectory Name="src">
-        <File Name="../../third_party/sqlite/src/sqlite3.c"/>
+  <VirtualDirectory Name="lib">
+    <VirtualDirectory Name="third_party">
+      <VirtualDirectory Name="sqlite">
+        <VirtualDirectory Name="src">
+          <File Name="../../lib/third_party/sqlite/src/sqlite3.c"/>
+          <File Name="../../lib/third_party/sqlite/src/sqlite3.h"/>
+          <File Name="../../lib/third_party/sqlite/src/sqlite3ext.h"/>
+        </VirtualDirectory>
       </VirtualDirectory>
-      <VirtualDirectory Name="include">
-        <File Name="../../third_party/sqlite/include/sqlite3.h"/>
-        <File Name="../../third_party/sqlite/include/sqlite3ext.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="testforecho">
+      <VirtualDirectory Name="src">
+        <File Name="../../lib/testforecho/src/testforecho.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -92,7 +94,8 @@
     </GlobalSettings>
     <Configuration Name="Linux x64 Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="../../third_party/sqlite/include"/>
+        <IncludePath Value="../../lib/third_party/sqlite/src"/>
+        <IncludePath Value="../../lib/testforecho/src"/>
         <IncludePath Value="../../src"/>
       </Compiler>
       <Linker Options="" Required="yes">
@@ -134,7 +137,8 @@
     </Configuration>
     <Configuration Name="Linux x64 Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="../../third_party/sqlite/include"/>
+        <IncludePath Value="../../lib/third_party/sqlite/src"/>
+        <IncludePath Value="../../lib/testforecho/src"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
