@@ -1,8 +1,4 @@
 
-* include testforecho via submodule into bolotracker and enginekit and gatineau and else
-
-/////////////////////////////
-
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
 * separar o model e o DAO
 

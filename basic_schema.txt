@@ -2,6 +2,7 @@
 [
 @database blueprint
 * there must be one table per investment type. this is to avoid being forced to refactor a table, including new columns to accomodate any hypotethical future investment option.
+* there should not be a projects table. each database should be separated for its own project.
 ]
 
 [
