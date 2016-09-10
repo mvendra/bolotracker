@@ -5,6 +5,7 @@
 // business rules class
 
 #include "utils/datehelper.h"
+#include "database.h"
 
 #include <string>
 
@@ -29,6 +30,7 @@ public:
     // CURRENCIES
 
 private:
+    Database db;
 
 };
 

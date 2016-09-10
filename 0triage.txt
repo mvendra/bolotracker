@@ -38,10 +38,9 @@
 ]
 
 [
-@gui debacle
-* what the heck, it can have several guis if i wanted it to. So doesnt really matter now. Make a frontends folder.
-* CEGUI
+@gui priority list
 * fltk
+* CEGUI
 * wxwidgets
 * gtk+
 * qt

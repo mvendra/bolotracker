@@ -1,7 +1,7 @@
 
 #include "model.h"
 
-Model::Model(const std::string &dbpath){
+Model::Model(const std::string &dbpath):db{dbpath}{
     (void)dbpath; // mvdebug
 }
 

@@ -21,6 +21,7 @@ public:
     Database& operator=(Database&&) = delete;
 
 private:
+    sqlite3 *sqlite_con;
 
 };
 
