@@ -8,6 +8,8 @@
 
 // this class is the system's Database Access Object
 
+int exec_callback(void *notused, int argc, char **argv, char **col_name);
+
 class Database final {
 
 public:
@@ -19,6 +21,8 @@ public:
     Database(Database&&) = delete;
     Database& operator=(const Database&) = delete;
     Database& operator=(Database&&) = delete;
+
+    bool exec(const std::string &sql, std::string &return_msg);
 
 private:
     sqlite3 *sqlite_con;
