@@ -1,4 +1,7 @@
 
+* dont forget all decorations to sql stuff (not null, optional, etc)
+* check the virgulas
+
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
 * separar o model e o DAO
 

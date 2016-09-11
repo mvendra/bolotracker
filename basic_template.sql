@@ -43,60 +43,71 @@ CONSTRAINT pk_currencies PRIMARY KEY (pk_currencies)
 
 CREATE TABLE INVESTED_TIME (
 pk_invested_time INT,
+fk_investor INT,
+fk_subject INT,
+fk_currency INT,
 
-/* investor (fk -> investors.pk_investor) */
 /* date */
 /* description */
 /* comment (optional) */
-/* subject (fk -> subjects.pk_subject) */
 /* minutes */
 /* price per unit */
-/* currency type (fk -> currencies.pk_currency) */
 
-CONSTRAINT pk_invested_time PRIMARY KEY (pk_invested_time)
+CONSTRAINT pk_invested_time PRIMARY KEY (pk_invested_time),
+CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
+CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
+CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
 );
 
 CREATE TABLE INVESTED_ASSET (
 pk_invested_asset INT,
+fk_investor INT,
+fk_subject INT,
+fk_currency INT,
 
-/* investor (fk -> investors.pk_investor) */
 /* date */
 /* short_name */
 /* description */
 /* comment (optional) */
-/* subject (fk -> subjects.pk_subject) */
 /* price */
-/* currency type (fk -> currencies.pk_currency) */
 
-CONSTRAINT pk_invested_asset PRIMARY KEY (pk_invested_asset)
+CONSTRAINT pk_invested_asset PRIMARY KEY (pk_invested_asset),
+CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
+CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
+CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
 );
 
 CREATE TABLE BONUSES (
 pk_bonus INT,
+fk_investor INT,
+fk_subject INT,
 
-/* investor (fk -> investors.pk_investor) */
 /* date */
 /* short_name */
 /* description */
 /* comment (optional) */
-/* subject (fk -> subjects.pk_subject) */
 /* reward */
 
-CONSTRAINT pk_bonuses PRIMARY KEY (pk_bonuses)
+CONSTRAINT pk_bonuses PRIMARY KEY (pk_bonuses),
+CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
+CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS
 );
 
 CREATE TABLE INVESTED_MONEY (
 pk_invested_money INT,
+fk_investor INT,
+fk_subject INT,
+fk_currency INT,
 
-/* investor (fk -> investors.pk_investor) */
 /* date */
 /* short_name */
 /* description */
 /* comment (optional) */
-/* subject (fk -> subjects.pk_subject) */
 /* amount */
-/* currency type (fk -> currencies.pk_currency) */
 
-CONSTRAINT pk_invested_money PRIMARY KEY (pk_invested_money)
+CONSTRAINT pk_invested_money PRIMARY KEY (pk_invested_money),
+CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
+CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
+CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
 );
 
