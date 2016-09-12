@@ -54,6 +54,7 @@
       <File Name="../../src/utils/sysutils.h"/>
       <File Name="../../src/utils/conversions.cpp"/>
       <File Name="../../src/utils/conversions.h"/>
+      <File Name="../../src/utils/managedbuffer.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="tests">
       <File Name="../../src/tests/datehelper_tests.cpp"/>
