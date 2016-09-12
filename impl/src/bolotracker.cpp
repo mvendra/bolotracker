@@ -33,7 +33,7 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
     // no db has been specified on the cmdline
     if (db_path.length() == 0){
         std::string working_dir {getAppWorkingDir()};
-        db_path = working_dir + "/" + "bolo.sql"; // default name
+        db_path = working_dir + "/" + "bolo.db"; // default name
     }
 
     return db_path;

@@ -25,6 +25,9 @@ public:
     bool exec(const std::string &sql, std::string &return_msg);
 
 private:
+
+    void bootstrap();
+
     sqlite3 *sqlite_con;
 
 };
