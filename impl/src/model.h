@@ -21,13 +21,18 @@ public:
     Model& operator=(const Model&) = delete;
     Model& operator=(Model&&) = delete;
 
-    // INVESTORS
-    bool add_new_investor(const std::string& name, const std::string &email,
+    //////////////////////
+    /* WRITE OPERATIONS */
+    //////////////////////
+
+    void add_new_investor(const std::string& name, const std::string &email,
                           const std::string& desc, const DateHelper &date_inclusion);
 
-    // SUBJECTS
+    /////////////////////
+    /* READ OPERATIONS */
+    /////////////////////
 
-    // CURRENCIES
+    bool has_investor(const std::string& name);
 
 private:
     Database db;

@@ -44,6 +44,7 @@
       <File Name="../../src/exceptions/ex_invalid_file.h"/>
       <File Name="../../src/exceptions/ex_failed_opening_database.h"/>
       <File Name="../../src/exceptions/ex_database_error.h"/>
+      <File Name="../../src/exceptions/ex_model_error.h"/>
     </VirtualDirectory>
     <File Name="../../src/model.cpp"/>
     <File Name="../../src/model.h"/>

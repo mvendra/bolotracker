@@ -6,18 +6,6 @@
 
 #include <vector>
 
-int exec_callback(void *notused, int argc, char **argv, char **col_name){
-
-    (void)notused;
-
-    // mvtodo: finish this
-    for (int i = 0; i < argc; i++){
-        printf("%s = %s\n", col_name[i], argv[i] ? argv[i] : "NULL");
-    }
-
-    return 0;
-}
-
 Database::Database(const std::string &connection):sqlite_con{0}{
 
     // will pre-load the newly created database
@@ -74,14 +62,30 @@ void Database::bootstrap(){
 
 bool Database::exec(const std::string &sql, std::string &return_msg){
 
-    char *msg;
-    int rc {sqlite3_exec(sqlite_con, sql.c_str(), exec_callback, 0, &msg)};
+    //char *msg; // mvdebug
+    return_msg = ""; //mvdebug
+    sqlite3_stmt *statement {0};
+    int rc;
 
+    rc = sqlite3_prepare_v2(sqlite_con, sql.c_str(), sql.length(), &statement, 0);
     if (rc != SQLITE_OK){
-        return_msg = msg;
-        sqlite3_free(msg);
+        return_msg = "sqlite3_prepare_v2 failed.";
         return false;
     }
 
+    rc = sqlite3_step(statement);
+    if (rc == SQLITE_DONE){
+        // there is nothing else
+        sqlite3_finalize(statement);
+        return true;
+    } else if (rc == SQLITE_ROW){
+        //int count = sqlite3_column_int(statement, 0); // mvdebug
+    } else {
+        return_msg = "sqlite3_step something else returned. mvdebug";
+        return false;
+    }
+
+    sqlite3_finalize(statement);
     return true;
+
 }

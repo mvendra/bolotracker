@@ -8,8 +8,6 @@
 
 // this class is the system's Database Access Object
 
-int exec_callback(void *notused, int argc, char **argv, char **col_name);
-
 class Database final {
 
 public:

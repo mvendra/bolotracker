@@ -1,6 +1,8 @@
 
 #include "model.h"
 
+#include "exceptions/ex_model_error.h"
+
 Model::Model(const std::string &dbpath):db{dbpath}{
     (void)dbpath; // mvdebug
 }
@@ -8,15 +10,27 @@ Model::Model(const std::string &dbpath):db{dbpath}{
 Model::~Model(){
 }
 
-bool Model::add_new_investor(const std::string& name, const std::string &email,
+void Model::add_new_investor(const std::string& name, const std::string &email,
                              const std::string& desc, const DateHelper &date_inclusion){
 
-    (void)name; // mvdebug
+    if (has_investor(name)){
+        EX_THROW(Ex_Model_Error, "Investor named [" + name + "] already exists. Unable to add duplicate.");
+    }
+
     (void)email; // mvdebug
     (void)desc; // mvdebug
     (void)date_inclusion; // mvdebug
 
     // mvtodo: finish this
-    return false; // mvdebug
 
+}
+
+bool Model::has_investor(const std::string& name){
+(void)name; // mvdebug
+/* mvdebug begin
+    std::string errmsg;
+    db.exec()
+mvdebug end*/
+
+return false; // mvdebug
 }
