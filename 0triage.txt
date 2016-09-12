@@ -1,8 +1,5 @@
 
-* at database.cpp: hard codedly do this: "PRAGMA foreign_keys = ON;"
-
-* Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
-* separar o model e o DAO
+* Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room for more sophisticated ones.
 
 [
 @mission statement
