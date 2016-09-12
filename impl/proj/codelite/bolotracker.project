@@ -43,6 +43,7 @@
       <File Name="../../src/exceptions/ex_invalid_date.h"/>
       <File Name="../../src/exceptions/ex_invalid_file.h"/>
       <File Name="../../src/exceptions/ex_failed_opening_database.h"/>
+      <File Name="../../src/exceptions/ex_database_error.h"/>
     </VirtualDirectory>
     <File Name="../../src/model.cpp"/>
     <File Name="../../src/model.h"/>
@@ -104,7 +105,7 @@
         <Library Value="dl"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../run/linux_x64_debug/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -148,7 +149,7 @@
         <Library Value="dl"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../run/linux_x64_release/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
