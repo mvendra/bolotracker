@@ -1,11 +1,15 @@
 
 #include "sysutils.h"
 
+#include "managedbuffer.h"
+
 #include "exceptions/ex_notreached.h"
 #include "exceptions/ex_unsupported_platform.h"
 #include "exceptions/ex_utils_error.h"
 
 #include <sys/stat.h>
+
+#include <fstream>
 
 std::string getAppWorkingDir(){
 
@@ -23,6 +27,25 @@ std::string getAppWorkingDir(){
 
     NOTREACHED("Could not detect current working directory")
 
+}
+
+bool getFileContents(const std::string &fn, std::string &contents){
+
+    std::ifstream file;
+    file.open(fn.c_str());
+    if (!file.is_open()){
+        return false;
+    }
+
+    file.seekg (0, file.end);
+    unsigned int length = file.tellg();
+    file.seekg (0, file.beg);
+
+    ManagedBuffer mb { length+1 };
+    file.read(mb.buffer, mb.length);
+    contents = mb.buffer;
+
+    return true;
 }
 
 bool fileExists(const std::string &fn){
