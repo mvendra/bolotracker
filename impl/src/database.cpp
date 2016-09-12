@@ -1,8 +1,10 @@
 
 #include "database.h"
+#include "utils/sysutils.h"
+#include "utils/conversions.h"
+
 #include "exceptions/ex_failed_opening_database.h"
 #include "exceptions/ex_database_error.h"
-#include "utils/sysutils.h"
 
 #include <vector>
 
@@ -25,6 +27,20 @@ Database::Database(const std::string &connection):sqlite_con{0}{
     }
 
     if (bs) {bootstrap();}
+
+    // mvdebug begin
+
+    std::string mvdebug = "INSERT INTO investors(name, email, description, date_of_inclusion) VALUES(\"bob\", \"bob@company.com\", \"dasdesc\", \"05/03/2008\");";
+    if (!exec(mvdebug.c_str(),  msg)){
+        EX_THROW(Ex_Database_Error, msg);
+    }
+
+    mvdebug = "SELECT * FROM investors";
+    if (!exec(mvdebug.c_str(),  msg)){
+        EX_THROW(Ex_Database_Error, msg);
+    }
+
+    // mvdebug end
 
 }
 
@@ -62,14 +78,12 @@ void Database::bootstrap(){
 
 bool Database::exec(const std::string &sql, std::string &return_msg){
 
-    //char *msg; // mvdebug
-    return_msg = ""; //mvdebug
     sqlite3_stmt *statement {0};
     int rc;
 
     rc = sqlite3_prepare_v2(sqlite_con, sql.c_str(), sql.length(), &statement, 0);
     if (rc != SQLITE_OK){
-        return_msg = "sqlite3_prepare_v2 failed.";
+        return_msg = "Failed preparing the following sql: [" + sql + "]. Error code: " + intToStr(rc);
         return false;
     }
 
@@ -79,9 +93,10 @@ bool Database::exec(const std::string &sql, std::string &return_msg){
         sqlite3_finalize(statement);
         return true;
     } else if (rc == SQLITE_ROW){
-        //int count = sqlite3_column_int(statement, 0); // mvdebug
+        int count = sqlite3_column_int(statement, 0); // mvdebug
+        (void)count; // mvdebug
     } else {
-        return_msg = "sqlite3_step something else returned. mvdebug";
+        return_msg = "Untreated return code";
         return false;
     }
 
