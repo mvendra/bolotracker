@@ -1,113 +1,116 @@
 
-/*
-CREATE TABLE TEST (
-pk_test INT,
-fk_other INT,
-localname VARCHAR(400),
-localnumber INT,
-CONSTRAINT pk_test PRIMARY KEY (pk_test),
-CONSTRAINT fk_other FOREIGN KEY (fk_other) REFERENCES OTHER
-);
-*/
+CREATE TABLE investors (
+pk_investor INTEGER PRIMARY KEY,
 
-CREATE TABLE INVESTORS (
-pk_investor INT,
-
-/* name */
-/* email */
-/* description */
-/* date of inclusion */
-
-CONSTRAINT pk_investors PRIMARY KEY (pk_investors)
+name TEXT,
+email TEXT,
+description TEXT,
+date_of_inclusion TEXT /* sqlite 3 does not have a date dataype (sept/16) */
 );
 
-CREATE TABLE SUBJECTS (
-pk_subject INT,
+CREATE TABLE subjects (
+pk_subject INTEGER PRIMARY KEY,
 
-/* tag (project, subproject, task type, whatever) */
-/* description */
-/* date of inclusion */
-
-CONSTRAINT pk_subjects PRIMARY KEY (pk_subjects)
+tag TEXT, /* (project, subproject, task type, whatever) */
+description TEXT,
+date_of_inclusion TEXT
 );
 
-CREATE TABLE CURRENCIES (
-pk_currency INT,
+CREATE TABLE currencies (
+pk_currency INTEGER PRIMARY KEY,
 
-/* label */
-/* description */
-/* date of inclusion */
-
-CONSTRAINT pk_currencies PRIMARY KEY (pk_currencies)
+label TEXT,
+description TEXT,
+date_of_inclusion TEXT
 );
 
-CREATE TABLE INVESTED_TIME (
-pk_invested_time INT,
-fk_investor INT,
-fk_subject INT,
-fk_currency INT,
+CREATE TABLE invested_time (
+pk_invested_time INTEGER PRIMARY KEY,
+fk_investor INTEGER,
+fk_currency INTEGER,
 
-/* date */
-/* description */
-/* comment (optional) */
-/* minutes */
-/* price per unit */
+date TEXT,
+description TEXT,
+comment TEXT,
+minutes INTEGER,
+price_per_unit REAL,
 
-CONSTRAINT pk_invested_time PRIMARY KEY (pk_invested_time),
-CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
-CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
-CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
+FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
 );
 
-CREATE TABLE INVESTED_ASSET (
-pk_invested_asset INT,
-fk_investor INT,
-fk_subject INT,
-fk_currency INT,
-
-/* date */
-/* short_name */
-/* description */
-/* comment (optional) */
-/* price */
-
-CONSTRAINT pk_invested_asset PRIMARY KEY (pk_invested_asset),
-CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
-CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
-CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
+CREATE TABLE invested_time_subjects_link (
+fk_invested_time INTEGER,
+fk_subject INTEGER,
+FOREIGN KEY(fk_invested_time) REFERENCES invested_time(pk_invested_time),
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
+PRIMARY KEY (fk_invested_time, fk_subject)
 );
 
-CREATE TABLE BONUSES (
-pk_bonus INT,
-fk_investor INT,
-fk_subject INT,
+CREATE TABLE invested_assets (
+pk_invested_asset INTEGER PRIMARY KEY,
+fk_investor INTEGER,
+fk_currency INTEGER,
 
-/* date */
-/* short_name */
-/* description */
-/* comment (optional) */
-/* reward */
+date TEXT,
+short_name TEXT,
+description TEXT,
+comment TEXT,
+price REAL,
 
-CONSTRAINT pk_bonuses PRIMARY KEY (pk_bonuses),
-CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
-CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS
+FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
 );
 
-CREATE TABLE INVESTED_MONEY (
-pk_invested_money INT,
-fk_investor INT,
-fk_subject INT,
-fk_currency INT,
+CREATE TABLE invested_assets_subjects_link (
+fk_invested_asset INTEGER,
+fk_subject INTEGER,
+FOREIGN KEY(fk_invested_asset) REFERENCES invested_assets(pk_invested_asset),
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
+PRIMARY KEY (fk_invested_asset, fk_subject)
+);
 
-/* date */
-/* short_name */
-/* description */
-/* comment (optional) */
-/* amount */
+CREATE TABLE bonuses (
+pk_bonus INTEGER PRIMARY KEY,
+fk_investor INTEGER,
 
-CONSTRAINT pk_invested_money PRIMARY KEY (pk_invested_money),
-CONSTRAINT fk_investor FOREIGN KEY (fk_investor) REFERENCES INVESTORS,
-CONSTRAINT fk_subject FOREIGN KEY (fk_subject) REFERENCES SUBJECTS,
-CONSTRAINT fk_currency FOREIGN KEY (fk_currency) REFERENCES CURRENCIES
+date TEXT,
+short_name TEXT,
+description TEXT,
+comment TEXT,
+reward TEXT,
+
+FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor)
+);
+
+CREATE TABLE bonuses_subjects_link (
+fk_bonus INTEGER,
+fk_subject INTEGER,
+FOREIGN KEY(fk_bonus) REFERENCES bonuses(pk_bonus),
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
+PRIMARY KEY (fk_bonus, fk_subject)
+);
+
+CREATE TABLE invested_money (
+pk_invested_money INTEGER PRIMARY KEY,
+fk_investor INTEGER,
+fk_currency INTEGER,
+
+date TEXT,
+short_name TEXT,
+description TEXT,
+comment TEXT,
+amount REAL,
+
+FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
+);
+
+CREATE TABLE invested_money_subjects_link (
+fk_invested_money INTEGER,
+fk_subject INTEGER,
+FOREIGN KEY(fk_invested_money) REFERENCES invested_money(pk_invested_money),
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
+PRIMARY KEY (fk_invested_money, fk_subject)
 );
 
