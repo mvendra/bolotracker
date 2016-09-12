@@ -36,15 +36,16 @@ minutes INTEGER,
 price_per_unit REAL,
 
 FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
-FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currency)
 );
 
 CREATE TABLE invested_time_subjects_link (
 fk_invested_time INTEGER,
 fk_subject INTEGER,
+
+PRIMARY KEY (fk_invested_time, fk_subject),
 FOREIGN KEY(fk_invested_time) REFERENCES invested_time(pk_invested_time),
-FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
-PRIMARY KEY (fk_invested_time, fk_subject)
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject)
 );
 
 CREATE TABLE invested_assets (
@@ -59,15 +60,16 @@ comment TEXT,
 price REAL,
 
 FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
-FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currency)
 );
 
 CREATE TABLE invested_assets_subjects_link (
 fk_invested_asset INTEGER,
 fk_subject INTEGER,
+
+PRIMARY KEY (fk_invested_asset, fk_subject),
 FOREIGN KEY(fk_invested_asset) REFERENCES invested_assets(pk_invested_asset),
-FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
-PRIMARY KEY (fk_invested_asset, fk_subject)
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject)
 );
 
 CREATE TABLE bonuses (
@@ -86,9 +88,10 @@ FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor)
 CREATE TABLE bonuses_subjects_link (
 fk_bonus INTEGER,
 fk_subject INTEGER,
+
+PRIMARY KEY (fk_bonus, fk_subject),
 FOREIGN KEY(fk_bonus) REFERENCES bonuses(pk_bonus),
-FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
-PRIMARY KEY (fk_bonus, fk_subject)
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject)
 );
 
 CREATE TABLE invested_money (
@@ -103,14 +106,15 @@ comment TEXT,
 amount REAL,
 
 FOREIGN KEY(fk_investor) REFERENCES investors(pk_investor),
-FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currencies)
+FOREIGN KEY(fk_currency) REFERENCES currencies(pk_currency)
 );
 
 CREATE TABLE invested_money_subjects_link (
 fk_invested_money INTEGER,
 fk_subject INTEGER,
+
+PRIMARY KEY (fk_invested_money, fk_subject),
 FOREIGN KEY(fk_invested_money) REFERENCES invested_money(pk_invested_money),
-FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject),
-PRIMARY KEY (fk_invested_money, fk_subject)
+FOREIGN KEY(fk_subject) REFERENCES subjects(pk_subject)
 );
 

@@ -1,6 +1,5 @@
 
-* dont forget all decorations to sql stuff (not null, optional, etc)
-* check the virgulas
+* at database.cpp: hard codedly do this: "PRAGMA foreign_keys = ON;"
 
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room fot more sophisticated ones.
 * separar o model e o DAO
