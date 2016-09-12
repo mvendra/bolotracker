@@ -1,5 +1,8 @@
 
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room for more sophisticated ones.
+* i want to at least have a GUI viewer, in FLTK. if its too much trouble to add any read operations, then just
+create a big list that displays all investors, and nothing else, plus a Close button. just to bootstrap fltk in it
+and probe internal decoupling of controller interface vs. implementations.
 
 [
 @mission statement
