@@ -3,10 +3,15 @@
 #include "utils/sysutils.h"
 #include "utils/conversions.h"
 
+#include "utils/managedbuffer.h"
+
 #include "exceptions/ex_failed_opening_database.h"
 #include "exceptions/ex_database_error.h"
 
 #include <vector>
+
+using strvec = std::vector<std::string>;
+using strvec2 = std::vector<strvec>;
 
 Database::Database(const std::string &connection):sqlite_con{0}{
 
@@ -21,26 +26,10 @@ Database::Database(const std::string &connection):sqlite_con{0}{
     }
 
     // enable foreign keys
-    std::string msg;
-    if (!exec("PRAGMA foreign_keys = ON;",  msg)){
-        EX_THROW(Ex_Database_Error, msg);
-    }
+    exec("PRAGMA foreign_keys = ON;");
 
+    // if this is a new database...
     if (bs) {bootstrap();}
-
-    // mvdebug begin
-
-    std::string mvdebug = "INSERT INTO investors(name, email, description, date_of_inclusion) VALUES(\"bob\", \"bob@company.com\", \"dasdesc\", \"05/03/2008\");";
-    if (!exec(mvdebug.c_str(),  msg)){
-        EX_THROW(Ex_Database_Error, msg);
-    }
-
-    mvdebug = "SELECT * FROM investors";
-    if (!exec(mvdebug.c_str(),  msg)){
-        EX_THROW(Ex_Database_Error, msg);
-    }
-
-    // mvdebug end
 
 }
 
@@ -69,38 +58,72 @@ void Database::bootstrap(){
 
     std::string errmsg;
     for (auto i: cmds){
-        if (!exec(i.c_str(), errmsg)){
-            EX_THROW(Ex_Database_Error, errmsg);
-        }
+        exec(i);
     }
 
 }
 
-bool Database::exec(const std::string &sql, std::string &return_msg){
+void Database::exec(const std::string &sql){
+    // handy, and wasteful
+    std::vector<std::vector<std::string>> discarded;
+    exec(sql, discarded);
+}
+
+void Database::exec(const std::string &sql, std::vector<std::vector<std::string>> &result){
 
     sqlite3_stmt *statement {0};
     int rc;
 
     rc = sqlite3_prepare_v2(sqlite_con, sql.c_str(), sql.length(), &statement, 0);
     if (rc != SQLITE_OK){
-        return_msg = "Failed preparing the following sql: [" + sql + "]. Error code: " + intToStr(rc);
-        return false;
+        EX_THROW(Ex_Database_Error, "Failed preparing the following sql: [" + sql + "]. Error code: " + intToStr(rc));
     }
 
     rc = sqlite3_step(statement);
     if (rc == SQLITE_DONE){
         // there is nothing else
         sqlite3_finalize(statement);
-        return true;
+        return;
     } else if (rc == SQLITE_ROW){
-        int count = sqlite3_column_int(statement, 0); // mvdebug
-        (void)count; // mvdebug
+
+        while(true){
+
+            strvec columns;
+            bool r = read_row(statement, columns);
+            result.push_back(columns);
+            if (!r) break; // that was the last one
+
+        }
+
     } else {
-        return_msg = "Untreated return code";
-        return false;
+        EX_THROW(Ex_Database_Error, "Untreated return code");
     }
 
     sqlite3_finalize(statement);
-    return true;
+
+}
+
+bool Database::read_row(sqlite3_stmt *statement, std::vector<std::string> &columns){
+
+    int count = sqlite3_column_count(statement);
+    for (int i=0; i<count; i++){
+
+        const unsigned char *pcszCol = sqlite3_column_text(statement, i);
+        int col_len = sqlite3_column_bytes(statement, i);
+        ManagedBuffer mb {static_cast<unsigned int>(col_len) + 2};
+        snprintf(mb.buffer, col_len+1, "%s", pcszCol);
+        std::string value = mb.buffer;
+        columns.push_back(value);
+
+    }
+
+    int rc = sqlite3_step(statement);
+    if (rc == SQLITE_ROW){
+        return true;
+    } else if (rc == SQLITE_DONE){
+        return false;
+    } else {
+        EX_THROW(Ex_Database_Error, "Failed fully iterating statement");
+    }
 
 }
