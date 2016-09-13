@@ -60,10 +60,15 @@ bool Tui::run() {
 }
 
 void Tui::menu_add_something() const {
+
     // mvdebug begin
     DateHelper dh{};
-    model.add_new_investor("bolo", "bolo@tracker", "test", dh);
+
+    //model.add_subject("dev", "test", dh);
+    model.add_currency("usd", "test", dh);
+    model.add_investor("bob", "bolo@tracker", "test", dh);
     // mvdebug end
+
 }
 
 void Tui::menu_list_something() const {
