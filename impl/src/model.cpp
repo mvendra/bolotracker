@@ -4,7 +4,6 @@
 #include "exceptions/ex_model_error.h"
 
 Model::Model(const std::string &dbpath):db{dbpath}{
-    (void)dbpath; // mvdebug
 }
 
 Model::~Model(){
@@ -17,11 +16,9 @@ void Model::add_new_investor(const std::string& name, const std::string &email,
         EX_THROW(Ex_Model_Error, "Investor named [" + name + "] already exists. Unable to add duplicate.");
     }
 
-    (void)email; // mvdebug
-    (void)desc; // mvdebug
-    (void)date_inclusion; // mvdebug
-
-    // mvtodo: finish this
+    std::string sql {"INSERT INTO investors(name, email, description, date_of_inclusion) VALUES(\""};
+    sql += name + "\" , \"" + email + "\", \"" + desc + "\", \"" + date_inclusion.getDateString() + "\");";
+    //db.exec(sql); // mvdebug
 
 }
 
