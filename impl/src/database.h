@@ -8,6 +8,16 @@
 #include "sqlite3.h"
 
 // this class is the system's Database Access Object
+// this particular implementation is specific for
+// sqlite 3. if it ever becomes desirable to support other
+// database systems in this program, then you'd start by
+// generalising this class, by creating another similar one,
+// say, database_postgres, for example. also, have this class
+// (and the soon-to-be-introduced postgres/mysql equivalent)
+// to inherit from a common interface for the public operations
+// exec(...) so it's possible to generalise/substitute
+// easily the final data-access-object, for whatever
+// database backend system that is intended.
 
 class Database final {
 
