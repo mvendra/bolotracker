@@ -2,6 +2,7 @@
 #include "conversions.h"
 
 #include <sstream>
+#include <algorithm>
 
 unsigned int strToUint(const std::string &src) {
     unsigned int ret;
@@ -46,4 +47,12 @@ std::string ushortToStr(const unsigned short num){
     ss << num;
     ret = ss.str();
     return ret;
+}
+
+void makeStrLower(std::string &target){
+    std::transform(target.begin(), target.end(), target.begin(), ::tolower);
+}
+
+void makeStrUpper(std::string &target){
+    std::transform(target.begin(), target.end(), target.begin(), ::toupper);
 }
