@@ -1,4 +1,11 @@
 
+* double-and-triple check, test lots of cases, before ever putting this into production.
+* one miswire, and i could potentially accumulate heaps of financial data!!!
+
+* add unique and not null constraints
+
+* really everything must be lowercase? why not just "sub-pks" ? (stuff that cant be duplicated)
+
 * fix bolotracker makefile
 * The basic bolotracker gui must show all three basic tables.
 
