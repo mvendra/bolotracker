@@ -1,4 +1,7 @@
 
+* fix bolotracker makefile
+* The basic bolotracker gui must show all three basic tables.
+
 * welp, i suppose the TUI and others will have to use model to get pk's to reference where and what they wanna add
 
 * Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room for more sophisticated ones.
