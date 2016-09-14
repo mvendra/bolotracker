@@ -1,9 +1,11 @@
 
-* add unique and not null constraints
+* ok make a python tool to convert sql to c++
+* need to update the bootstrap database inside c++
 
 [
 * double-and-triple check, test lots of cases, before ever putting this into production.
 * one miswire, and i could potentially accumulate heaps of financial data!!!
+* also check new constraints, not null and etc
 ]
 
 [
