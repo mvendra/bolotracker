@@ -33,7 +33,7 @@ void Model::add_investor(const std::string& name, const std::string &email,
     }
 
     std::string sql {"INSERT INTO investors(name, email, description, date_of_inclusion) VALUES(\""};
-    sql += name_local + "\" , \"" + email_local + "\", \"" + desc_local + "\", \"" + date_inclusion.getDateString() + "\");";
+    sql += name_local + "\", \"" + email_local + "\", \"" + desc_local + "\", \"" + date_inclusion.getDateString() + "\");";
     db.exec(sql);
 
 }
@@ -49,11 +49,9 @@ void Model::add_subject(const std::string& tag, const std::string &description,
         EX_THROW(Ex_Model_Error, "Subject named [" + tag_local + "] already exists. Unable to add duplicate.");
     }
 
-    // mvtodo: implement
-
-    (void)tag; // mvdebug
-    (void)description; // mvdebug
-    (void)date_inclusion; // mvdebug
+    std::string sql {"INSERT INTO subjects(tag, description, date_of_inclusion) VALUES(\""};
+    sql += tag_local + "\", \"" + description_local + "\", \"" + date_inclusion.getDateString() + "\");";
+    db.exec(sql);
 
 }
 
@@ -68,11 +66,9 @@ void Model::add_currency(const std::string& label, const std::string &descriptio
         EX_THROW(Ex_Model_Error, "Currency named [" + label_local + "] already exists. Unable to add duplicate.");
     }
 
-    // mvtodo: implement
-
-    (void)label; // mvdebug
-    (void)description; // mvdebug
-    (void)date_inclusion; // mvdebug
+    std::string sql {"INSERT INTO currency(label, description, date_of_inclusion) VALUES(\""};
+    sql += label_local + "\", \"" + description_local + "\", \"" + date_inclusion.getDateString() + "\");";
+    db.exec(sql);
 
 }
 
@@ -82,24 +78,23 @@ void Model::add_invested_time(const unsigned int fk_investor, const unsigned int
                               const double price_per_unit)
 {
 
-    // mvtodo: implement
+    std::string description_local = description; makeStrLower(description_local);
+    std::string comment_local = comment; makeStrLower(comment_local);
 
-    (void)fk_investor; // mvdebug
-    (void)fk_currency; // mvdebug
-    (void)date; // mvdebug
-    (void)description; // mvdebug
-    (void)comment; // mvdebug
-    (void)minutes; // mvdebug
-    (void)price_per_unit; // mvdebug
+    std::string sql {"INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES("};
+    sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", \"" + description_local + "\", \"";
+    sql += comment_local + "\", " + uintToStr(minutes) + ", " + doubleToStr(price_per_unit) + ");";
+
+    db.exec(sql);
 
 }
 
 void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time, const unsigned int pk_subject){
 
-    // mvtodo: implement
+    std::string sql {"INSERT INTO invested_time_subjects_link(fk_invested_time, fk_subject) VALUES("};
+    sql += uintToStr(pk_invested_time) + ", " + uintToStr(pk_subject) + ");";
 
-    (void)pk_invested_time; // mvdebug
-    (void)pk_subject; // mvdebug
+    db.exec(sql);
 
 }
 
@@ -109,24 +104,24 @@ void Model::add_invested_asset(const unsigned int fk_investor, const unsigned in
                                const double price)
 {
 
-    // mvtodo: implement
+    std::string short_name_local = short_name; makeStrLower(short_name_local);
+    std::string description_local = description; makeStrLower(description_local);
+    std::string comment_local = comment; makeStrLower(comment_local);
 
-    (void)fk_investor; // mvdebug
-    (void)fk_currency; // mvdebug
-    (void)date; // mvdebug
-    (void)short_name; // mvdebug
-    (void)description; // mvdebug
-    (void)comment; // mvdebug
-    (void)price; // mvdebug
+    std::string sql {"INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES("};
+    sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", \"" + short_name_local + "\", \"";
+    sql += description_local + "\", \"" + comment_local + "\", " + doubleToStr(price) + ");";
+
+    db.exec(sql);
 
 }
 
 void Model::attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const unsigned int pk_subject){
 
-    // mvtodo: implement
+    std::string sql {"INSERT INTO invested_assets_subjects_link(fk_invested_asset, fk_subject) VALUES("};
+    sql += uintToStr(pk_invested_asset) + ", " + uintToStr(pk_subject) + ");";
 
-    (void)pk_invested_asset; // mvdebug
-    (void)pk_subject; // mvdebug
+    db.exec(sql);
 
 }
 
@@ -135,23 +130,25 @@ void Model::add_bonus(const unsigned int fk_investor, const DateHelper &date,
                       const std::string &comment, const std::string &reward)
 {
 
-    // mvtodo: implement
+    std::string short_name_local = short_name; makeStrLower(short_name_local);
+    std::string description_local = description; makeStrLower(description_local);
+    std::string comment_local = comment; makeStrLower(comment_local);
+    std::string reward_local = reward; makeStrLower(reward_local);
 
-    (void)fk_investor; // mvdebug
-    (void)date; // mvdebug
-    (void)short_name; // mvdebug
-    (void)description; // mvdebug
-    (void)comment; // mvdebug
-    (void)reward; // mvdebug
+    std::string sql {"INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES("};
+    sql += uintToStr(fk_investor) + ", \"" + date.getDateString() + "\", \"" + short_name_local + "\", \"";
+    sql += description_local + "\", \"" + comment_local + "\", \"" + reward_local + "\");";
+
+    db.exec(sql);
 
 }
 
 void Model::attach_subject_to_bonus(const unsigned int pk_bonus, const unsigned int pk_subject){
 
-    // mvtodo: implement
+    std::string sql {"INSERT INTO bonuses_subjects_link(fk_bonus, fk_subject) VALUES("};
+    sql += uintToStr(pk_bonus) + ", " + uintToStr(pk_subject) + ");";
 
-    (void)pk_bonus; // mvdebug
-    (void)pk_subject; // mvdebug
+    db.exec(sql);
 
 }
 
@@ -161,24 +158,24 @@ void Model::add_invested_money(const unsigned int fk_investor, const unsigned in
                                const double amount)
 {
 
-    // mvtodo: implement
+    std::string short_name_local = short_name; makeStrLower(short_name_local);
+    std::string description_local = description; makeStrLower(description_local);
+    std::string comment_local = comment; makeStrLower(comment_local);
 
-    (void)fk_investor; // mvdebug
-    (void)fk_currency; // mvdebug
-    (void)date; // mvdebug
-    (void)short_name; // mvdebug
-    (void)description; // mvdebug
-    (void)comment; // mvdebug
-    (void)amount; // mvdebug
+    std::string sql {"INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES("};
+    sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", " + short_name_local + "\", \"";
+    sql += description_local + "\", \"" + comment_local + "\", " + doubleToStr(amount) + ");";
+
+    db.exec(sql);
 
 }
 
 void Model::attach_subject_to_invested_money(const unsigned int pk_invested_money, const unsigned int pk_subject){
 
-    // mvtodo: implement
+    std::string sql {"INSERT INTO invested_money_subjects_link(fk_invested_money, fk_subject) VALUES("};
+    sql += uintToStr(pk_invested_money) + ", " + uintToStr(pk_subject) + ");";
 
-    (void)pk_invested_money; // mvdebug
-    (void)pk_subject; // mvdebug
+    db.exec(sql);
 
 }
 

@@ -76,6 +76,14 @@ public:
 
     bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
 
+    ///////////////////////
+    /* DELETE OPERATIONS */
+    ///////////////////////
+
+    // delete operations are still being considered.
+    // they may not be needed at all. or rather, not wanted at all.
+    // keeping history is important.
+
 private:
     Database db;
 
