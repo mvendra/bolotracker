@@ -1,6 +1,4 @@
 
-* really everything must be lowercase? why not just "sub-pks" ? (stuff that cant be duplicated)
-
 * add unique and not null constraints
 
 [

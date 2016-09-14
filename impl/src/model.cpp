@@ -22,10 +22,9 @@ void Model::add_investor(const std::string& name, const std::string &email,
                          const std::string& desc, const DateHelper &date_inclusion)
 {
 
-    // make all lowercase
     std::string name_local {name}; makeStrLower(name_local);
-    std::string email_local {email}; makeStrLower(email_local);
-    std::string desc_local {desc}; makeStrLower(desc_local);
+    std::string email_local {email}; //makeStrLower(email_local);
+    std::string desc_local {desc}; //makeStrLower(desc_local);
 
     // prevent duplicates
     if (has_investor(name_local)){
@@ -43,7 +42,7 @@ void Model::add_subject(const std::string& tag, const std::string &description,
 {
 
     std::string tag_local {tag}; makeStrLower(tag_local);
-    std::string description_local {description}; makeStrLower(description_local);
+    std::string description_local {description}; //makeStrLower(description_local);
 
     if (has_subject(tag_local)){
         EX_THROW(Ex_Model_Error, "Subject named [" + tag_local + "] already exists. Unable to add duplicate.");
@@ -60,7 +59,7 @@ void Model::add_currency(const std::string& label, const std::string &descriptio
 {
 
     std::string label_local {label}; makeStrLower(label_local);
-    std::string description_local {description}; makeStrLower(description_local);
+    std::string description_local {description}; //makeStrLower(description_local);
 
     if (has_currency(label_local)){
         EX_THROW(Ex_Model_Error, "Currency named [" + label_local + "] already exists. Unable to add duplicate.");
@@ -78,8 +77,8 @@ void Model::add_invested_time(const unsigned int fk_investor, const unsigned int
                               const double price_per_unit)
 {
 
-    std::string description_local {description}; makeStrLower(description_local);
-    std::string comment_local {comment}; makeStrLower(comment_local);
+    std::string description_local {description}; //makeStrLower(description_local);
+    std::string comment_local {comment}; //makeStrLower(comment_local);
 
     std::string sql {"INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES("};
     sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", \"" + description_local + "\", \"";
@@ -104,9 +103,9 @@ void Model::add_invested_asset(const unsigned int fk_investor, const unsigned in
                                const double price)
 {
 
-    std::string short_name_local {short_name}; makeStrLower(short_name_local);
-    std::string description_local {description}; makeStrLower(description_local);
-    std::string comment_local {comment}; makeStrLower(comment_local);
+    std::string short_name_local {short_name}; //makeStrLower(short_name_local);
+    std::string description_local {description}; //makeStrLower(description_local);
+    std::string comment_local {comment}; //makeStrLower(comment_local);
 
     std::string sql {"INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES("};
     sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", \"" + short_name_local + "\", \"";
@@ -130,10 +129,10 @@ void Model::add_bonus(const unsigned int fk_investor, const DateHelper &date,
                       const std::string &comment, const std::string &reward)
 {
 
-    std::string short_name_local {short_name}; makeStrLower(short_name_local);
-    std::string description_local {description}; makeStrLower(description_local);
-    std::string comment_local {comment}; makeStrLower(comment_local);
-    std::string reward_local {reward}; makeStrLower(reward_local);
+    std::string short_name_local {short_name}; //makeStrLower(short_name_local);
+    std::string description_local {description}; //makeStrLower(description_local);
+    std::string comment_local {comment}; //makeStrLower(comment_local);
+    std::string reward_local {reward}; //makeStrLower(reward_local);
 
     std::string sql {"INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES("};
     sql += uintToStr(fk_investor) + ", \"" + date.getDateString() + "\", \"" + short_name_local + "\", \"";
@@ -158,9 +157,9 @@ void Model::add_invested_money(const unsigned int fk_investor, const unsigned in
                                const double amount)
 {
 
-    std::string short_name_local {short_name}; makeStrLower(short_name_local);
-    std::string description_local {description}; makeStrLower(description_local);
-    std::string comment_local {comment}; makeStrLower(comment_local);
+    std::string short_name_local {short_name}; //makeStrLower(short_name_local);
+    std::string description_local {description}; //makeStrLower(description_local);
+    std::string comment_local {comment}; //makeStrLower(comment_local);
 
     std::string sql {"INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES("};
     sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", " + short_name_local + "\", \"";
