@@ -1,0 +1,16 @@
+
+[
+@mission statement
+* a tool to allow people to "invest" time/money/assets onto projects, by tracking invested stuff.
+]
+
+[
+@money tracker
+* should NOT be used for more sophisticated stuff like inflation, monetary conversion or similar
+]
+
+[
+@asset tracker
+* the "last resort" tracker. intended for use with especially undilligent investors.
+]
+

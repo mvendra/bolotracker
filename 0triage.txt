@@ -1,54 +1,25 @@
 
-* double-and-triple check, test lots of cases, before ever putting this into production.
-* one miswire, and i could potentially accumulate heaps of financial data!!!
-
-* add unique and not null constraints
+* fix bolotracker makefile
 
 * really everything must be lowercase? why not just "sub-pks" ? (stuff that cant be duplicated)
 
-* fix bolotracker makefile
-* The basic bolotracker gui must show all three basic tables.
+* add unique and not null constraints
 
+[
+* double-and-triple check, test lots of cases, before ever putting this into production.
+* one miswire, and i could potentially accumulate heaps of financial data!!!
+]
+
+[
+@finish the model design and api
 * welp, i suppose the TUI and others will have to use model to get pk's to reference where and what they wanna add
-
-* Bolotracker should be organised to have bootstrap db templates. A minimalistic one, and room for more sophisticated ones.
-* i want to at least have a GUI viewer, in FLTK. if its too much trouble to add any read operations, then just
-create a big list that displays all investors, and nothing else, plus a Close button. just to bootstrap fltk in it
-and probe internal decoupling of controller interface vs. implementations.
-
-[
-@mission statement
-* a tool to allow people to "invest" time/money/assets onto projects, by tracking invested stuff.
 ]
 
 [
-@tech/arch
-* mvc-like so i can replace frontends if need be
-* will start with a console TUI
-* will use sqlite, users should repo-around the dumped database file
-* first strike: controller-and-view console, and the backend (model) using sqlite. that's it.
-]
-
-[
-@time tracker
-* price per hour is out of the scope. must be negotiated later, when cashing out/accruing for reporting.
-]
-
-[
-@money tracker
-* with short description.
-* more sophisticated stuff like inflation, monetary conversion or similar
-]
-
-[
-@asset tracker
-* the "last resort" tracker. intended for use with especially undilligent investors.
-]
-
-[
-@tactical options:
-* git-like TUI
-* bolotracker --init, will spawn a new database from template.
+@gui, first strike
+* just fltk, listing all three basic tables
+* and a close button. done.
+* just to try out adding another lib, plus testing the controller interface
 ]
 
 [
