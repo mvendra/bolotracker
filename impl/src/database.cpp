@@ -96,7 +96,7 @@ void Database::exec(const std::string &sql, std::vector<std::vector<std::string>
         }
 
     } else {
-        EX_THROW(Ex_Database_Error, "Untreated return code");
+        EX_THROW(Ex_Database_Error, "Untreated return code: " + intToStr(rc));
     }
 
     sqlite3_finalize(statement);
