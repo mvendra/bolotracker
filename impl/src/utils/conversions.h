@@ -11,6 +11,7 @@ unsigned short strToUshort(const std::string &src);
 std::string uintToStr(const unsigned int num);
 std::string intToStr(const int num);
 std::string ushortToStr(const unsigned int num);
+std::string doubleToStr(const double num);
 void makeStrLower(std::string &target);
 void makeStrUpper(std::string &target);
 

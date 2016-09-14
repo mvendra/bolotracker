@@ -49,6 +49,14 @@ std::string ushortToStr(const unsigned short num){
     return ret;
 }
 
+std::string doubleToStr(const double num){
+    std::string ret {""};
+    std::stringstream ss;
+    ss << num;
+    ret = ss.str();
+    return ret;
+}
+
 void makeStrLower(std::string &target){
     std::transform(target.begin(), target.end(), target.begin(), ::tolower);
 }
