@@ -7,7 +7,8 @@ BASE_SRC=../../src
 BASE_OBJ=../../build
 RUN=../../run
 
-SRC=main.cpp bolotracker.cpp controller_interface.cpp database.cpp model.cpp tui.cpp /exceptions/ex_base.cpp /tests/bolotracker_tests.cpp /tests/datehelper_tests.cpp /tests/unit_test_tests.cpp /utils/conversions.cpp /utils/datehelper.cpp /utils/sysutils.cpp
+SRC=main.cpp bolotracker.cpp controller_interface.cpp database.cpp model.cpp tui.cpp /exceptions/ex_base.cpp /tests/bolotracker_tests.cpp /tests/datehelper_tests.cpp /utils/conversions.cpp /utils/datehelper.cpp /utils/sysutils.cpp
+
 SRC_SQLITE=../../lib/third_party/sqlite/src/sqlite3.c
 #SRC_FULL=$(addprefix $(BASE_SRC)/, $(SRC))
 #OBJ=$(SRC:.cpp=.o) 
@@ -67,7 +68,7 @@ else
 CPPFLAGSS = $(INTFLAGS)
 endif
 
-INCLUDES=-I$(BASE_SRC) -I../../lib/third_party/sqlite/include/
+INCLUDES=-I$(BASE_SRC) -I../../lib/third_party/sqlite/src -I../../lib/testforecho/src
 LDFLAGS=-lpthread -ldl
 
 BASE_OBJ_FULL=$(BASE_OBJ)/$(PLAT)_x$(ARCH)_$(MODE)
@@ -82,7 +83,7 @@ compile:
 	$(C_COMPILER) $(INCLUDES) $(SQLITE_CPPFLAGS) -c $(SRC_SQLITE) -o $(BASE_OBJ_FULL)/$(notdir $(SRC_SQLITE:.c=.o))
 
 link:
-	$(COMPILER) -o $(FULL_APP_NAME) $(ALL_OBJS) $(LDFLAGS)
+	$(COMPILER) -o $(FULL_APP_NAME) $(ALL_OBJS) $(BASE_OBJ_FULL)/$(notdir $(SRC_SQLITE:.c=.o)) $(LDFLAGS)
 	$(POSTBUILD)
 
 clean:
