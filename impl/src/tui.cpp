@@ -65,8 +65,14 @@ void Tui::menu_add_something() const {
     DateHelper dh{};
 
     //model.add_subject("dev", "test", dh);
-    model.add_currency("usd", "test", dh);
-    model.add_investor("bob", "bolo@tracker", "test", dh);
+    //model.add_currency("usd", "test", dh);
+    //model.add_investor("bob", "bolo@tracker", "test", dh);
+    //model.add_invested_time(1, 1, dh, "no desc", "no comment", 25, 1.25);
+    //model.attach_subject_to_invested_time(1, 1);
+    //model.add_invested_asset(1, 1, dh, "a little something", "desc", "no", 59.99);
+    //model.attach_subject_to_invested_asset(1, 1);
+    //model.add_bonus(1, dh, "little bono", "desc", "koment", "pizza");
+    model.attach_subject_to_bonus(1, 2);
     // mvdebug end
 
 }
