@@ -5,14 +5,14 @@ pk_investor INTEGER PRIMARY KEY NOT NULL,
 name TEXT NOT NULL,
 email TEXT,
 description TEXT,
-date_of_inclusion TEXT, /* sqlite 3 does not have a date dataype (sept/16) */
+date_of_inclusion TEXT,
 UNIQUE(pk_investor, name)
 );
 
 CREATE TABLE subjects (
 pk_subject INTEGER PRIMARY KEY NOT NULL,
 
-tag TEXT NOT NULL, /* (project, subproject, task type, whatever) */
+tag TEXT NOT NULL,
 description TEXT,
 date_of_inclusion TEXT,
 UNIQUE(pk_subject, tag)
