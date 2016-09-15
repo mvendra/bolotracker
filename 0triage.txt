@@ -2,6 +2,8 @@
 [
 @finish the model design and api
 * welp, i suppose the TUI and others will have to use model to get pk's to reference where and what they wanna add
+* i just need stuff like getPkByName, and etc - by the "secondary" pk's such as name, tag, etc.
+* and listing is alot easier. list by name, by pk, whatever.
 ]
 
 [
