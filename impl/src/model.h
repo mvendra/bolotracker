@@ -6,8 +6,12 @@
 
 #include "utils/datehelper.h"
 #include "database.h"
+#include "dataobjects/investor.h"
+#include "dataobjects/subject.h"
+#include "dataobjects/currency.h"
 
 #include <string>
+#include <vector>
 
 class Model final {
 
@@ -74,6 +78,8 @@ public:
     bool has_subject(const std::string& tag);
     bool has_currency(const std::string& label);
 
+    // READ INDIVIDUAL ROWS
+
     // returns false is no error happens, but there is no such name
     bool get_investor_info(const std::string &name,
                            unsigned int &pk,
@@ -111,6 +117,13 @@ public:
                            std::string &label,
                            std::string &description,
                            DateHelper &date_of_inclusion);
+
+    // mvtodo: also add read operations, by pk, for the rest of the tables
+
+    // READ LISTS OF ROWS
+    void get_all_investors(std::vector<Investor> &invs);
+    void get_all_subjects(std::vector<Subject> &subjs);
+    void get_all_currencies(std::vector<Currency> &currs);
 
     ///////////////////////
     /* DELETE OPERATIONS */

@@ -1,8 +1,10 @@
 
 #include "tui.h"
 
-#include <iostream>
 #include "utils/conversions.h"
+#include "dataobjects/investor.h"
+
+#include <iostream>
 
 Tui::Tui(Model &md):ControllerInterface{md}{
     print_happy_talk();
@@ -100,16 +102,53 @@ void Tui::menu_list_something() const {
     //model.get_subject_info(2, tag, description, dh);
 
     //model.get_currency_info("usd", pk, description, dh);
-    model.get_currency_info(2, label, description, dh);
+    //model.get_currency_info(2, label, description, dh);
 
     //std::cout << "pk: [" << uintToStr(pk) << "]" << std::endl;
     //std::cout << "name: [" << name << "]" << std::endl;
     //std::cout << "email: [" << email << "]" << std::endl;
-    std::cout << "description: [" << description << "]" << std::endl;
+    //std::cout << "description: [" << description << "]" << std::endl;
     //std::cout << "comment: [" << comment << "]" << std::endl;
-    std::cout << "label: [" << label << "]" << std::endl;
+    //std::cout << "label: [" << label << "]" << std::endl;
     //std::cout << "tag: [" << tag << "]" << std::endl;
-    std::cout << "date: [" << dh.getDateString() << "]" << std::endl;
+    //std::cout << "date: [" << dh.getDateString() << "]" << std::endl;
+
+    /*
+    std::vector<Investor> invs;
+    model.get_all_investors(invs);
+
+    for (auto x: invs){
+        std::cout << "inv.pk: [" << uintToStr(x.pk_investor) << "]" << std::endl;
+        std::cout << "inv.name: [" << x.name << "]" << std::endl;
+        std::cout << "inv.email: [" << x.email << "]" << std::endl;
+        std::cout << "inv.description: [" << x.description << "]" << std::endl;
+        std::cout << "inv.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    }
+    */
+
+    /*
+    std::vector<Subject> subjs;
+    model.get_all_subjects(subjs);
+
+    for (auto x: subjs){
+        std::cout << "subj.pk: [" << uintToStr(x.pk_subject) << "]" << std::endl;
+        std::cout << "subj.tag: [" << x.tag << "]" << std::endl;
+        std::cout << "subj.description: [" << x.description << "]" << std::endl;
+        std::cout << "subj.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    }
+    */
+
+/*
+    std::vector<Currency> currs;
+    model.get_all_currencies(currs);
+
+    for (auto x: currs){
+        std::cout << "curr.pk: [" << uintToStr(x.pk_currency) << "]" << std::endl;
+        std::cout << "curr.label: [" << x.label << "]" << std::endl;
+        std::cout << "curr.description: [" << x.description << "]" << std::endl;
+        std::cout << "curr.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    }
+*/
 
     int stop=1;
     (void)stop;

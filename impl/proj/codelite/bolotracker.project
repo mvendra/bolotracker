@@ -67,6 +67,28 @@
     <File Name="../../src/tui.h"/>
     <File Name="../../src/controller_interface.h"/>
     <File Name="../../src/controller_interface.cpp"/>
+    <VirtualDirectory Name="dataobjects">
+      <File Name="../../src/dataobjects/currency.cpp"/>
+      <File Name="../../src/dataobjects/currency.h"/>
+      <File Name="../../src/dataobjects/investor.cpp"/>
+      <File Name="../../src/dataobjects/investor.h"/>
+      <File Name="../../src/dataobjects/subject.cpp"/>
+      <File Name="../../src/dataobjects/subject.h"/>
+      <File Name="../../src/dataobjects/invested_time.cpp"/>
+      <File Name="../../src/dataobjects/invested_time.h"/>
+      <File Name="../../src/dataobjects/invested_time_subjects_link.h"/>
+      <File Name="../../src/dataobjects/invested_time_subjects_link.cpp"/>
+      <File Name="../../src/dataobjects/invested_assets_subjects_link.h"/>
+      <File Name="../../src/dataobjects/invested_assets_subjects_link.cpp"/>
+      <File Name="../../src/dataobjects/invested_asset.h"/>
+      <File Name="../../src/dataobjects/invested_asset.cpp"/>
+      <File Name="../../src/dataobjects/bonus.cpp"/>
+      <File Name="../../src/dataobjects/bonus.h"/>
+      <File Name="../../src/dataobjects/bonuses_subjects_link.h"/>
+      <File Name="../../src/dataobjects/bonuses_subjects_link.cpp"/>
+      <File Name="../../src/dataobjects/invested_money.h"/>
+      <File Name="../../src/dataobjects/invested_money.cpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="lib">
     <VirtualDirectory Name="third_party">

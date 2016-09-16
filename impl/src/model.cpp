@@ -400,3 +400,55 @@ bool Model::has_any_helper(const std::string &column, const std::string &value, 
     return true;
 
 }
+
+void Model::get_all_investors(std::vector<Investor> &invs){
+
+    std::string sql {"SELECT * FROM investors;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Investor inv{};
+        inv.pk_investor = strToUint(x[0]);
+        inv.name = x[1];
+        inv.email = x[2];
+        inv.description = x[3];
+        inv.date_of_inclusion.setDate(x[4]);
+        invs.push_back(inv);
+    }
+
+}
+
+void Model::get_all_subjects(std::vector<Subject> &subjs){
+
+    std::string sql {"SELECT * FROM subjects;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Subject subj{};
+        subj.pk_subject = strToUint(x[0]);
+        subj.tag = x[1];
+        subj.description = x[2];
+        subj.date_of_inclusion.setDate(x[3]);
+        subjs.push_back(subj);
+    }
+
+}
+
+void Model::get_all_currencies(std::vector<Currency> &currs){
+
+    std::string sql {"SELECT * FROM currencies;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Currency curr{};
+        curr.pk_currency = strToUint(x[0]);
+        curr.label = x[1];
+        curr.description = x[2];
+        curr.date_of_inclusion.setDate(x[3]);
+        currs.push_back(curr);
+    }
+
+}
