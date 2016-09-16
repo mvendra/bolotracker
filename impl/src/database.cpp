@@ -34,7 +34,9 @@ Database::Database(const std::string &connection):sqlite_con{0}{
 }
 
 Database::~Database(){
-    sqlite3_close(sqlite_con);
+    if (sqlite_con){
+        sqlite3_close(sqlite_con);
+    }
 }
 
 void Database::bootstrap(){

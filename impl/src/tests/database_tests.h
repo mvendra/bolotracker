@@ -19,7 +19,7 @@ public:
     DatabaseTestInternal& operator=(const DatabaseTestInternal&) = delete;
     DatabaseTestInternal& operator=(DatabaseTestInternal&&) = delete;
 
-    load_test_data();
+    void load_test_data();
 
     std::string db_path;
     Database db;

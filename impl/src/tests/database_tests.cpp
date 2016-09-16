@@ -31,5 +31,5 @@ DatabaseTestInternal::~DatabaseTestInternal(){
     // mvtodo: remove db_path if it exists
 }
 
-DatabaseTestInternal::load_test_data(){
+void DatabaseTestInternal::load_test_data(){
 }

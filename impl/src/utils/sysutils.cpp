@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 
 #include <fstream>
+#include <cstdio>
 
 std::string getAppWorkingDir(){
 
@@ -52,4 +53,9 @@ bool fileExists(const std::string &fn){
     // thanks to http://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c
     struct stat buffer;   
     return (stat (fn.c_str(), &buffer) == 0);
+}
+
+void fileDelete(const std::string &fn){
+    int r = std::remove(fn.c_str());
+    (void)r;
 }

@@ -31,6 +31,8 @@ public:
     Database& operator=(const Database&) = delete;
     Database& operator=(Database&&) = delete;
 
+    void reset();
+
     void exec(const std::string &sql);
     void exec(const std::string &sql, std::vector<std::vector<std::string>> &result);
 
