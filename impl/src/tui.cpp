@@ -2,6 +2,7 @@
 #include "tui.h"
 
 #include <iostream>
+#include "utils/conversions.h"
 
 Tui::Tui(Model &md):ControllerInterface{md}{
     print_happy_talk();
@@ -78,6 +79,37 @@ void Tui::menu_add_something() const {
 }
 
 void Tui::menu_list_something() const {
+
+    // mvdebug begin
+    unsigned int pk;
+    std::string name;
+    std::string email;
+    std::string description;
+    std::string comment;
+    std::string label;
+    std::string tag;
+    double value;
+    DateHelper dh {};
+
+    (void)pk; (void)name; (void)label; (void)tag; (void)email; (void)description; (void)comment; (void)value; (void)dh;
+
+    //model.get_investor_info("bob", pk, email, description, dh);
+
+    model.get_investor_info(1, name, email, description, dh);
+
+    //std::cout << "pk: [" << uintToStr(pk) << "]" << std::endl;
+    std::cout << "name: [" << name << "]" << std::endl;
+    std::cout << "email: [" << email << "]" << std::endl;
+    std::cout << "description: [" << description << "]" << std::endl;
+    //std::cout << "comment: [" << comment << "]" << std::endl;
+    //std::cout << "label: [" << label << "]" << std::endl;
+    //std::cout << "tag: [" << tag << "]" << std::endl;
+    std::cout << "date: [" << dh.getDateString() << "]" << std::endl;
+
+    int stop=1;
+    (void)stop;
+    // mvdebug end
+
 }
 
 void Tui::menu_remove_something() const {

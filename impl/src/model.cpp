@@ -197,6 +197,134 @@ bool Model::has_currency(const std::string& label){
     return r;
 }
 
+bool Model::get_investor_info(const std::string &name,
+                       unsigned int &pk,
+                       std::string &email,
+                       std::string &description,
+                       DateHelper &date_of_inclusion)
+{
+
+    std::string name_local {name}; makeStrLower(name_local);
+
+    std::string sql {"SELECT * FROM investors WHERE name = \""};
+    sql += name_local + "\";";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    } else if (res.size() > 1){
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + name_local + "], more than one record was returned. This is likely a duplicate.");
+    }
+
+    if (res[0].size() != 5){
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + name_local + "], less than 5 columns were returned. This is likely a faulty schema.");
+    }
+
+    pk = strToUint(res[0][0]);
+    email = res[0][2];
+    description = res[0][3];
+    date_of_inclusion.setDate(res[0][4]);
+
+    return true;
+
+}
+
+bool Model::get_investor_info(const unsigned int pk,
+                       std::string &name,
+                       std::string &email,
+                       std::string &description,
+                       DateHelper &date_of_inclusion)
+{
+
+    std::string sql {"SELECT * FROM investors WHERE pk_investor = "};
+    sql += uintToStr(pk) + ";";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    } else if (res.size() > 1){
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk) + "], more than one record was returned. This is likely a duplicate.");
+    }
+
+    if (res[0].size() != 5){
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk) + "], less than 5 columns were returned. This is likely a faulty schema.");
+    }
+
+    name = res[0][1];
+    email = res[0][2];
+    description = res[0][3];
+    date_of_inclusion.setDate(res[0][4]);
+
+    return true;
+
+}
+
+bool Model::get_subject_info(const std::string &tag,
+                      unsigned int &pk,
+                      std::string &description,
+                      DateHelper &date_of_inclusion)
+{
+
+    // mvdebug begin
+    (void)tag;
+    (void)pk;
+    (void)description;
+    (void)date_of_inclusion;
+    return false;
+    // mvdebug end
+
+}
+
+bool Model::get_subject_info(const unsigned int pk,
+                      std::string &tag,
+                      std::string &description,
+                      DateHelper &date_of_inclusion)
+{
+
+    // mvdebug begin
+    (void)tag;
+    (void)pk;
+    (void)description;
+    (void)date_of_inclusion;
+    return false;
+    // mvdebug end
+
+}
+
+bool Model::get_currency_info(const std::string &label,
+                       unsigned int &pk,
+                       std::string &description,
+                       DateHelper &date)
+{
+
+    // mvdebug begin
+    (void)label;
+    (void)pk;
+    (void)description;
+    (void)date;
+    return false;
+    // mvdebug end
+
+}
+
+bool Model::get_currency_info(const unsigned int pk,
+                       const std::string &label,
+                       std::string &description,
+                       DateHelper &date)
+{
+
+    // mvdebug begin
+    (void)label;
+    (void)pk;
+    (void)description;
+    (void)date;
+    return false;
+    // mvdebug end
+
+}
+
 bool Model::has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name){
 
     std::string column_local {column}; makeStrLower(column_local);
@@ -206,7 +334,7 @@ bool Model::has_any_helper(const std::string &column, const std::string &value, 
 
     std::string sql {"SELECT "};
     sql += pk_name_local + " FROM " + table_name_local + " WHERE ";
-    sql += column_local + " LIKE \"" + value_local + "\";";
+    sql += column_local + " = \"" + value_local + "\";";
 
     strvec2 res;
     db.exec(sql, res);

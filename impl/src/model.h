@@ -74,7 +74,37 @@ public:
     bool has_subject(const std::string& tag);
     bool has_currency(const std::string& label);
 
-    bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
+    bool get_investor_info(const std::string &name,
+                           unsigned int &pk,
+                           std::string &email,
+                           std::string &description,
+                           DateHelper &date_of_inclusion);
+
+    bool get_investor_info(const unsigned int pk,
+                           std::string &name,
+                           std::string &email,
+                           std::string &description,
+                           DateHelper &date_of_inclusion);
+
+    bool get_subject_info(const std::string &tag,
+                          unsigned int &pk,
+                          std::string &description,
+                          DateHelper &date_of_inclusion);
+
+    bool get_subject_info(const unsigned int pk,
+                          std::string &tag,
+                          std::string &description,
+                          DateHelper &date_of_inclusion);
+
+    bool get_currency_info(const std::string &label,
+                           unsigned int &pk,
+                           std::string &description,
+                           DateHelper &date);
+
+    bool get_currency_info(const unsigned int pk,
+                           const std::string &label,
+                           std::string &description,
+                           DateHelper &date);
 
     ///////////////////////
     /* DELETE OPERATIONS */
@@ -85,6 +115,9 @@ public:
     // keeping history is important.
 
 private:
+
+    bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
+
     Database db;
 
 };
