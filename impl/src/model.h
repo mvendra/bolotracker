@@ -74,37 +74,43 @@ public:
     bool has_subject(const std::string& tag);
     bool has_currency(const std::string& label);
 
+    // returns false is no error happens, but there is no such name
     bool get_investor_info(const std::string &name,
                            unsigned int &pk,
                            std::string &email,
                            std::string &description,
                            DateHelper &date_of_inclusion);
 
+    // returns false is no error happens, but there is no such pk
     bool get_investor_info(const unsigned int pk,
                            std::string &name,
                            std::string &email,
                            std::string &description,
                            DateHelper &date_of_inclusion);
 
+    // returns false is no error happens, but there is no such tag
     bool get_subject_info(const std::string &tag,
                           unsigned int &pk,
                           std::string &description,
                           DateHelper &date_of_inclusion);
 
+    // returns false is no error happens, but there is no such pk
     bool get_subject_info(const unsigned int pk,
                           std::string &tag,
                           std::string &description,
                           DateHelper &date_of_inclusion);
 
+    // returns false is no error happens, but there is no such label
     bool get_currency_info(const std::string &label,
                            unsigned int &pk,
                            std::string &description,
-                           DateHelper &date);
+                           DateHelper &date_of_inclusion);
 
+    // returns false is no error happens, but there is no such pk
     bool get_currency_info(const unsigned int pk,
-                           const std::string &label,
+                           std::string &label,
                            std::string &description,
-                           DateHelper &date);
+                           DateHelper &date_of_inclusion);
 
     ///////////////////////
     /* DELETE OPERATIONS */

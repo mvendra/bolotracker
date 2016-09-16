@@ -94,15 +94,20 @@ void Tui::menu_list_something() const {
     (void)pk; (void)name; (void)label; (void)tag; (void)email; (void)description; (void)comment; (void)value; (void)dh;
 
     //model.get_investor_info("bob", pk, email, description, dh);
+    //model.get_investor_info(1, name, email, description, dh);
 
-    model.get_investor_info(1, name, email, description, dh);
+    //model.get_subject_info("dev", pk, description, dh);
+    //model.get_subject_info(2, tag, description, dh);
+
+    //model.get_currency_info("usd", pk, description, dh);
+    model.get_currency_info(2, label, description, dh);
 
     //std::cout << "pk: [" << uintToStr(pk) << "]" << std::endl;
-    std::cout << "name: [" << name << "]" << std::endl;
-    std::cout << "email: [" << email << "]" << std::endl;
+    //std::cout << "name: [" << name << "]" << std::endl;
+    //std::cout << "email: [" << email << "]" << std::endl;
     std::cout << "description: [" << description << "]" << std::endl;
     //std::cout << "comment: [" << comment << "]" << std::endl;
-    //std::cout << "label: [" << label << "]" << std::endl;
+    std::cout << "label: [" << label << "]" << std::endl;
     //std::cout << "tag: [" << tag << "]" << std::endl;
     std::cout << "date: [" << dh.getDateString() << "]" << std::endl;
 
