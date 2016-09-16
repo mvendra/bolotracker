@@ -21,9 +21,9 @@ public:
 
     ~DateHelper(){}
 
-    DateHelper(const DateHelper&) = delete;
+    DateHelper(const DateHelper&);
+    DateHelper& operator=(const DateHelper&);
     DateHelper(DateHelper&&) = delete;
-    DateHelper& operator=(const DateHelper&) = delete;
     DateHelper& operator=(DateHelper&&) = delete;
 
     static bool isValidDate(const std::string &textdate);

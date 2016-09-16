@@ -75,6 +75,15 @@ bool test_datehelper(){
         test_true(total, "Auto-built date should be valid", DateHelper::isValidDate(dh.getDateString()));
     }
 
+    // copy ctor and attrib op should work
+    {
+        DateHelper dh1{"01/01/2004"};
+        DateHelper dh2 = dh1;
+        test_eq(total, "Should match by the attribute copy", dh1.getDateString(), dh2.getDateString());
+        DateHelper dh3{dh2};
+        test_eq(total, "Should match by the copy constructor", dh2.getDateString(), dh3.getDateString());
+    }
+
     return total;
 
 }

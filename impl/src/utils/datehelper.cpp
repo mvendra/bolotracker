@@ -68,6 +68,18 @@ day{0}, month{0}, year{0}
     setDate(textdate);
 }
 
+DateHelper::DateHelper(const DateHelper &other):
+day{other.day}, month{other.month}, year{other.year}
+{
+}
+
+DateHelper& DateHelper::operator=(const DateHelper &other){
+    this->day = other.day;
+    this->month = other.month;
+    this->year = other.year;
+    return (*this);
+}
+
 bool DateHelper::isValidDate(const std::string &textdate) {
 
     tm aux;
