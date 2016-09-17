@@ -1,5 +1,5 @@
 
-* finish the sample database
+* Add exception testing for violated constraints too
 
 [
 @finish the model design and api
@@ -8,7 +8,6 @@
 * i just need stuff like getPkByName, and etc - by the "secondary" pk's such as name, tag, etc.
 * and listing is alot easier. list by name, by pk, whatever.
 ]
-* Will have to update bolotrackers makefile
 
 [
 * double-and-triple check, test lots of cases, before ever putting this into production.
@@ -16,12 +15,16 @@
 * also check new constraints, not null and etc
 ]
 
+* Will have to update bolotrackers makefile
+
 [
 @gui, first strike
 * just fltk, listing all three basic tables
 * and a close button. done.
 * just to try out adding another lib, plus testing the controller interface
 ]
+
+* can all mvtags
 
 [
 @gui priority list
