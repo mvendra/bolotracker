@@ -1,6 +1,4 @@
 
-* Add exception testing for violated constraints too
-
 [
 @finish the model design and api
 * Plus additional helpers: list everything by name/pk (for example)
@@ -15,7 +13,10 @@
 * also check new constraints, not null and etc
 ]
 
+[
+* try running static alanysis tools too. check for dead code and whatnot.
 * Will have to update bolotrackers makefile
+]
 
 [
 @gui, first strike
