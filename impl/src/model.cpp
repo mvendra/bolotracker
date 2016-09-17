@@ -77,7 +77,7 @@ void Model::add_currency(const std::string& label, const std::string &descriptio
         EX_THROW(Ex_Model_Error, "Currency named [" + label_local + "] already exists. Unable to add duplicate.");
     }
 
-    std::string sql {"INSERT INTO currency(label, description, date_of_inclusion) VALUES(\""};
+    std::string sql {"INSERT INTO currencies(label, description, date_of_inclusion) VALUES(\""};
     sql += label_local + "\", \"" + description_local + "\", \"" + date_inclusion.getDateString() + "\");";
     db.exec(sql);
 
@@ -174,7 +174,7 @@ void Model::add_invested_money(const unsigned int fk_investor, const unsigned in
     std::string comment_local {comment}; //makeStrLower(comment_local);
 
     std::string sql {"INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES("};
-    sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", " + short_name_local + "\", \"";
+    sql += uintToStr(fk_investor) + ", " + uintToStr(fk_currency) + ", \"" + date.getDateString() + "\", \"" + short_name_local + "\", \"";
     sql += description_local + "\", \"" + comment_local + "\", " + doubleToStr(amount) + ");";
 
     db.exec(sql);
