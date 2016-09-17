@@ -50,7 +50,9 @@ int main_delegate(int argc, char *argv[]){
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY
     runtests();
+#ifdef TEST_ONLY
     return 0;
+#endif
 #endif
 #endif
 
