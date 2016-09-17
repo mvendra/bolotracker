@@ -1,17 +1,14 @@
 
-[
-* do add unit testing with a repoed db for testing (i.e. dont throw away the debug code at tui.cpp)
-* NO! dont repo the db. just write it all first. so you validate both things (write and read ops)
-* write a helper function that creates a sample db for testing. then add a scope guard to it so the db is removed afterwards
-]
-* Plus additional helpers: list everything by name/pk (for example)
+* finish the sample database
 
 [
 @finish the model design and api
+* Plus additional helpers: list everything by name/pk (for example)
 * welp, i suppose the TUI and others will have to use model to get pk's to reference where and what they wanna add
 * i just need stuff like getPkByName, and etc - by the "secondary" pk's such as name, tag, etc.
 * and listing is alot easier. list by name, by pk, whatever.
 ]
+* Will have to update bolotrackers makefile
 
 [
 * double-and-triple check, test lots of cases, before ever putting this into production.
