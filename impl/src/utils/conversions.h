@@ -8,6 +8,7 @@
 unsigned int strToUint(const std::string &src);
 int strToInt(const std::string &src);
 unsigned short strToUshort(const std::string &src);
+double strToDouble(const std::string &src);
 std::string uintToStr(const unsigned int num);
 std::string intToStr(const int num);
 std::string ushortToStr(const unsigned int num);

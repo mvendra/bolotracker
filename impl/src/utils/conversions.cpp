@@ -25,6 +25,13 @@ unsigned short strToUshort(const std::string &src){
     return ret;
 }
 
+double strToDouble(const std::string &src){
+    double ret;
+    std::stringstream ss(src);
+    ss >> ret;
+    return ret;
+}
+
 std::string uintToStr(const unsigned int num){
     std::string ret {""};
     std::stringstream ss;
