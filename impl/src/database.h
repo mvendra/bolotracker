@@ -23,6 +23,7 @@ class Database final {
 
 public:
 
+    Database();
     Database(const std::string &connection);
     ~Database();
 
@@ -31,14 +32,18 @@ public:
     Database& operator=(const Database&) = delete;
     Database& operator=(Database&&) = delete;
 
+    void open_database();
+    void close_database();
+    void bootstrap();
     void reset();
 
     void exec(const std::string &sql);
     void exec(const std::string &sql, std::vector<std::vector<std::string>> &result);
 
+    std::string db_path;
+
 private:
 
-    void bootstrap();
     bool read_row(sqlite3_stmt *statement, std::vector<std::string> &columns);
 
     sqlite3 *sqlite_con;

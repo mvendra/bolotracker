@@ -13,16 +13,27 @@
 using strvec = std::vector<std::string>;
 using strvec2 = std::vector<strvec>;
 
-Database::Database(const std::string &connection):sqlite_con{0}{
+Database::Database():db_path{}, sqlite_con{0}{
+}
+
+Database::Database(const std::string &connection):db_path{connection}, sqlite_con{0}{
+    open_database();
+}
+
+Database::~Database(){
+    close_database();
+}
+
+void Database::open_database(){
 
     // will pre-load the newly created database
     // with a schema template
-    bool bs = !(fileExists(connection));
+    bool bs = !(fileExists(db_path));
 
-    int rc {sqlite3_open(connection.c_str(), &sqlite_con)};
+    int rc {sqlite3_open(db_path.c_str(), &sqlite_con)};
     if (rc){
         sqlite3_close(sqlite_con);
-        EX_THROW(Ex_FailedOpeningDatabase, "Failed opening the database: " + connection);
+        EX_THROW(Ex_FailedOpeningDatabase, "Failed opening the database: " + db_path);
     }
 
     // enable foreign keys
@@ -33,10 +44,17 @@ Database::Database(const std::string &connection):sqlite_con{0}{
 
 }
 
-Database::~Database(){
+void Database::close_database(){
     if (sqlite_con){
         sqlite3_close(sqlite_con);
+        sqlite_con = 0;
     }
+}
+
+void Database::reset(){
+    close_database();
+    fileDelete(db_path);
+    open_database();
 }
 
 void Database::bootstrap(){
