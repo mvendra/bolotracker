@@ -65,6 +65,8 @@
       <File Name="../../src/tests/bolotracker_tests.cpp"/>
       <File Name="../../src/tests/database_tests.cpp"/>
       <File Name="../../src/tests/database_tests.h"/>
+      <File Name="../../src/tests/model_tests.cpp"/>
+      <File Name="../../src/tests/model_tests.h"/>
     </VirtualDirectory>
     <File Name="../../src/tui.cpp"/>
     <File Name="../../src/tui.h"/>
