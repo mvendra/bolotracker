@@ -9,10 +9,14 @@ class InvestedMoney final {
 
 public:
 
-    InvestedMoney();
+    InvestedMoney(const unsigned int _pk_invested_money, const unsigned int _fk_investor, const unsigned int _fk_currency,
+                  const DateHelper &_date, const std::string &_short_name, const std::string &_description,
+                  const std::string &_comment, const double _amount);
+
+    InvestedMoney(const InvestedMoney&);
     ~InvestedMoney();
 
-    InvestedMoney(const InvestedMoney&) = delete;
+    InvestedMoney() = delete;
     InvestedMoney(InvestedMoney&&) = delete;
     InvestedMoney& operator=(const InvestedMoney&) = delete;
     InvestedMoney& operator=(InvestedMoney&&) = delete;

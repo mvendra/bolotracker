@@ -9,10 +9,14 @@ class InvestedTime final {
 
 public:
 
-    InvestedTime();
+    InvestedTime(const unsigned int _pk_invested_time, const unsigned int _fk_investor, const unsigned int _fk_currency,
+                 const DateHelper &_date, const std::string &_description, const std::string &_comment,
+                 const unsigned int _minutes, const double &_price_per_unit);
+
+    InvestedTime(const InvestedTime&);
     ~InvestedTime();
 
-    InvestedTime(const InvestedTime&) = delete;
+    InvestedTime() = delete;
     InvestedTime(InvestedTime&&) = delete;
     InvestedTime& operator=(const InvestedTime&) = delete;
     InvestedTime& operator=(InvestedTime&&) = delete;

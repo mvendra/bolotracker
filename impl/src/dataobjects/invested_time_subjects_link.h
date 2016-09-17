@@ -6,10 +6,11 @@ class InvestedTimeSubjectsLink final {
 
 public:
 
-    InvestedTimeSubjectsLink();
+    InvestedTimeSubjectsLink(const unsigned int _fk_invested_time, const unsigned int _fk_subject);
+    InvestedTimeSubjectsLink(const InvestedTimeSubjectsLink&);
     ~InvestedTimeSubjectsLink();
 
-    InvestedTimeSubjectsLink(const InvestedTimeSubjectsLink&) = delete;
+    InvestedTimeSubjectsLink() = delete;
     InvestedTimeSubjectsLink(InvestedTimeSubjectsLink&&) = delete;
     InvestedTimeSubjectsLink& operator=(const InvestedTimeSubjectsLink&) = delete;
     InvestedTimeSubjectsLink& operator=(InvestedTimeSubjectsLink&&) = delete;

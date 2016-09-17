@@ -9,10 +9,12 @@ class Bonus final {
 
 public:
 
-    Bonus();
+    Bonus(const unsigned int _pk_bonus, const unsigned int _fk_investor, const DateHelper &_date, const std::string &_short_name,
+          const std::string &_description, const std::string &_comment, const std::string &_reward);
+    Bonus(const Bonus&);
     ~Bonus();
 
-    Bonus(const Bonus&) = delete;
+    Bonus() = delete;
     Bonus(Bonus&&) = delete;
     Bonus& operator=(const Bonus&) = delete;
     Bonus& operator=(Bonus&&) = delete;

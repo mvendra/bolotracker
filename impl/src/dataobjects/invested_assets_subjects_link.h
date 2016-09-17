@@ -6,10 +6,11 @@ class InvestedAssetsSubjectsLink final {
 
 public:
 
-    InvestedAssetsSubjectsLink();
+    InvestedAssetsSubjectsLink(const unsigned int _fk_invested_asset, const unsigned int _fk_subject);
+    InvestedAssetsSubjectsLink(const InvestedAssetsSubjectsLink&);
     ~InvestedAssetsSubjectsLink();
 
-    InvestedAssetsSubjectsLink(const InvestedAssetsSubjectsLink&) = delete;
+    InvestedAssetsSubjectsLink() = delete;
     InvestedAssetsSubjectsLink(InvestedAssetsSubjectsLink&&) = delete;
     InvestedAssetsSubjectsLink& operator=(const InvestedAssetsSubjectsLink&) = delete;
     InvestedAssetsSubjectsLink& operator=(InvestedAssetsSubjectsLink&&) = delete;

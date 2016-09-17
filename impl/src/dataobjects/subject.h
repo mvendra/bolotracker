@@ -9,10 +9,14 @@ class Subject final {
 
 public:
 
-    Subject();
-    ~Subject();
+    Subject(const unsigned int _pk_subject, const std::string &_tag,
+            const std::string &_description, const DateHelper &_date_of_inclusion);
 
     Subject(const Subject&);
+
+    ~Subject();
+
+    Subject() = delete;
     Subject& operator=(const Subject&) = delete;
     Subject(Subject&&) = delete;
     Subject& operator=(Subject&&) = delete;

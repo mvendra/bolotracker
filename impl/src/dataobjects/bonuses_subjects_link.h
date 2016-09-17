@@ -6,10 +6,11 @@ class BonusesSubjectsLink final {
 
 public:
 
-    BonusesSubjectsLink();
+    BonusesSubjectsLink(const unsigned int _fk_bonus, const unsigned int _fk_subject);
+    BonusesSubjectsLink(const BonusesSubjectsLink &_other);
     ~BonusesSubjectsLink();
 
-    BonusesSubjectsLink(const BonusesSubjectsLink&) = delete;
+    BonusesSubjectsLink() = delete;
     BonusesSubjectsLink(BonusesSubjectsLink&&) = delete;
     BonusesSubjectsLink& operator=(const BonusesSubjectsLink&) = delete;
     BonusesSubjectsLink& operator=(BonusesSubjectsLink&&) = delete;

@@ -1,10 +1,10 @@
 
 #include "investor.h"
 
-Investor::Investor():
-pk_investor{}, name{}, email{}, description{}, date_of_inclusion{}
-{
-}
+Investor::Investor(const unsigned int _pk_investor, const std::string &_name,
+         const std::string &_email, const std::string &_description, const DateHelper &_date_of_inclusion):
+pk_investor{_pk_investor}, name{_name}, email{_email}, description{_description}, date_of_inclusion{_date_of_inclusion}
+{}
 
 Investor::~Investor(){
 }
