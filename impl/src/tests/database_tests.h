@@ -9,6 +9,10 @@ bool test_database();
 
 class DatabaseTestInternal final {
 
+    // you are not supposed to reuse this object from test to test!
+    // this is meant to be explicitly a fire-and-forget, stay-clean
+    // wrapper
+
 public:
 
     DatabaseTestInternal();
