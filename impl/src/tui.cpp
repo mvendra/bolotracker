@@ -95,7 +95,7 @@ void Tui::menu_list_something() const {
 
     (void)pk; (void)name; (void)label; (void)tag; (void)email; (void)description; (void)comment; (void)value; (void)dh;
 
-    //model.get_investor_info("bob", pk, email, description, dh);
+    model.get_investor_info("bob", pk, email, description, dh);
     //model.get_investor_info(1, name, email, description, dh);
 
     //model.get_subject_info("dev", pk, description, dh);
