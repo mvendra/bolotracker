@@ -1,7 +1,9 @@
 
 #include "tests/database_tests.h"
 #include "utils/sysutils.h"
+
 #include "exceptions/ex_tests_error.h"
+#include "exceptions/ex_database_error.h"
 
 #include "testforecho.h"
 
@@ -16,8 +18,7 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{};
-        strvec2 res;
+        DatabaseTestInternal dbt{}; strvec2 res;
 
         // name
         dbt.db.exec("SELECT name FROM investors WHERE pk_investor = 1", res);
@@ -45,8 +46,7 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{};
-        strvec2 res;
+        DatabaseTestInternal dbt{}; strvec2 res;
 
         // tag
         dbt.db.exec("SELECT tag FROM subjects WHERE pk_subject = 1", res);
@@ -69,8 +69,7 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{};
-        strvec2 res;
+        DatabaseTestInternal dbt{}; strvec2 res;
 
         // label
         dbt.db.exec("SELECT label FROM currencies WHERE pk_currency = 1", res);
@@ -86,6 +85,198 @@ bool test_database(){
         dbt.db.exec("SELECT date_of_inclusion FROM currencies WHERE pk_currency = 3", res);
         test_eq(total, "Date of inclusion retrieved from database should match", res[0][0], "04/03/2012");
         res.clear();
+
+    }
+
+    // test invested time
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // invalid currency, must throw exception for violating a constraint
+        {
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(1, 4, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+        }
+
+        // invalid investor, must throw exception for violating a constraint
+        {
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(10, 2, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+        }
+
+    }
+
+    // test invested time subject link
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // invalid invested time entry, must throw exception for violating a constraint
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_time_subjects_link(fk_invested_time, fk_subject) VALUES(50, 25);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test invested assets
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test inserting valid asset
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES(3, 3, \"03/06/1967\", \"artsy stuff\", \"nope\", \"irrelevant\", 80);");
+            };
+            test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", p);
+            res.clear();
+
+        }
+
+        // test inserting invalid asset
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES(30, 3, \"03/06/1967\", \"artsy stuff\", \"nope\", \"irrelevant\", 80);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test invested assets subjects link
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test attempted constraint violation
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_assets_subjects_link(fk_invested_asset, fk_subject) VALUES(45, 20);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test bonuses
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test inserting valid bonus
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES(3, \"08/08/2007\", \"a little something\", \"ok\", \"commenting\", \"time off\");");
+            };
+            test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", p);
+            res.clear();
+
+        }
+
+        // test inserting invalid bonus
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES(7, \"08/08/2007\", \"a little something\", \"ok\", \"commenting\", \"time off\");");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test bonuses subjects link
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test attempted constraint violation
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO bonuses_subjects_link(fk_bonus, fk_subject) VALUES(45, 20);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test invested money
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test inserting valid invested money
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES(1, 1, \"22/03/1996\", \"cash\", \"cold hard cash\", \"nop\", 350.75);");
+            };
+            test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", p);
+            res.clear();
+
+        }
+
+        // test inserting invalid asset
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES(30, 22, \"22/03/1996\", \"cash\", \"cold hard cash\", \"nop\", 350.75);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
+
+    }
+
+    // test invested money subjects link
+    {
+
+        // setup
+        DatabaseTestInternal dbt{}; strvec2 res;
+
+        // test attempted constraint violation
+        {
+
+            auto p = [&dbt, &res]() {
+                dbt.db.exec("INSERT INTO invested_money_subjects_link(fk_invested_money, fk_subject) VALUES(45, 24);");
+            };
+            test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
+            res.clear();
+
+        }
 
     }
 
