@@ -1,6 +1,6 @@
 
 #include "tests/model_tests.h"
-#include "tests/database_tests.h"
+#include "dataobjects/dataobjects.h"
 
 #include "utils/sysutils.h"
 
@@ -12,9 +12,24 @@ bool test_model(){
 
     bool total {true};
 
+    ModelTestInternal mti{};
+
+    // test investor
     {
-        // mvtodo: implement
-        ModelTestInternal mti{};
+        test_true(total, "Must have passed investor name", mti.model.has_investor("jon"));
+        test_false(total, "Must not have passed investor name", mti.model.has_investor("bolo"));
+    }
+
+    // test subject
+    {
+        test_true(total, "Must have passed subject tag", mti.model.has_subject("qa"));
+        test_false(total, "Must not have passed subject tag", mti.model.has_subject("rubbish"));
+    }
+
+    // test currency
+    {
+        test_true(total, "Must have passed subject currency label", mti.model.has_currency("cad"));
+        test_false(total, "Must not have passed currency label", mti.model.has_subject("eur"));
     }
 
     return total;
@@ -39,91 +54,53 @@ ModelTestInternal::~ModelTestInternal(){
 }
 
 void ModelTestInternal::load_test_data(){
-
-    // mvdebug begin
-#if 0
-    DateHelper dh{};
-
-    //model.add_subject("dev", "test", dh);
-    //model.add_currency("usd", "test", dh);
-    //model.add_investor("bob", "bolo@tracker", "test", dh);
-    //model.add_invested_time(1, 1, dh, "no desc", "no comment", 25, 1.25);
-    //model.attach_subject_to_invested_time(1, 1);
-    //model.add_invested_asset(1, 1, dh, "a little something", "desc", "no", 59.99);
-    //model.attach_subject_to_invested_asset(1, 1);
-    //model.add_bonus(1, dh, "little bono", "desc", "koment", "pizza");
-    model.attach_subject_to_bonus(1, 2);
-    // mvdebug end
-
-    // mvdebug begin
-    unsigned int pk;
-    std::string name;
-    std::string email;
-    std::string description;
-    std::string comment;
-    std::string label;
-    std::string tag;
-    double value;
-    DateHelper dh {};
-
-    (void)pk; (void)name; (void)label; (void)tag; (void)email; (void)description; (void)comment; (void)value; (void)dh;
-
-    model.get_investor_info("bob", pk, email, description, dh);
-    //model.get_investor_info(1, name, email, description, dh);
-
-    //model.get_subject_info("dev", pk, description, dh);
-    //model.get_subject_info(2, tag, description, dh);
-
-    //model.get_currency_info("usd", pk, description, dh);
-    //model.get_currency_info(2, label, description, dh);
-
-    //std::cout << "pk: [" << uintToStr(pk) << "]" << std::endl;
-    //std::cout << "name: [" << name << "]" << std::endl;
-    //std::cout << "email: [" << email << "]" << std::endl;
-    //std::cout << "description: [" << description << "]" << std::endl;
-    //std::cout << "comment: [" << comment << "]" << std::endl;
-    //std::cout << "label: [" << label << "]" << std::endl;
-    //std::cout << "tag: [" << tag << "]" << std::endl;
-    //std::cout << "date: [" << dh.getDateString() << "]" << std::endl;
-
-    /*
-    std::vector<Investor> invs;
-    model.get_all_investors(invs);
-
-    for (auto x: invs){
-        std::cout << "inv.pk: [" << uintToStr(x.pk_investor) << "]" << std::endl;
-        std::cout << "inv.name: [" << x.name << "]" << std::endl;
-        std::cout << "inv.email: [" << x.email << "]" << std::endl;
-        std::cout << "inv.description: [" << x.description << "]" << std::endl;
-        std::cout << "inv.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    try {
+        load_test_data_delegate();
+    } catch(...){
+        EX_THROW(Ex_Tests_Error, "Failed loading test model data")
     }
-    */
+}
 
-    /*
-    std::vector<Subject> subjs;
-    model.get_all_subjects(subjs);
+void ModelTestInternal::load_test_data_delegate(){
 
-    for (auto x: subjs){
-        std::cout << "subj.pk: [" << uintToStr(x.pk_subject) << "]" << std::endl;
-        std::cout << "subj.tag: [" << x.tag << "]" << std::endl;
-        std::cout << "subj.description: [" << x.description << "]" << std::endl;
-        std::cout << "subj.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
-    }
-    */
+    // investors
+    model.add_investor("jon", "jon@thecat.com", "test1", DateHelper("06/07/2006"));
+    model.add_investor("libras", "libras@perfectcircle.com", "test2", DateHelper("06/07/2003"));
+    model.add_investor("a-nother", "mail-less", "test3", DateHelper("06/07/1337"));
 
-/*
-    std::vector<Currency> currs;
-    model.get_all_currencies(currs);
+    // subjects
+    model.add_subject("dev", "test4", DateHelper("09/09/2016"));
+    model.add_subject("qa", "test5", DateHelper("09/09/2016"));
+    model.add_subject("release", "test6", DateHelper("09/09/2016"));
 
-    for (auto x: currs){
-        std::cout << "curr.pk: [" << uintToStr(x.pk_currency) << "]" << std::endl;
-        std::cout << "curr.label: [" << x.label << "]" << std::endl;
-        std::cout << "curr.description: [" << x.description << "]" << std::endl;
-        std::cout << "curr.date_of_inclusion: [" << x.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
-    }
-*/
+    // currencies
+    model.add_currency("aud", "straya dollar", DateHelper("07/02/2001"));
+    model.add_currency("nan", "not a number", DateHelper("07/02/2002"));
+    model.add_currency("cad", "maple dollar", DateHelper("07/02/2003"));
 
-#endif
-    // mvdebug end
+    // invested time
+    model.add_invested_time(1, 1, DateHelper("15/02/2002"), "no desc", "no comment", 25, 1.25);
+    model.add_invested_time(2, 3, DateHelper("15/02/2002"), "no desc", "no comment", 50, 45);
+
+    // intested time subject link
+    model.attach_subject_to_invested_time(1, 1);
+
+    // invested assets
+    model.add_invested_asset(1, 1, DateHelper("12/02/2005"), "some ideas", "desc", "no", 70.1);
+
+    // invested assets subjects link
+    model.attach_subject_to_invested_asset(1, 2);
+
+    // bonuses
+    model.add_bonus(3, DateHelper("01/03/2012"), "bono-bo", "desc", "koment", "wine");
+
+    // bonuses subjects link
+    model.attach_subject_to_bonus(1, 3);
+
+    // invested money
+    model.add_invested_money(2, 1, DateHelper("25/12/2008"), "shortnames", "some desc", "commenting", 300);
+
+    // invested money subjects link
+    model.attach_subject_to_invested_money(1, 3);
 
 }

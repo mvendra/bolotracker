@@ -19,6 +19,7 @@ public:
     ModelTestInternal& operator=(ModelTestInternal&&) = delete;
 
     void load_test_data();
+    void load_test_data_delegate();
 
     std::string connection;
     Model model;
