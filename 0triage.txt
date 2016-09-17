@@ -1,4 +1,6 @@
 
+* theres a // mvtodo: continue here (model)
+
 [
 @finish the model design and api
 * implement getters by dataobjects, model (they must reuse model's already in place getters)
