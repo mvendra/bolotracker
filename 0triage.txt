@@ -1,6 +1,7 @@
 
 [
 @finish the model design and api
+* implement getters by dataobjects, model (they must reuse model's already in place getters)
 * Plus additional helpers: list everything by name/pk (for example)
 * welp, i suppose the TUI and others will have to use model to get pk's to reference where and what they wanna add
 * i just need stuff like getPkByName, and etc - by the "secondary" pk's such as name, tag, etc.
@@ -8,9 +9,18 @@
 ]
 
 [
+@next up
+* then test using those, FFS (dataobjects)
+]
+
+[
 * double-and-triple check, test lots of cases, before ever putting this into production.
 * one miswire, and i could potentially accumulate heaps of financial data!!!
 * also check new constraints, not null and etc
+]
+
+[
+@finish the TUI
 ]
 
 [
