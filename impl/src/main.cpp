@@ -8,8 +8,8 @@
 #include <iostream>
 
 // choose only one...
-#define TEST_ONLY
-//#define TEST_AND_RUN
+//#define TEST_ONLY
+#define TEST_AND_RUN
 //#define RUN_ONLY
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
@@ -43,21 +43,32 @@ vstr parse_cmdline_args(const int argc, char * const argv[]){
 
 }
 
-int main(int argc, char *argv[]){
+int main_delegate(int argc, char *argv[]){
 
     vstr r {parse_cmdline_args(argc, argv)};
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY
     runtests();
+    return 0;
 #endif
 #endif
 
 #if defined(TEST_AND_RUN) || defined(RUN_ONLY)
 #ifndef TEST_ONLY
 
+    bootstrap(r);
+    return 0;
+
+#endif
+#endif
+
+}
+
+int main(int argc, char *argv[]){
+
     try {
-        bootstrap(r);
+        return main_delegate(argc, argv);
     } catch (const Ex_Base &ex){
         std::cout << "Exception caught: " << ex.getMessage() << std::endl;
         return 1;
@@ -65,10 +76,5 @@ int main(int argc, char *argv[]){
         std::cout << "Unexpected exception has been raised." << std::endl;
         return 2;
     }
-
-    return 0;
-
-#endif
-#endif
 
 }
