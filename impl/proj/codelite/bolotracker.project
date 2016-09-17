@@ -93,6 +93,7 @@
       <File Name="../../src/dataobjects/bonuses_subjects_link.cpp"/>
       <File Name="../../src/dataobjects/invested_money.h"/>
       <File Name="../../src/dataobjects/invested_money.cpp"/>
+      <File Name="../../src/dataobjects/dataobjects.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="lib">
