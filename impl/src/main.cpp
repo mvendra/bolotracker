@@ -8,8 +8,8 @@
 #include <iostream>
 
 // choose only one...
-//#define TEST_ONLY
-#define TEST_AND_RUN
+#define TEST_ONLY
+//#define TEST_AND_RUN
 //#define RUN_ONLY
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
