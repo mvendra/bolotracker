@@ -8,7 +8,19 @@
 
 using strvec2 = std::vector<std::vector<std::string>>;
 
-Model::Model(const std::string &dbpath):db{dbpath}{
+Model::Model():connection{}, db{}{
+}
+
+void Model::open_database(){
+    db.db_path = connection;
+    db.open_database();
+}
+
+void Model::close_database(){
+    db.close_database();
+}
+
+Model::Model(const std::string &conn):connection{conn}, db{connection}{
 }
 
 Model::~Model(){

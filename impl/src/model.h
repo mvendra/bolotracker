@@ -17,7 +17,7 @@ class Model final {
 
 public:
 
-    Model(const std::string &dbpath);
+    Model(const std::string &conn);
     ~Model();
 
     Model(const Model&) = delete;
@@ -134,10 +134,17 @@ public:
     // keeping history is important.
 
 private:
+    friend class ModelTestInternal;
+
+    Model(); // deferred full construction only available to tester modules (friend classes)
+
+    void open_database();
+    void close_database();
+
+    std::string connection;
+    Database db;
 
     bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
-
-    Database db;
 
 };
 
