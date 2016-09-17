@@ -4,7 +4,6 @@
 
 #include "database.h"
 
-void setup_mock_db();
 bool test_database();
 
 class DatabaseTestInternal final {
