@@ -209,12 +209,7 @@ bool Model::has_currency(const std::string& label){
     return r;
 }
 
-bool Model::get_investor_info(const std::string &name,
-                              unsigned int &pk,
-                              std::string &email,
-                              std::string &description,
-                              DateHelper &date_of_inclusion)
-{
+bool Model::get_investor_info(const std::string &name, Investor &inv){
 
     std::string name_local {name}; makeStrLower(name_local);
 
@@ -233,51 +228,44 @@ bool Model::get_investor_info(const std::string &name,
         EX_THROW(Ex_Model_Error, "While getting investor info for [" + name_local + "], less than 5 columns were returned. This is likely a faulty schema.");
     }
 
-    pk = strToUint(res[0][0]);
-    email = res[0][2];
-    description = res[0][3];
-    date_of_inclusion.setDate(res[0][4]);
+    inv.pk_investor = strToUint(res[0][0]);
+    inv.name = name;
+    inv.email = res[0][2];
+    inv.description = res[0][3];
+    inv.date_of_inclusion.setDate(res[0][4]);
 
     return true;
 
 }
 
-bool Model::get_investor_info(const unsigned int pk,
-                              std::string &name,
-                              std::string &email,
-                              std::string &description,
-                              DateHelper &date_of_inclusion)
-{
+bool Model::get_investor_info(const unsigned int pk_investor, Investor &inv){
 
     std::string sql {"SELECT * FROM investors WHERE pk_investor = "};
-    sql += uintToStr(pk) + ";";
+    sql += uintToStr(pk_investor) + ";";
 
     strvec2 res;
     db.exec(sql, res);
     if (res.size() == 0){
         return false;
     } else if (res.size() > 1){
-        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk) + "], more than one record was returned. This is likely a duplicate.");
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk_investor) + "], more than one record was returned. This is likely a duplicate.");
     }
 
     if (res[0].size() != 5){
-        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk) + "], more or less than 5 columns were returned. This is likely a faulty schema.");
+        EX_THROW(Ex_Model_Error, "While getting investor info for [" + uintToStr(pk_investor) + "], more or less than 5 columns were returned. This is likely a faulty schema.");
     }
 
-    name = res[0][1];
-    email = res[0][2];
-    description = res[0][3];
-    date_of_inclusion.setDate(res[0][4]);
+    inv.pk_investor = pk_investor;
+    inv.name = res[0][1];
+    inv.email = res[0][2];
+    inv.description = res[0][3];
+    inv.date_of_inclusion.setDate(res[0][4]);
 
     return true;
 
 }
 
-bool Model::get_subject_info(const std::string &tag,
-                             unsigned int &pk,
-                             std::string &description,
-                             DateHelper &date_of_inclusion)
-{
+bool Model::get_subject_info(const std::string &tag, Subject &subj){
 
     std::string tag_local {tag}; makeStrLower(tag_local);
 
@@ -296,48 +284,42 @@ bool Model::get_subject_info(const std::string &tag,
         EX_THROW(Ex_Model_Error, "While getting subject info for [" + tag_local + "], more or less than 4 columns were returned. This is likely a faulty schema.");
     }
 
-    pk = strToUint(res[0][0]);
-    description = res[0][2];
-    date_of_inclusion.setDate(res[0][3]);
+    subj.pk_subject = strToUint(res[0][0]);
+    subj.tag = tag;
+    subj.description = res[0][2];
+    subj.date_of_inclusion.setDate(res[0][3]);
 
     return true;
 
 }
 
-bool Model::get_subject_info(const unsigned int pk,
-                             std::string &tag,
-                             std::string &description,
-                             DateHelper &date_of_inclusion)
-{
+bool Model::get_subject_info(const unsigned int pk_subject, Subject &subj){
 
     std::string sql {"SELECT * FROM subjects WHERE pk_subject = "};
-    sql += uintToStr(pk) + ";";
+    sql += uintToStr(pk_subject) + ";";
 
     strvec2 res;
     db.exec(sql, res);
     if (res.size() == 0){
         return false;
     } else if (res.size() > 1){
-        EX_THROW(Ex_Model_Error, "While getting subject info for [" + uintToStr(pk) + "], more than one record was returned. This is likely a duplicate.");
+        EX_THROW(Ex_Model_Error, "While getting subject info for [" + uintToStr(pk_subject) + "], more than one record was returned. This is likely a duplicate.");
     }
 
     if (res[0].size() != 4){
-        EX_THROW(Ex_Model_Error, "While getting subject info for [" + uintToStr(pk) + "], more or less than 4 columns were returned. This is likely a faulty schema.");
+        EX_THROW(Ex_Model_Error, "While getting subject info for [" + uintToStr(pk_subject) + "], more or less than 4 columns were returned. This is likely a faulty schema.");
     }
 
-    tag = res[0][1];
-    description = res[0][2];
-    date_of_inclusion.setDate(res[0][3]);
+    subj.pk_subject = pk_subject;
+    subj.tag = res[0][1];
+    subj.description = res[0][2];
+    subj.date_of_inclusion.setDate(res[0][3]);
 
     return true;
 
 }
 
-bool Model::get_currency_info(const std::string &label,
-                              unsigned int &pk,
-                              std::string &description,
-                              DateHelper &date_of_inclusion)
-{
+bool Model::get_currency_info(const std::string &label, Currency &curr){
 
     std::string label_local {label}; makeStrLower(label_local);
 
@@ -356,38 +338,36 @@ bool Model::get_currency_info(const std::string &label,
         EX_THROW(Ex_Model_Error, "While getting currency info for [" + label_local + "], more or less than 4 columns were returned. This is likely a faulty schema.");
     }
 
-    pk = strToUint(res[0][0]);
-    description = res[0][2];
-    date_of_inclusion.setDate(res[0][3]);
+    curr.pk_currency = strToUint(res[0][0]);
+    curr.label = label;
+    curr.description = res[0][2];
+    curr.date_of_inclusion.setDate(res[0][3]);
 
     return true;
 
 }
 
-bool Model::get_currency_info(const unsigned int pk,
-                              std::string &label,
-                              std::string &description,
-                              DateHelper &date_of_inclusion)
-{
+bool Model::get_currency_info(const unsigned int pk_currency, Currency &curr){
 
     std::string sql {"SELECT * FROM currencies WHERE pk_currency = "};
-    sql += uintToStr(pk) + ";";
+    sql += uintToStr(pk_currency) + ";";
 
     strvec2 res;
     db.exec(sql, res);
     if (res.size() == 0){
         return false;
     } else if (res.size() > 1){
-        EX_THROW(Ex_Model_Error, "While getting currency info for [" + uintToStr(pk) + "], more than one record was returned. This is likely a duplicate.");
+        EX_THROW(Ex_Model_Error, "While getting currency info for [" + uintToStr(pk_currency) + "], more than one record was returned. This is likely a duplicate.");
     }
 
     if (res[0].size() != 4){
-        EX_THROW(Ex_Model_Error, "While getting currency info for [" + uintToStr(pk) + "], more or less than 4 columns were returned. This is likely a faulty schema.");
+        EX_THROW(Ex_Model_Error, "While getting currency info for [" + uintToStr(pk_currency) + "], more or less than 4 columns were returned. This is likely a faulty schema.");
     }
 
-    label = res[0][1];
-    description = res[0][2];
-    date_of_inclusion.setDate(res[0][3]);
+    curr.pk_currency = pk_currency;
+    curr.label = res[0][1];
+    curr.description = res[0][2];
+    curr.date_of_inclusion.setDate(res[0][3]);
 
     return true;
 

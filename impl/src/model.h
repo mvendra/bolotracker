@@ -6,9 +6,7 @@
 
 #include "utils/datehelper.h"
 #include "database.h"
-#include "dataobjects/investor.h"
-#include "dataobjects/subject.h"
-#include "dataobjects/currency.h"
+#include "dataobjects/dataobjects.h"
 
 #include <string>
 #include <vector>
@@ -79,46 +77,39 @@ public:
     bool has_currency(const std::string& label);
 
     // READ INDIVIDUAL ROWS
-
     // returns false is no error happens, but there is no such name
-    bool get_investor_info(const std::string &name,
-                           unsigned int &pk,
-                           std::string &email,
-                           std::string &description,
-                           DateHelper &date_of_inclusion);
 
-    // returns false is no error happens, but there is no such pk
-    bool get_investor_info(const unsigned int pk,
-                           std::string &name,
-                           std::string &email,
-                           std::string &description,
-                           DateHelper &date_of_inclusion);
+    // investors
+    bool get_investor_info(const std::string &name, Investor &inv);
+    bool get_investor_info(const unsigned int pk_investor, Investor &inv);
 
-    // returns false is no error happens, but there is no such tag
-    bool get_subject_info(const std::string &tag,
-                          unsigned int &pk,
-                          std::string &description,
-                          DateHelper &date_of_inclusion);
+    // subjects
+    bool get_subject_info(const std::string &tag, Subject &subj);
+    bool get_subject_info(const unsigned int pk_subject, Subject &subj);
 
-    // returns false is no error happens, but there is no such pk
-    bool get_subject_info(const unsigned int pk,
-                          std::string &tag,
-                          std::string &description,
-                          DateHelper &date_of_inclusion);
+    // currencies
+    bool get_currency_info(const std::string &label, Currency &curr);
+    bool get_currency_info(const unsigned int pk_currency, Currency &curr);
 
-    // returns false is no error happens, but there is no such label
-    bool get_currency_info(const std::string &label,
-                           unsigned int &pk,
-                           std::string &description,
-                           DateHelper &date_of_inclusion);
+    // invested time
+    bool get_invested_time_by_investor(const std::string &name, std::vector<InvestedTime> &vec_inv_time);
+    bool get_invested_time_by_investor(const unsigned int pk_investor, std::vector<InvestedTime> &vec_inv_time);
+    bool get_invested_time_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
 
-    // returns false is no error happens, but there is no such pk
-    bool get_currency_info(const unsigned int pk,
-                           std::string &label,
-                           std::string &description,
-                           DateHelper &date_of_inclusion);
+    // invested assets
+    bool get_invested_assets_by_investor(const std::string &name, std::vector<InvestedAsset> &vec_inv_as);
+    bool get_invested_assets_by_investor(const unsigned int pk_investor, std::vector<InvestedAsset> &vec_inv_as);
+    bool get_invested_asset_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
 
-    // mvtodo: also add read operations, by pk, for the rest of the tables
+    // bonuses
+    bool get_bonuses_by_investor(const std::string &name, std::vector<Bonus> &vec_bon);
+    bool get_bonuses_by_investor(const unsigned int pk_investor, std::vector<Bonus> &vec_bon);
+    bool get_bonus_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
+
+    // invested money
+    bool get_invested_money_by_investor(const std::string &name, std::vector<InvestedMoney> &vec_mon);
+    bool get_invested_money_by_investor(const unsigned int pk_investor, std::vector<InvestedMoney> &vec_mon);
+    bool get_invested_money_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
 
     // READ LISTS OF ROWS
     void get_all_investors(std::vector<Investor> &invs);
