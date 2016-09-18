@@ -619,19 +619,63 @@ bool Model::get_bonus_subjects(const unsigned int pk_bonus, std::vector<Subject>
 }
 
 bool Model::get_invested_money_by_investor(const std::string &name, std::vector<InvestedMoney> &vec_mon){
-    (void)name; // mvdebug
-    (void)vec_mon; // mvdebug
-    return false; // mvdebug
+
+    std::string name_local {name}; makeStrLower(name_local);
+
+    std::string sql {"SELECT * FROM invested_money WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
+    sql += name_local + "\");";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        InvestedMoney it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_mon.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_invested_money_by_investor(const unsigned int pk_investor, std::vector<InvestedMoney> &vec_mon){
-    (void)pk_investor; // mvdebug
-    (void)vec_mon; // mvdebug
-    return false; // mvdebug
+
+    std::string sql {"SELECT * FROM invested_money WHERE fk_investor = "};
+    sql += uintToStr(pk_investor);
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        InvestedMoney it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_mon.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_invested_money_subjects(const unsigned int pk_invested_money, std::vector<Subject> &subjs){
-    (void)pk_invested_money; // mvdebug
-    (void)subjs; // mvdebug
-    return false; // mvdebug
+
+    std::string sql {"SELECT pk_subject, tag, description, date_of_inclusion FROM subjects INNER JOIN invested_money_subjects_link ON subjects.pk_subject = invested_money_subjects_link.fk_subject WHERE invested_money_subjects_link.fk_invested_money = "};
+    sql += uintToStr(pk_invested_money) + ";";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        Subject it{strToUint(x[0]), x[1], x[2], DateHelper{x[3]}};
+        subjs.push_back(it);
+    }
+
+    return true;
+
 }

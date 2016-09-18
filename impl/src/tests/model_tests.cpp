@@ -159,7 +159,35 @@ bool test_model(){
 
     // invested money
     {
-        // mvtodo
+
+        mti.model.add_investor("panama", "van@halen.com", "down the avenue", DateHelper{"01/01/1984"});
+        mti.model.add_subject("guitar", "harmony and melody", DateHelper{"09/08/1987"});
+        mti.model.add_invested_money(5, 1, DateHelper{"01/04/1928"}, "stratocaster", "its over", "fade to black", 701);
+        mti.model.attach_subject_to_invested_money(2, 5);
+
+        std::vector<InvestedMoney> vec_im;
+
+        auto p_ = [&total, &vec_im]() {
+            test_eq(total, "Added invested money must belong to the right investor", vec_im[0].fk_investor, 5);
+            test_eq(total, "Added invested money's currency much match", vec_im[0].fk_currency, 1);
+            test_eq(total, "Added invested money's date much match", vec_im[0].date.getDateString(), "01/04/1928");
+            test_eq(total, "Added invested money's short name must match", vec_im[0].short_name, "stratocaster");
+            test_eq(total, "Added invested money's description must match", vec_im[0].description, "its over");
+            test_eq(total, "Added invested money's comment must match", vec_im[0].comment, "fade to black");
+            test_eq(total, "Added invested money's reward must match", vec_im[0].amount, 701);
+        };
+
+        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor("panama", vec_im));
+        p_();
+        vec_im.clear();
+
+        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(5, vec_im));
+        p_();
+
+        std::vector<Subject> subjs;
+        test_true(total, "Must have subjects attached", mti.model.get_invested_money_subjects(2, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "guitar");
+
     }
 
     return total;
