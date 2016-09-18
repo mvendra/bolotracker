@@ -557,21 +557,65 @@ bool Model::get_invested_asset_subjects(const unsigned int pk_invested_asset, st
 }
 
 bool Model::get_bonuses_by_investor(const std::string &name, std::vector<Bonus> &vec_bon){
-    (void)name; // mvdebug
-    (void)vec_bon; // mvdebug
-    return false; // mvdebug
+
+    std::string name_local {name}; makeStrLower(name_local);
+
+    std::string sql {"SELECT * FROM bonuses WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
+    sql += name_local + "\");";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        Bonus it{strToUint(x[0]), strToUint(x[1]), x[2], x[3], x[4], x[5], x[6]};
+        vec_bon.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_bonuses_by_investor(const unsigned int pk_investor, std::vector<Bonus> &vec_bon){
-    (void)pk_investor; // mvdebug
-    (void)vec_bon; // mvdebug
-    return false; // mvdebug
+
+    std::string sql {"SELECT * FROM bonuses WHERE fk_investor = "};
+    sql += uintToStr(pk_investor);
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        Bonus it{strToUint(x[0]), strToUint(x[1]), x[2], x[3], x[4], x[5], x[6]};
+        vec_bon.push_back(it);
+    }
+
+    return true;
+
 }
 
-bool Model::get_bonus_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs){
-    (void)pk_invested_time; // mvdebug
-    (void)subjs; // mvdebug
-    return false; // mvdebug
+bool Model::get_bonus_subjects(const unsigned int pk_bonus, std::vector<Subject> &subjs){
+
+    std::string sql {"SELECT pk_subject, tag, description, date_of_inclusion FROM subjects INNER JOIN bonuses_subjects_link ON subjects.pk_subject = bonuses_subjects_link.fk_subject WHERE bonuses_subjects_link.fk_bonus = "};
+    sql += uintToStr(pk_bonus) + ";";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        Subject it{strToUint(x[0]), x[1], x[2], DateHelper{x[3]}};
+        subjs.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_invested_money_by_investor(const std::string &name, std::vector<InvestedMoney> &vec_mon){
@@ -586,8 +630,8 @@ bool Model::get_invested_money_by_investor(const unsigned int pk_investor, std::
     return false; // mvdebug
 }
 
-bool Model::get_invested_money_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs){
-    (void)pk_invested_time; // mvdebug
+bool Model::get_invested_money_subjects(const unsigned int pk_invested_money, std::vector<Subject> &subjs){
+    (void)pk_invested_money; // mvdebug
     (void)subjs; // mvdebug
     return false; // mvdebug
 }
