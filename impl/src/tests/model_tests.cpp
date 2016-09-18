@@ -16,20 +16,61 @@ bool test_model(){
 
     // test investor
     {
-        test_true(total, "Must have passed investor name", mti.model.has_investor("jon"));
-        test_false(total, "Must not have passed investor name", mti.model.has_investor("bolo"));
+        test_true(total, "Must have the passed investor name", mti.model.has_investor("jon"));
+        test_false(total, "Must not have the passed investor name", mti.model.has_investor("bolo"));
+
+        mti.model.add_investor("added", "added@dogs.com", "test13", DateHelper("06/07/2017"));
+        Investor inv{0, "", "", "", DateHelper{}};
+
+        test_true(total, "Must have the recently added investor.", mti.model.get_investor_info("added", inv));
+        test_eq(total, "Name must match", "added", inv.name);
+        test_eq(total, "Email must match", "added@dogs.com", inv.email);
+        test_eq(total, "Description must match", "test13", inv.description);
+        test_eq(total, "Date must match", DateHelper("06/07/2017").getDateString(), inv.date_of_inclusion.getDateString());
+        test_false(total, "Must not have some random name", mti.model.get_investor_info("i-dont-exist", inv));
     }
 
     // test subject
     {
-        test_true(total, "Must have passed subject tag", mti.model.has_subject("qa"));
-        test_false(total, "Must not have passed subject tag", mti.model.has_subject("rubbish"));
+        test_true(total, "Must have the passed subject tag", mti.model.has_subject("qa"));
+        test_false(total, "Must not have the passed subject tag", mti.model.has_subject("rubbish"));
+
+        mti.model.add_subject("bugs", "nasty defects", DateHelper("01/01/2005"));
+        Subject subj{0, "", "", DateHelper{}};
+
+        test_true(total, "Must have the recently added subject", mti.model.get_subject_info("bugs", subj));
+        test_eq(total, "Tag must match", "bugs", subj.tag);
+        test_eq(total, "Description must match", "nasty defects", subj.description);
+        test_eq(total, "Date must match", DateHelper("01/01/2005").getDateString(), subj.date_of_inclusion.getDateString());
+        test_false(total, "Must not have some random tag", mti.model.get_subject_info("lalala", subj));
+
     }
 
     // test currency
     {
-        test_true(total, "Must have passed subject currency label", mti.model.has_currency("cad"));
-        test_false(total, "Must not have passed currency label", mti.model.has_subject("eur"));
+        test_true(total, "Must have the passed subject currency label", mti.model.has_currency("cad"));
+        test_false(total, "Must not have the passed currency label", mti.model.has_subject("eur"));
+
+        mti.model.add_currency("nok", "norwegian krone", DateHelper("01/01/2006"));
+        Currency curr{0, "", "", DateHelper{}};
+
+        test_true(total, "Must have the recently added currency", mti.model.get_currency_info("nok", curr));
+        test_eq(total, "Label must match", "nok", curr.label);
+        test_eq(total, "Description must match", "norwegian krone", curr.description);
+        test_eq(total, "Date must match", DateHelper("01/01/2006").getDateString(), curr.date_of_inclusion.getDateString());
+        test_false(total, "Must not have some random label", mti.model.get_currency_info("clp", curr));
+
+    }
+
+    // test invested time
+    {
+
+        // mvtodo: add some, then try to retrieve, with dirty checking.
+
+        std::vector<InvestedTime> vec_inv_time;
+        mti.model.get_invested_time_by_investor("jon", vec_inv_time);
+        int stop=1; // mvdebug
+        (void)stop; // mvdebug
     }
 
     return total;

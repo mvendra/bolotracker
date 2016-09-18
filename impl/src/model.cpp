@@ -434,12 +434,10 @@ void Model::get_all_currencies(std::vector<Currency> &currs){
 
 bool Model::get_invested_time_by_investor(const std::string &name, std::vector<InvestedTime> &vec_inv_time){
 
-    // mvtodo: continue here
-
     std::string name_local {name}; makeStrLower(name_local);
 
     std::string sql {"SELECT * FROM invested_time WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
-    sql += name_local + "\";";
+    sql += name_local + "\");";
 
     strvec2 res;
     db.exec(sql, res);
