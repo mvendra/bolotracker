@@ -1,5 +1,8 @@
 
-* theres a // mvtodo: continue here (model)
+[
+* consider refactoring all the write operations to accept the pk-strings instead of foreign keys
+* everywhere where im expecting a fk, scratch that. allow a pk-string to be passed instead.
+]
 
 [
 @finish the model design and api
