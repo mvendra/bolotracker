@@ -495,21 +495,65 @@ bool Model::get_invested_time_subjects(const unsigned int pk_invested_time, std:
 }
 
 bool Model::get_invested_assets_by_investor(const std::string &name, std::vector<InvestedAsset> &vec_inv_as){
-    (void)name; // mvdebug
-    (void)vec_inv_as; // mvdebug
-    return false; // mvdebug
+
+    std::string name_local {name}; makeStrLower(name_local);
+
+    std::string sql {"SELECT * FROM invested_assets WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
+    sql += name_local + "\");";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        InvestedAsset it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_inv_as.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_invested_assets_by_investor(const unsigned int pk_investor, std::vector<InvestedAsset> &vec_inv_as){
-    (void)pk_investor; // mvdebug
-    (void)vec_inv_as; // mvdebug
-    return false; // mvdebug
+
+    std::string sql {"SELECT * FROM invested_assets WHERE fk_investor = "};
+    sql += uintToStr(pk_investor);
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        InvestedAsset it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_inv_as.push_back(it);
+    }
+
+    return true;
+
 }
 
-bool Model::get_invested_asset_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs){
-    (void)pk_invested_time; // mvdebug
-    (void)subjs; // mvdebug
-    return false; // mvdebug
+bool Model::get_invested_asset_subjects(const unsigned int pk_invested_asset, std::vector<Subject> &subjs){
+
+    std::string sql {"SELECT pk_subject, tag, description, date_of_inclusion FROM subjects INNER JOIN invested_assets_subjects_link ON subjects.pk_subject = invested_assets_subjects_link.fk_subject WHERE invested_assets_subjects_link.fk_invested_asset = "};
+    sql += uintToStr(pk_invested_asset) + ";";
+
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        return false;
+    }
+
+    for (auto x: res){
+        Subject it{strToUint(x[0]), x[1], x[2], DateHelper{x[3]}};
+        subjs.push_back(it);
+    }
+
+    return true;
+
 }
 
 bool Model::get_bonuses_by_investor(const std::string &name, std::vector<Bonus> &vec_bon){

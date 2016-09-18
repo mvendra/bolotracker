@@ -97,6 +97,46 @@ bool test_model(){
 
     }
 
+    // invested assets
+    {
+        mti.model.add_invested_asset(2, 3, DateHelper{"01/02/1978"}, "shortened name", "yet more desc", "and comment", 26.1);
+        mti.model.attach_subject_to_invested_asset(2, 1); // pk = 2 here depends on the previous line
+
+        std::vector<InvestedAsset> vec_inv_as;
+
+        auto p_ = [&total, &vec_inv_as]() {
+            test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].fk_investor, 2);
+            test_eq(total, "Added invested asset's currency must match", vec_inv_as[0].fk_currency, 3);
+            test_eq(total, "Added invested asset's date much match", vec_inv_as[0].date.getDateString(), "01/02/1978");
+            test_eq(total, "Added invested asset's short name must match", vec_inv_as[0].short_name, "shortened name");
+            test_eq(total, "Added invested asset's description must match", vec_inv_as[0].description, "yet more desc");
+            test_eq(total, "Added invested asset's comment must match", vec_inv_as[0].comment, "and comment");
+            test_eq(total, "Added invested asset's price must match", vec_inv_as[0].price, 26.1);
+        };
+
+        test_true(total, "Investor must have invested asset", mti.model.get_invested_assets_by_investor("libras", vec_inv_as));
+        p_();
+        vec_inv_as.clear();
+
+        test_true(total, "Investor must have invested asset", mti.model.get_invested_assets_by_investor(2, vec_inv_as));
+        p_();
+
+        std::vector<Subject> subjs;
+        test_true(total, "Must have subjects attached", mti.model.get_invested_asset_subjects(2, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "dev");
+
+    }
+
+    // bonuses
+    {
+        // mvtodo
+    }
+
+    // invested money
+    {
+        // mvtodo
+    }
+
     return total;
 
 }
