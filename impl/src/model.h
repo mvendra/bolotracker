@@ -94,22 +94,22 @@ public:
     // invested time
     bool get_invested_time_by_investor(const std::string &name, std::vector<InvestedTime> &vec_inv_time);
     bool get_invested_time_by_investor(const unsigned int pk_investor, std::vector<InvestedTime> &vec_inv_time);
-    bool get_invested_time_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
+    bool get_invested_time_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs);
 
     // invested assets
     bool get_invested_assets_by_investor(const std::string &name, std::vector<InvestedAsset> &vec_inv_as);
     bool get_invested_assets_by_investor(const unsigned int pk_investor, std::vector<InvestedAsset> &vec_inv_as);
-    bool get_invested_asset_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
+    bool get_invested_asset_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs);
 
     // bonuses
     bool get_bonuses_by_investor(const std::string &name, std::vector<Bonus> &vec_bon);
     bool get_bonuses_by_investor(const unsigned int pk_investor, std::vector<Bonus> &vec_bon);
-    bool get_bonus_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
+    bool get_bonus_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs);
 
     // invested money
     bool get_invested_money_by_investor(const std::string &name, std::vector<InvestedMoney> &vec_mon);
     bool get_invested_money_by_investor(const unsigned int pk_investor, std::vector<InvestedMoney> &vec_mon);
-    bool get_invested_money_subjects(const unsigned int pk_invested_time, std::vector<Subject> subjs);
+    bool get_invested_money_subjects(const unsigned int pk_invested_time, std::vector<Subject> &subjs);
 
     // READ LISTS OF ROWS
     void get_all_investors(std::vector<Investor> &invs);
