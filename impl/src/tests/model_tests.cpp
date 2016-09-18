@@ -129,7 +129,32 @@ bool test_model(){
 
     // bonuses
     {
-        // mvtodo
+
+        mti.model.add_bonus(3, DateHelper{"01/05/1973"}, "lack of creativity", "this is getting old", "im tired of this", "doggie treats");
+        mti.model.attach_subject_to_bonus(2, 3); // pk = 2 here depends on the previous line
+
+        std::vector<Bonus> vec_bn;
+
+        auto p_ = [&total, &vec_bn]() {
+            test_eq(total, "Added bonus must belong to the right investor", vec_bn[1].fk_investor, 3);
+            test_eq(total, "Added bonus's date much match", vec_bn[1].date.getDateString(), "01/05/1973");
+            test_eq(total, "Added bonus's short name must match", vec_bn[1].short_name, "lack of creativity");
+            test_eq(total, "Added bonus's description must match", vec_bn[1].description, "this is getting old");
+            test_eq(total, "Added bonus's comment must match", vec_bn[1].comment, "im tired of this");
+            test_eq(total, "Added bonus's reward must match", vec_bn[1].reward, "doggie treats");
+        };
+
+        test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor("a-nother", vec_bn));
+        p_();
+        vec_bn.clear();
+
+        test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor(3, vec_bn));
+        p_();
+
+        std::vector<Subject> subjs;
+        test_true(total, "Must have subjects attached", mti.model.get_bonus_subjects(2, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "release");
+
     }
 
     // invested money
@@ -167,6 +192,10 @@ void ModelTestInternal::load_test_data(){
 }
 
 void ModelTestInternal::load_test_data_delegate(){
+
+    // remember you MAY NOT freely scramble these around, or it will mess up
+    // the pks the records will get. many tests depend on fixed/expected
+    // pks to run correctly
 
     // investors
     model.add_investor("jon", "jon@thecat.com", "test1", DateHelper("06/07/2006"));
