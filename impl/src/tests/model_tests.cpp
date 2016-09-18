@@ -65,12 +65,36 @@ bool test_model(){
     // test invested time
     {
 
-        // mvtodo: add some, then try to retrieve, with dirty checking.
+        mti.model.add_invested_time(1, 2, DateHelper{"01/02/1998"}, "otter desc", "some comment", 1222, 99.76);
+        // the pk = 3 below is meant to be the invested time we just added (just above this line)
+        // just should stay consistent with the load_test_data_delegate() stuff.
+        // if a breakage ever occurs, it would suffice to re-instantiate the test model here (to reset the test data,
+        // effectively guaranteeing a pk of 3 for the just-added invested time entry)
+        mti.model.attach_subject_to_invested_time(3, 1);
 
         std::vector<InvestedTime> vec_inv_time;
-        mti.model.get_invested_time_by_investor("jon", vec_inv_time);
-        int stop=1; // mvdebug
-        (void)stop; // mvdebug
+
+        auto p_ = [&total, &vec_inv_time](){
+            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 1);
+            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 2);
+            test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), DateHelper{"01/02/1998"}.getDateString());
+            test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "otter desc");
+            test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some comment");
+            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, 1222);
+            test_eq(total, "Added invested time's price per unit must match", vec_inv_time[1].price_per_unit, 99.76);
+        };
+
+        test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor("jon", vec_inv_time));
+        p_();
+        vec_inv_time.clear();
+
+        test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor(1, vec_inv_time));
+        p_();
+
+        std::vector<Subject> subjs;
+        test_true(total, "Must have subjects attached", mti.model.get_invested_time_subjects(3, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "dev");
+
     }
 
     return total;
