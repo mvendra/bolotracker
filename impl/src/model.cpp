@@ -180,6 +180,17 @@ void Model::attach_subject_to_invested_asset(const unsigned int pk_invested_asse
 
 }
 
+void Model::add_bonus(const std::string &investor_name, const DateHelper &date,
+                      const std::string &short_name, const std::string &description,
+                      const std::string &comment, const std::string &reward)
+{
+
+    std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
+    unsigned int pk_investor = get_pk_investor(investor_name_local);
+    add_bonus(pk_investor, date, short_name, description, comment, reward);
+
+}
+
 void Model::add_bonus(const unsigned int fk_investor, const DateHelper &date,
                       const std::string &short_name, const std::string &description,
                       const std::string &comment, const std::string &reward)

@@ -64,7 +64,7 @@ bool test_model(){
         ModelTestInternal mti{};
 
         test_true(total, "Must have the passed subject currency label", mti.model.has_currency("cad"));
-        test_false(total, "Must not have the passed currency label", mti.model.has_subject("eur"));
+        test_false(total, "Must not have the passed currency label", mti.model.has_currency("eur"));
 
         mti.model.add_currency("nok", "norwegian krone", DateHelper("01/01/2006"));
         Currency curr{0, "", "", DateHelper{}};
@@ -213,12 +213,14 @@ bool test_model(){
 
         ModelTestInternal mti{};
 
+        // TEST WITH A-NOTHER
+
         mti.model.add_bonus(3, DateHelper{"01/05/1973"}, "lack of creativity", "this is getting old", "im tired of this", "doggie treats");
         mti.model.attach_subject_to_bonus(2, 3); // pk = 2 here depends on the previous line
 
         std::vector<Bonus> vec_bn;
 
-        auto p_ = [&total, &vec_bn]() {
+        auto p_a_nother = [&total, &vec_bn]() {
             test_eq(total, "Added bonus must belong to the right investor", vec_bn[1].fk_investor, 3);
             test_eq(total, "Added bonus's date much match", vec_bn[1].date.getDateString(), "01/05/1973");
             test_eq(total, "Added bonus's short name must match", vec_bn[1].short_name, "lack of creativity");
@@ -228,15 +230,37 @@ bool test_model(){
         };
 
         test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor("a-nother", vec_bn));
-        p_();
+        p_a_nother();
         vec_bn.clear();
 
         test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor(3, vec_bn));
-        p_();
+        p_a_nother();
+        vec_bn.clear();
 
         std::vector<Subject> subjs;
         test_true(total, "Must have subjects attached", mti.model.get_bonus_subjects(2, subjs));
         test_eq(total, "Must have the attached subject", subjs[0].tag, "release");
+        subjs.clear();
+
+        // TEST WITH JON
+        mti.model.add_bonus("jon", DateHelper{"01/02/1972"}, "small talk", "tester string", "roger", "murtaugh");
+        //mti.model.attach_subject_to_bonus(3, "qa"); // mvtodo
+
+        auto p_jon = [&total, &vec_bn]() {
+            test_eq(total, "Added bonus must belong to the right investor", vec_bn[0].fk_investor, 1);
+            test_eq(total, "Added bonus's date much match", vec_bn[0].date.getDateString(), "01/02/1972");
+            test_eq(total, "Added bonus's short name must match", vec_bn[0].short_name, "small talk");
+            test_eq(total, "Added bonus's description must match", vec_bn[0].description, "tester string");
+            test_eq(total, "Added bonus's comment must match", vec_bn[0].comment, "roger");
+            test_eq(total, "Added bonus's reward must match", vec_bn[0].reward, "murtaugh");
+        };
+
+        test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor("jon", vec_bn));
+        p_jon();
+        vec_bn.clear();
+
+        test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor(1, vec_bn));
+        p_jon();
 
     }
 
