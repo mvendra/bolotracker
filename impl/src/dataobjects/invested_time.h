@@ -5,11 +5,14 @@
 #include <string>
 #include <utils/datehelper.h>
 
+#include "dataobjects/investor.h"
+#include "dataobjects/currency.h"
+
 class InvestedTime final {
 
 public:
 
-    InvestedTime(const unsigned int _pk_invested_time, const unsigned int _fk_investor, const unsigned int _fk_currency,
+    InvestedTime(const unsigned int _pk_invested_time, const Investor &_investor, const Currency &_currency,
                  const DateHelper &_date, const std::string &_description, const std::string &_comment,
                  const unsigned int _minutes, const double &_price_per_unit);
 
@@ -22,8 +25,8 @@ public:
     InvestedTime& operator=(InvestedTime&&) = delete;
 
     unsigned int pk_invested_time;
-    unsigned int fk_investor;
-    unsigned int fk_currency;
+    Investor investor;
+    Currency currency;
 
     DateHelper date;
     std::string description;

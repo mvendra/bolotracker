@@ -96,8 +96,8 @@ bool test_model(){
         std::vector<InvestedTime> vec_inv_time;
 
         auto p_jon = [&total, &vec_inv_time](){
-            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 1);
-            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 2);
+            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].investor.name, "jon");
+            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].currency.label, "nan");
             test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1998");
             test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "otter desc");
             test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some comment");
@@ -124,8 +124,8 @@ bool test_model(){
         mti.model.attach_subject_to_invested_time(4, "release");
 
         auto p_libras = [&total, &vec_inv_time](){
-            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 2);
-            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 3);
+            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].investor.name, "libras");
+            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].currency.label, "cad");
             test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1994");
             test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "outer space");
             test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some milk");
