@@ -91,6 +91,8 @@ public:
                             const std::string &description, const std::string &comment,
                             const double amount);
 
+    void attach_subject_to_invested_money(const unsigned int pk_invested_money, const std::string &subject_tag);
+
     void attach_subject_to_invested_money(const unsigned int pk_invested_money, const unsigned int pk_subject);
 
     /////////////////////

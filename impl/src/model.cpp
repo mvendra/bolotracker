@@ -92,8 +92,8 @@ void Model::add_invested_time(const std::string &investor_name, const std::strin
     std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
     std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
 
-    unsigned int fk_investor = get_pk_investor(investor_name_local);
-    unsigned int fk_currency = get_pk_currency(currency_label_local);
+    unsigned int fk_investor {get_pk_investor(investor_name_local)};
+    unsigned int fk_currency {get_pk_currency(currency_label_local)};
     add_invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit);
 
 }
@@ -117,7 +117,7 @@ void Model::add_invested_time(const unsigned int fk_investor, const unsigned int
 
 void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time, const std::string &subject_tag){
     std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
-    unsigned int pk_subject = get_pk_subject(subject_tag_local);
+    unsigned int pk_subject {get_pk_subject(subject_tag_local)};
     attach_subject_to_invested_time(pk_invested_time, pk_subject);
 }
 
@@ -139,8 +139,8 @@ void Model::add_invested_asset(const std::string &investor_name, const std::stri
     std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
     std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
 
-    unsigned int fk_investor = get_pk_investor(investor_name_local);
-    unsigned int fk_currency = get_pk_currency(currency_label_local);
+    unsigned int fk_investor {get_pk_investor(investor_name_local)};
+    unsigned int fk_currency {get_pk_currency(currency_label_local)};
     add_invested_asset(fk_investor, fk_currency, date, short_name, description, comment, price);
 
 }
@@ -166,7 +166,7 @@ void Model::add_invested_asset(const unsigned int fk_investor, const unsigned in
 void Model::attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const std::string &subject_tag){
 
     std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
-    unsigned int pk_subject = get_pk_subject(subject_tag_local);
+    unsigned int pk_subject {get_pk_subject(subject_tag_local)};
     attach_subject_to_invested_asset(pk_invested_asset, pk_subject);
 
 }
@@ -186,7 +186,7 @@ void Model::add_bonus(const std::string &investor_name, const DateHelper &date,
 {
 
     std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
-    unsigned int pk_investor = get_pk_investor(investor_name_local);
+    unsigned int pk_investor {get_pk_investor(investor_name_local)};
     add_bonus(pk_investor, date, short_name, description, comment, reward);
 
 }
@@ -211,7 +211,7 @@ void Model::add_bonus(const unsigned int fk_investor, const DateHelper &date,
 
 void Model::attach_subject_to_bonus(const unsigned int pk_bonus, const std::string &subject_tag){
     std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
-    unsigned int pk_subject = get_pk_subject(subject_tag_local);
+    unsigned int pk_subject {get_pk_subject(subject_tag_local)};
     attach_subject_to_bonus(pk_bonus, pk_subject);
 }
 
@@ -233,8 +233,8 @@ void Model::add_invested_money(const std::string &investor_name, const std::stri
     std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
     std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
 
-    unsigned int pk_investor = get_pk_investor(investor_name_local);
-    unsigned int pk_currency = get_pk_currency(currency_label_local);
+    unsigned int pk_investor {get_pk_investor(investor_name_local)};
+    unsigned int pk_currency {get_pk_currency(currency_label_local)};
 
     add_invested_money(pk_investor, pk_currency, date, short_name, description, comment, amount);
 
@@ -255,6 +255,14 @@ void Model::add_invested_money(const unsigned int fk_investor, const unsigned in
     sql += description_local + "\", \"" + comment_local + "\", " + doubleToStr(amount) + ");";
 
     db.exec(sql);
+
+}
+
+void Model::attach_subject_to_invested_money(const unsigned int pk_invested_money, const std::string &subject_tag){
+
+    std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
+    unsigned int pk_subject {get_pk_subject(subject_tag_local)};
+    attach_subject_to_invested_money(pk_invested_money, pk_subject);
 
 }
 

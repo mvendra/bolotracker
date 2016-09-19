@@ -327,6 +327,12 @@ bool test_model(){
         test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(4, vec_im));
         p_libras();
 
+        mti.model.add_subject("reindeer", "elk", DateHelper{"05/05/2015"});
+        mti.model.attach_subject_to_invested_money(3, "reindeer");
+
+        test_true(total, "Must have subjects attached", mti.model.get_invested_money_subjects(3, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "reindeer");
+
     }
 
     return total;
