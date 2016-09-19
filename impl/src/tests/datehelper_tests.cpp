@@ -13,6 +13,8 @@ bool test_datehelper(){
     // test date validator
     bool total {true};
 
+    PRINT_INFO("Testing DateHelper...")
+
     // date should be valid
     test_true(total, "Date should be valid", DateHelper::isValidDate(22, 6, 1997));
     test_true(total, "Date should be valid", DateHelper::isValidDate(22, 6, 1997));

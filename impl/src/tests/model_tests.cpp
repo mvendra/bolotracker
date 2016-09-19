@@ -12,10 +12,15 @@ bool test_model(){
 
     bool total {true};
 
-    ModelTestInternal mti{};
+    PRINT_INFO("Testing model...")
 
     // test investor
     {
+
+        PRINT_INFO("Testing investor")
+
+        ModelTestInternal mti{};
+
         test_true(total, "Must have the passed investor name", mti.model.has_investor("jon"));
         test_false(total, "Must not have the passed investor name", mti.model.has_investor("bolo"));
 
@@ -32,6 +37,11 @@ bool test_model(){
 
     // test subject
     {
+
+        PRINT_INFO("Testing subject")
+
+        ModelTestInternal mti{};
+
         test_true(total, "Must have the passed subject tag", mti.model.has_subject("qa"));
         test_false(total, "Must not have the passed subject tag", mti.model.has_subject("rubbish"));
 
@@ -48,6 +58,11 @@ bool test_model(){
 
     // test currency
     {
+
+        PRINT_INFO("Testing currency")
+
+        ModelTestInternal mti{};
+
         test_true(total, "Must have the passed subject currency label", mti.model.has_currency("cad"));
         test_false(total, "Must not have the passed currency label", mti.model.has_subject("eur"));
 
@@ -64,6 +79,10 @@ bool test_model(){
 
     // test invested time
     {
+
+        PRINT_INFO("Testing invested time")
+
+        ModelTestInternal mti{};
 
         mti.model.add_invested_time(1, 2, DateHelper{"01/02/1998"}, "otter desc", "some comment", 1222, 99.76);
         // the pk = 3 below is meant to be the invested time we just added (just above this line)
@@ -99,6 +118,11 @@ bool test_model(){
 
     // invested assets
     {
+
+        PRINT_INFO("Testing invested assets")
+
+        ModelTestInternal mti{};
+
         mti.model.add_invested_asset(2, 3, DateHelper{"01/02/1978"}, "shortened name", "yet more desc", "and comment", 26.1);
         mti.model.attach_subject_to_invested_asset(2, 1); // pk = 2 here depends on the previous line
 
@@ -130,6 +154,10 @@ bool test_model(){
     // bonuses
     {
 
+        PRINT_INFO("Testing bonuses")
+
+        ModelTestInternal mti{};
+
         mti.model.add_bonus(3, DateHelper{"01/05/1973"}, "lack of creativity", "this is getting old", "im tired of this", "doggie treats");
         mti.model.attach_subject_to_bonus(2, 3); // pk = 2 here depends on the previous line
 
@@ -160,15 +188,19 @@ bool test_model(){
     // invested money
     {
 
+        PRINT_INFO("Testing invested money")
+
+        ModelTestInternal mti{};
+
         mti.model.add_investor("panama", "van@halen.com", "down the avenue", DateHelper{"01/01/1984"});
         mti.model.add_subject("guitar", "harmony and melody", DateHelper{"09/08/1987"});
-        mti.model.add_invested_money(5, 1, DateHelper{"01/04/1928"}, "stratocaster", "its over", "fade to black", 701);
-        mti.model.attach_subject_to_invested_money(2, 5);
+        mti.model.add_invested_money(4, 1, DateHelper{"01/04/1928"}, "stratocaster", "its over", "fade to black", 701);
+        mti.model.attach_subject_to_invested_money(2, 6);
 
         std::vector<InvestedMoney> vec_im;
 
         auto p_ = [&total, &vec_im]() {
-            test_eq(total, "Added invested money must belong to the right investor", vec_im[0].fk_investor, 5);
+            test_eq(total, "Added invested money must belong to the right investor", vec_im[0].fk_investor, 4);
             test_eq(total, "Added invested money's currency much match", vec_im[0].fk_currency, 1);
             test_eq(total, "Added invested money's date much match", vec_im[0].date.getDateString(), "01/04/1928");
             test_eq(total, "Added invested money's short name must match", vec_im[0].short_name, "stratocaster");
@@ -181,7 +213,7 @@ bool test_model(){
         p_();
         vec_im.clear();
 
-        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(5, vec_im));
+        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(4, vec_im));
         p_();
 
         std::vector<Subject> subjs;
@@ -232,8 +264,10 @@ void ModelTestInternal::load_test_data_delegate(){
 
     // subjects
     model.add_subject("dev", "test4", DateHelper("09/09/2016"));
-    model.add_subject("qa", "test5", DateHelper("09/09/2016"));
-    model.add_subject("release", "test6", DateHelper("09/09/2016"));
+    model.add_subject("qa", "test5", DateHelper("09/04/2011"));
+    model.add_subject("release", "test6", DateHelper("09/03/2018"));
+    model.add_subject("for-kicks", "test7", DateHelper("09/03/2000"));
+    model.add_subject("crowbar", "test8", DateHelper("20/04/1935"));
 
     // currencies
     model.add_currency("aud", "straya dollar", DateHelper("07/02/2001"));

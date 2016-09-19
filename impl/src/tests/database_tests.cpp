@@ -14,6 +14,8 @@ bool test_database(){
 
     bool total {true};
 
+    PRINT_INFO("Testing database...")
+
     // test investors
     {
 
