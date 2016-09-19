@@ -115,6 +115,11 @@ void Model::add_invested_time(const unsigned int fk_investor, const unsigned int
 
 }
 
+void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time, const std::string &subject_tag){
+    unsigned int pk_subject = get_pk_from_unique("subjects", "pk_subject", "tag", subject_tag);
+    attach_subject_to_invested_time(pk_invested_time, pk_subject);
+}
+
 void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time, const unsigned int pk_subject){
 
     std::string sql {"INSERT INTO invested_time_subjects_link(fk_invested_time, fk_subject) VALUES("};

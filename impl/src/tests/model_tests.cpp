@@ -116,9 +116,13 @@ bool test_model(){
         std::vector<Subject> subjs;
         test_true(total, "Must have subjects attached", mti.model.get_invested_time_subjects(3, subjs));
         test_eq(total, "Must have the attached subject", subjs[0].tag, "dev");
+        subjs.clear();
 
         // TEST WITH LIBRAS
+
         mti.model.add_invested_time("libras", "cad", DateHelper{"01/02/1994"}, "outer space", "some milk", 44, 13.8);
+        mti.model.attach_subject_to_invested_time(4, "release");
+
         auto p_libras = [&total, &vec_inv_time](){
             test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 2);
             test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 3);
@@ -131,6 +135,9 @@ bool test_model(){
 
         test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor("libras", vec_inv_time));
         p_libras();
+
+        test_true(total, "Must have subjects attached", mti.model.get_invested_time_subjects(4, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "release");
 
     }
 

@@ -48,6 +48,8 @@ public:
                            const std::string &comment, const unsigned int minutes,
                            const double price_per_unit);
 
+    void attach_subject_to_invested_time(const unsigned int pk_invested_time, const std::string &subject_tag);
+
     void attach_subject_to_invested_time(const unsigned int pk_invested_time, const unsigned int pk_subject);
 
     // invested assets
