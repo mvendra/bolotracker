@@ -83,6 +83,21 @@ void Model::add_currency(const std::string& label, const std::string &descriptio
 
 }
 
+void Model::add_invested_time(const std::string &investor_name, const std::string &currency_label,
+                              const DateHelper &date, const std::string &description,
+                              const std::string &comment, const unsigned int minutes,
+                              const double price_per_unit)
+{
+
+    std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
+    std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
+
+    unsigned int fk_investor = get_pk_from_unique("investors", "pk_investor", "name", investor_name_local);
+    unsigned int fk_currency = get_pk_from_unique("currencies", "pk_currency", "label", currency_label_local);
+    add_invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit);
+
+}
+
 void Model::add_invested_time(const unsigned int fk_investor, const unsigned int fk_currency,
                               const DateHelper &date, const std::string &description,
                               const std::string &comment, const unsigned int minutes,
@@ -391,6 +406,17 @@ bool Model::has_any_helper(const std::string &column, const std::string &value, 
     }
     return true;
 
+}
+
+unsigned int Model::get_pk_from_unique(const std::string &table, const std::string &pk_handle, const std::string &unique_handle, const std::string &unique_value){
+    std::string sql {"SELECT "};
+    sql += pk_handle + " FROM " + table + " WHERE " + unique_handle + " = \"" + unique_value + "\";";
+    strvec2 res;
+    db.exec(sql, res);
+    if (res.size() == 0){
+        EX_THROW(Ex_Model_Error, "Requested " + table + "." + pk_handle + " for " + unique_handle + "=" + unique_value + " returned nothing.")
+    }
+    return strToUint(res[0][0]);
 }
 
 void Model::get_all_investors(std::vector<Investor> &invs){

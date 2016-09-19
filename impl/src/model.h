@@ -38,6 +38,11 @@ public:
                       const DateHelper &date_inclusion);
 
     // invested time
+    void add_invested_time(const std::string &investor_name, const std::string &currency_label,
+                           const DateHelper &date, const std::string &description,
+                           const std::string &comment, const unsigned int minutes,
+                           const double price_per_unit);
+
     void add_invested_time(const unsigned int fk_investor, const unsigned int fk_currency,
                            const DateHelper &date, const std::string &description,
                            const std::string &comment, const unsigned int minutes,
@@ -136,6 +141,7 @@ private:
     Database db;
 
     bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
+    unsigned int get_pk_from_unique(const std::string &table, const std::string &pk_handle, const std::string &unique_handle, const std::string &unique_value);
 
 };
 

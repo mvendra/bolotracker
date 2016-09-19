@@ -84,6 +84,8 @@ bool test_model(){
 
         ModelTestInternal mti{};
 
+        // TEST WITH JON
+
         mti.model.add_invested_time(1, 2, DateHelper{"01/02/1998"}, "otter desc", "some comment", 1222, 99.76);
         // the pk = 3 below is meant to be the invested time we just added (just above this line)
         // just should stay consistent with the load_test_data_delegate() stuff.
@@ -93,10 +95,10 @@ bool test_model(){
 
         std::vector<InvestedTime> vec_inv_time;
 
-        auto p_ = [&total, &vec_inv_time](){
+        auto p_jon = [&total, &vec_inv_time](){
             test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 1);
             test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 2);
-            test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), DateHelper{"01/02/1998"}.getDateString());
+            test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1998");
             test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "otter desc");
             test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some comment");
             test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, 1222);
@@ -104,15 +106,31 @@ bool test_model(){
         };
 
         test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor("jon", vec_inv_time));
-        p_();
+        p_jon();
         vec_inv_time.clear();
 
         test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor(1, vec_inv_time));
-        p_();
+        p_jon();
+        vec_inv_time.clear();
 
         std::vector<Subject> subjs;
         test_true(total, "Must have subjects attached", mti.model.get_invested_time_subjects(3, subjs));
         test_eq(total, "Must have the attached subject", subjs[0].tag, "dev");
+
+        // TEST WITH LIBRAS
+        mti.model.add_invested_time("libras", "cad", DateHelper{"01/02/1994"}, "outer space", "some milk", 44, 13.8);
+        auto p_libras = [&total, &vec_inv_time](){
+            test_eq(total, "Added invested time must belong to the right investor", vec_inv_time[1].fk_investor, 2);
+            test_eq(total, "Added invested time must carry the chosen currency", vec_inv_time[1].fk_currency, 3);
+            test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1994");
+            test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "outer space");
+            test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some milk");
+            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, 44);
+            test_eq(total, "Added invested time's price per unit must match", vec_inv_time[1].price_per_unit, 13.8);
+        };
+
+        test_true(total, "Investor must have invested time", mti.model.get_invested_time_by_investor("libras", vec_inv_time));
+        p_libras();
 
     }
 
