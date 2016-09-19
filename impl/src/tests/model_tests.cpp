@@ -284,8 +284,8 @@ bool test_model(){
         // TEST WITH PANAMA
 
         auto p_panama = [&total, &vec_im]() {
-            test_eq(total, "Added invested money must belong to the right investor", vec_im[0].fk_investor, 4);
-            test_eq(total, "Added invested money's currency much match", vec_im[0].fk_currency, 1);
+            test_eq(total, "Added invested money must belong to the right investor", vec_im[0].investor.name, "panama");
+            test_eq(total, "Added invested money's currency much match", vec_im[0].currency.label, "aud");
             test_eq(total, "Added invested money's date much match", vec_im[0].date.getDateString(), "01/04/1928");
             test_eq(total, "Added invested money's short name must match", vec_im[0].short_name, "stratocaster");
             test_eq(total, "Added invested money's description must match", vec_im[0].description, "its over");
@@ -311,8 +311,8 @@ bool test_model(){
         mti.model.add_invested_money("libras", "cad", DateHelper{"01/04/1957"}, "jazz bass", "slap bass", "bassline", 2112);
 
         auto p_libras = [&total, &vec_im]() {
-            test_eq(total, "Added invested money must belong to the right investor", vec_im[1].fk_investor, 2);
-            test_eq(total, "Added invested money's currency much match", vec_im[1].fk_currency, 3);
+            test_eq(total, "Added invested money must belong to the right investor", vec_im[1].investor.name, "libras");
+            test_eq(total, "Added invested money's currency much match", vec_im[1].currency.label, "cad");
             test_eq(total, "Added invested money's date much match", vec_im[1].date.getDateString(), "01/04/1957");
             test_eq(total, "Added invested money's short name must match", vec_im[1].short_name, "jazz bass");
             test_eq(total, "Added invested money's description must match", vec_im[1].description, "slap bass");
