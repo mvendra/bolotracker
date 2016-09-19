@@ -53,6 +53,11 @@ public:
     void attach_subject_to_invested_time(const unsigned int pk_invested_time, const unsigned int pk_subject);
 
     // invested assets
+    void add_invested_asset(const std::string &investor_name, const std::string &currency_label,
+                            const DateHelper &date, const std::string &short_name,
+                            const std::string &description, const std::string &comment,
+                            const double price);
+
     void add_invested_asset(const unsigned int fk_investor, const unsigned int fk_currency,
                             const DateHelper &date, const std::string &short_name,
                             const std::string &description, const std::string &comment,
@@ -144,6 +149,9 @@ private:
 
     bool has_any_helper(const std::string &column, const std::string &value, const std::string &pk_name, const std::string &table_name);
     unsigned int get_pk_from_unique(const std::string &table, const std::string &pk_handle, const std::string &unique_handle, const std::string &unique_value);
+    unsigned int get_pk_investor(const std::string &name);
+    unsigned int get_pk_subject(const std::string &tag);
+    unsigned int get_pk_currency(const std::string &label);
 
 };
 

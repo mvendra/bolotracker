@@ -92,8 +92,8 @@ void Model::add_invested_time(const std::string &investor_name, const std::strin
     std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
     std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
 
-    unsigned int fk_investor = get_pk_from_unique("investors", "pk_investor", "name", investor_name_local);
-    unsigned int fk_currency = get_pk_from_unique("currencies", "pk_currency", "label", currency_label_local);
+    unsigned int fk_investor = get_pk_investor(investor_name_local);
+    unsigned int fk_currency = get_pk_currency(currency_label_local);
     add_invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit);
 
 }
@@ -116,7 +116,8 @@ void Model::add_invested_time(const unsigned int fk_investor, const unsigned int
 }
 
 void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time, const std::string &subject_tag){
-    unsigned int pk_subject = get_pk_from_unique("subjects", "pk_subject", "tag", subject_tag);
+    std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
+    unsigned int pk_subject = get_pk_subject(subject_tag_local);
     attach_subject_to_invested_time(pk_invested_time, pk_subject);
 }
 
@@ -126,6 +127,21 @@ void Model::attach_subject_to_invested_time(const unsigned int pk_invested_time,
     sql += uintToStr(pk_invested_time) + ", " + uintToStr(pk_subject) + ");";
 
     db.exec(sql);
+
+}
+
+void Model::add_invested_asset(const std::string &investor_name, const std::string &currency_label,
+                        const DateHelper &date, const std::string &short_name,
+                        const std::string &description, const std::string &comment,
+                        const double price)
+{
+
+    std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
+    std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
+
+    unsigned int fk_investor = get_pk_investor(investor_name_local);
+    unsigned int fk_currency = get_pk_currency(currency_label_local);
+    add_invested_asset(fk_investor, fk_currency, date, short_name, description, comment, price);
 
 }
 
@@ -411,6 +427,18 @@ bool Model::has_any_helper(const std::string &column, const std::string &value, 
     }
     return true;
 
+}
+
+unsigned int Model::get_pk_investor(const std::string &name){
+    return get_pk_from_unique("investors", "pk_investor", "name", name);
+}
+
+unsigned int Model::get_pk_subject(const std::string &tag){
+    return get_pk_from_unique("subjects", "pk_subject", "tag", tag);
+}
+
+unsigned int Model::get_pk_currency(const std::string &label){
+    return get_pk_from_unique("currencies", "pk_currency", "label", label);
 }
 
 unsigned int Model::get_pk_from_unique(const std::string &table, const std::string &pk_handle, const std::string &unique_handle, const std::string &unique_value){
