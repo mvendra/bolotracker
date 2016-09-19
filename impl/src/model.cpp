@@ -224,6 +224,22 @@ void Model::attach_subject_to_bonus(const unsigned int pk_bonus, const unsigned 
 
 }
 
+void Model::add_invested_money(const std::string &investor_name, const std::string &currency_label,
+                        const DateHelper &date, const std::string &short_name,
+                        const std::string &description, const std::string &comment,
+                        const double amount)
+{
+
+    std::string investor_name_local {investor_name}; makeStrLower(investor_name_local);
+    std::string currency_label_local {currency_label}; makeStrLower(currency_label_local);
+
+    unsigned int pk_investor = get_pk_investor(investor_name_local);
+    unsigned int pk_currency = get_pk_currency(currency_label_local);
+
+    add_invested_money(pk_investor, pk_currency, date, short_name, description, comment, amount);
+
+}
+
 void Model::add_invested_money(const unsigned int fk_investor, const unsigned int fk_currency,
                                const DateHelper &date, const std::string &short_name,
                                const std::string &description, const std::string &comment,

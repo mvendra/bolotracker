@@ -81,6 +81,11 @@ public:
     void attach_subject_to_bonus(const unsigned int pk_bonus, const unsigned int pk_subject);
 
     // invested money
+    void add_invested_money(const std::string &investor_name, const std::string &currency_label,
+                            const DateHelper &date, const std::string &short_name,
+                            const std::string &description, const std::string &comment,
+                            const double amount);
+
     void add_invested_money(const unsigned int fk_investor, const unsigned int fk_currency,
                             const DateHelper &date, const std::string &short_name,
                             const std::string &description, const std::string &comment,

@@ -281,7 +281,9 @@ bool test_model(){
 
         std::vector<InvestedMoney> vec_im;
 
-        auto p_ = [&total, &vec_im]() {
+        // TEST WITH PANAMA
+
+        auto p_panama = [&total, &vec_im]() {
             test_eq(total, "Added invested money must belong to the right investor", vec_im[0].fk_investor, 4);
             test_eq(total, "Added invested money's currency much match", vec_im[0].fk_currency, 1);
             test_eq(total, "Added invested money's date much match", vec_im[0].date.getDateString(), "01/04/1928");
@@ -292,15 +294,38 @@ bool test_model(){
         };
 
         test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor("panama", vec_im));
-        p_();
+        p_panama();
         vec_im.clear();
 
         test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(4, vec_im));
-        p_();
+        p_panama();
+        vec_im.clear();
 
         std::vector<Subject> subjs;
         test_true(total, "Must have subjects attached", mti.model.get_invested_money_subjects(2, subjs));
         test_eq(total, "Must have the attached subject", subjs[0].tag, "guitar");
+        subjs.clear();
+
+        // TEST WITH LIBRAS
+
+        mti.model.add_invested_money("libras", "cad", DateHelper{"01/04/1957"}, "jazz bass", "slap bass", "bassline", 2112);
+
+        auto p_libras = [&total, &vec_im]() {
+            test_eq(total, "Added invested money must belong to the right investor", vec_im[1].fk_investor, 2);
+            test_eq(total, "Added invested money's currency much match", vec_im[1].fk_currency, 3);
+            test_eq(total, "Added invested money's date much match", vec_im[1].date.getDateString(), "01/04/1957");
+            test_eq(total, "Added invested money's short name must match", vec_im[1].short_name, "jazz bass");
+            test_eq(total, "Added invested money's description must match", vec_im[1].description, "slap bass");
+            test_eq(total, "Added invested money's comment must match", vec_im[1].comment, "bassline");
+            test_eq(total, "Added invested money's reward must match", vec_im[1].amount, 2112);
+        };
+
+        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor("libras", vec_im));
+        p_libras();
+        vec_im.clear();
+
+        test_true(total, "Investor must have invested money", mti.model.get_invested_money_by_investor(4, vec_im));
+        p_libras();
 
     }
 
