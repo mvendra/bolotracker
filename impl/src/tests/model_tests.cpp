@@ -156,8 +156,8 @@ bool test_model(){
         std::vector<InvestedAsset> vec_inv_as;
 
         auto p_libras = [&total, &vec_inv_as]() {
-            test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].fk_investor, 2);
-            test_eq(total, "Added invested asset's currency must match", vec_inv_as[0].fk_currency, 3);
+            test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].investor.name, "libras");
+            test_eq(total, "Added invested asset's currency must match", vec_inv_as[0].currency.label, "cad");
             test_eq(total, "Added invested asset's date much match", vec_inv_as[0].date.getDateString(), "01/02/1978");
             test_eq(total, "Added invested asset's short name must match", vec_inv_as[0].short_name, "shortened name");
             test_eq(total, "Added invested asset's description must match", vec_inv_as[0].description, "yet more desc");
@@ -185,8 +185,8 @@ bool test_model(){
         mti.model.attach_subject_to_invested_asset(3, "gotcha");
 
         auto p_a_nother = [&total, &vec_inv_as]() {
-            test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].fk_investor, 3);
-            test_eq(total, "Added invested asset's currency must match", vec_inv_as[0].fk_currency, 2);
+            test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].investor.name, "a-nother");
+            test_eq(total, "Added invested asset's currency must match", vec_inv_as[0].currency.label, "nan");
             test_eq(total, "Added invested asset's date much match", vec_inv_as[0].date.getDateString(), "09/02/1990");
             test_eq(total, "Added invested asset's short name must match", vec_inv_as[0].short_name, "mittens");
             test_eq(total, "Added invested asset's description must match", vec_inv_as[0].description, "ball of fur");

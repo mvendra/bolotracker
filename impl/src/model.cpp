@@ -604,7 +604,15 @@ bool Model::get_invested_assets_by_investor(const unsigned int pk_investor, std:
     }
 
     for (auto x: res){
-        InvestedAsset it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
+        }
+        Currency curr{0, "", "", DateHelper{}};
+        if (!get_currency_info(strToUint(x[2]), curr)){
+            EX_THROW(Ex_Model_Error, "Currency with pk [" + x[2] + "] could not be retrieved")
+        }
+        InvestedAsset it{strToUint(x[0]), inv, curr, x[3], x[4], x[5], x[6], strToDouble(x[7])};
         vec_inv_as.push_back(it);
     }
 
@@ -652,7 +660,7 @@ bool Model::get_bonuses_by_investor(const unsigned int pk_investor, std::vector<
     for (auto x: res){
         Investor inv{0, "", "", "", DateHelper{}};
         if (!get_investor_info(strToUint(x[1]), inv)){
-            EX_THROW(Ex_Model_Error, "Investor with pk [" + uintToStr(pk_investor) + "] could not be retrieved")
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
         }
         Bonus it{strToUint(x[0]), inv, x[2], x[3], x[4], x[5], x[6]};
         vec_bon.push_back(it);
