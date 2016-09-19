@@ -1,15 +1,5 @@
 
 [
-@next up
-* add test coverage for the new, pk-string based write ops
-
-* consider refactoring all the write operations to accept the pk-strings instead of foreign keys
-* everywhere where im expecting a fk, scratch that. allow a pk-string to be passed instead.
-* Dont remove addition by fk, just add extra ops that accept pk strings
-* then test using those, FFS (dataobjects)
-]
-
-[
 @finish the TUI
 ]
 
