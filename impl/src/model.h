@@ -76,6 +76,8 @@ public:
                    const std::string &short_name, const std::string &description,
                    const std::string &comment, const std::string &reward);
 
+    void attach_subject_to_bonus(const unsigned int pk_bonus, const std::string &subject_tag);
+
     void attach_subject_to_bonus(const unsigned int pk_bonus, const unsigned int pk_subject);
 
     // invested money

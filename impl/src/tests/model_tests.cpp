@@ -244,7 +244,7 @@ bool test_model(){
 
         // TEST WITH JON
         mti.model.add_bonus("jon", DateHelper{"01/02/1972"}, "small talk", "tester string", "roger", "murtaugh");
-        //mti.model.attach_subject_to_bonus(3, "qa"); // mvtodo
+        mti.model.attach_subject_to_bonus(1, "qa");
 
         auto p_jon = [&total, &vec_bn]() {
             test_eq(total, "Added bonus must belong to the right investor", vec_bn[0].fk_investor, 1);
@@ -261,6 +261,9 @@ bool test_model(){
 
         test_true(total, "Investor must have bonus", mti.model.get_bonuses_by_investor(1, vec_bn));
         p_jon();
+
+        test_true(total, "Must have subjects attached", mti.model.get_bonus_subjects(1, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "qa");
 
     }
 

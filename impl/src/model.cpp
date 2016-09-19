@@ -209,6 +209,12 @@ void Model::add_bonus(const unsigned int fk_investor, const DateHelper &date,
 
 }
 
+void Model::attach_subject_to_bonus(const unsigned int pk_bonus, const std::string &subject_tag){
+    std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
+    unsigned int pk_subject = get_pk_subject(subject_tag_local);
+    attach_subject_to_bonus(pk_bonus, pk_subject);
+}
+
 void Model::attach_subject_to_bonus(const unsigned int pk_bonus, const unsigned int pk_subject){
 
     std::string sql {"INSERT INTO bonuses_subjects_link(fk_bonus, fk_subject) VALUES("};
