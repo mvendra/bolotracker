@@ -181,6 +181,8 @@ bool test_model(){
         // TEST WITH A-NOTHER
 
         mti.model.add_invested_asset("a-nother", "nan", DateHelper{"09/02/1990"}, "mittens", "ball of fur", "nonono", 15);
+        mti.model.add_subject("gotcha", "test62", DateHelper{"01/07/1962"});
+        mti.model.attach_subject_to_invested_asset(3, "gotcha");
 
         auto p_a_nother = [&total, &vec_inv_as]() {
             test_eq(total, "Added invested asset must belong to the right investor", vec_inv_as[0].fk_investor, 3);
@@ -198,7 +200,9 @@ bool test_model(){
 
         test_true(total, "Investor must have invested asset", mti.model.get_invested_assets_by_investor(3, vec_inv_as));
         p_a_nother();
-        vec_inv_as.clear();
+
+        test_true(total, "Must have subjects attached", mti.model.get_invested_asset_subjects(3, subjs));
+        test_eq(total, "Must have the attached subject", subjs[0].tag, "gotcha");
 
     }
 

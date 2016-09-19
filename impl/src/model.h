@@ -63,6 +63,8 @@ public:
                             const std::string &description, const std::string &comment,
                             const double price);
 
+    void attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const std::string &subject_tag);
+
     void attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const unsigned int pk_subject);
 
     // bonuses

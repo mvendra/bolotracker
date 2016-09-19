@@ -163,6 +163,14 @@ void Model::add_invested_asset(const unsigned int fk_investor, const unsigned in
 
 }
 
+void Model::attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const std::string &subject_tag){
+
+    std::string subject_tag_local {subject_tag}; makeStrLower(subject_tag_local);
+    unsigned int pk_subject = get_pk_subject(subject_tag_local);
+    attach_subject_to_invested_asset(pk_invested_asset, pk_subject);
+
+}
+
 void Model::attach_subject_to_invested_asset(const unsigned int pk_invested_asset, const unsigned int pk_subject){
 
     std::string sql {"INSERT INTO invested_assets_subjects_link(fk_invested_asset, fk_subject) VALUES("};
