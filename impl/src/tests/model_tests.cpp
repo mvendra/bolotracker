@@ -221,7 +221,7 @@ bool test_model(){
         std::vector<Bonus> vec_bn;
 
         auto p_a_nother = [&total, &vec_bn]() {
-            test_eq(total, "Added bonus must belong to the right investor", vec_bn[1].fk_investor, 3);
+            test_eq(total, "Added bonus must belong to the right investor", vec_bn[1].investor.name, "a-nother");
             test_eq(total, "Added bonus's date much match", vec_bn[1].date.getDateString(), "01/05/1973");
             test_eq(total, "Added bonus's short name must match", vec_bn[1].short_name, "lack of creativity");
             test_eq(total, "Added bonus's description must match", vec_bn[1].description, "this is getting old");
@@ -247,7 +247,7 @@ bool test_model(){
         mti.model.attach_subject_to_bonus(1, "qa");
 
         auto p_jon = [&total, &vec_bn]() {
-            test_eq(total, "Added bonus must belong to the right investor", vec_bn[0].fk_investor, 1);
+            test_eq(total, "Added bonus must belong to the right investor", vec_bn[0].investor.name, "jon");
             test_eq(total, "Added bonus's date much match", vec_bn[0].date.getDateString(), "01/02/1972");
             test_eq(total, "Added bonus's short name must match", vec_bn[0].short_name, "small talk");
             test_eq(total, "Added bonus's description must match", vec_bn[0].description, "tester string");

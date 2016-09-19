@@ -5,11 +5,13 @@
 #include <string>
 #include "utils/datehelper.h"
 
+#include "dataobjects/investor.h"
+
 class Bonus final {
 
 public:
 
-    Bonus(const unsigned int _pk_bonus, const unsigned int _fk_investor, const DateHelper &_date, const std::string &_short_name,
+    Bonus(const unsigned int _pk_bonus, const Investor &_investor, const DateHelper &_date, const std::string &_short_name,
           const std::string &_description, const std::string &_comment, const std::string &_reward);
     Bonus(const Bonus&);
     ~Bonus();
@@ -20,7 +22,7 @@ public:
     Bonus& operator=(Bonus&&) = delete;
 
     unsigned int pk_bonus;
-    unsigned int fk_investor;
+    Investor investor;
     DateHelper date;
     std::string short_name;
     std::string description;

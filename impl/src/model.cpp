@@ -541,25 +541,9 @@ void Model::get_all_currencies(std::vector<Currency> &currs){
 }
 
 bool Model::get_invested_time_by_investor(const std::string &name, std::vector<InvestedTime> &vec_inv_time){
-
     std::string name_local {name}; makeStrLower(name_local);
-
-    std::string sql {"SELECT * FROM invested_time WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
-    sql += name_local + "\");";
-
-    strvec2 res;
-    db.exec(sql, res);
-    if (res.size() == 0){
-        return false;
-    }
-
-    for (auto x: res){
-        InvestedTime it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], strToUint(x[6]), strToDouble(x[7])};
-        vec_inv_time.push_back(it);
-    }
-
-    return true;
-
+    unsigned int pk_investor {get_pk_investor(name_local)};
+    return get_invested_time_by_investor(pk_investor, vec_inv_time);
 }
 
 bool Model::get_invested_time_by_investor(const unsigned int pk_investor, std::vector<InvestedTime> &vec_inv_time){
@@ -603,25 +587,9 @@ bool Model::get_invested_time_subjects(const unsigned int pk_invested_time, std:
 }
 
 bool Model::get_invested_assets_by_investor(const std::string &name, std::vector<InvestedAsset> &vec_inv_as){
-
     std::string name_local {name}; makeStrLower(name_local);
-
-    std::string sql {"SELECT * FROM invested_assets WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
-    sql += name_local + "\");";
-
-    strvec2 res;
-    db.exec(sql, res);
-    if (res.size() == 0){
-        return false;
-    }
-
-    for (auto x: res){
-        InvestedAsset it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
-        vec_inv_as.push_back(it);
-    }
-
-    return true;
-
+    unsigned int pk_investor {get_pk_investor(name_local)};
+    return get_invested_assets_by_investor(pk_investor, vec_inv_as);
 }
 
 bool Model::get_invested_assets_by_investor(const unsigned int pk_investor, std::vector<InvestedAsset> &vec_inv_as){
@@ -665,25 +633,9 @@ bool Model::get_invested_asset_subjects(const unsigned int pk_invested_asset, st
 }
 
 bool Model::get_bonuses_by_investor(const std::string &name, std::vector<Bonus> &vec_bon){
-
     std::string name_local {name}; makeStrLower(name_local);
-
-    std::string sql {"SELECT * FROM bonuses WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
-    sql += name_local + "\");";
-
-    strvec2 res;
-    db.exec(sql, res);
-    if (res.size() == 0){
-        return false;
-    }
-
-    for (auto x: res){
-        Bonus it{strToUint(x[0]), strToUint(x[1]), x[2], x[3], x[4], x[5], x[6]};
-        vec_bon.push_back(it);
-    }
-
-    return true;
-
+    unsigned int pk_investor {get_pk_investor(name_local)};
+    return get_bonuses_by_investor(pk_investor, vec_bon);
 }
 
 bool Model::get_bonuses_by_investor(const unsigned int pk_investor, std::vector<Bonus> &vec_bon){
@@ -698,7 +650,11 @@ bool Model::get_bonuses_by_investor(const unsigned int pk_investor, std::vector<
     }
 
     for (auto x: res){
-        Bonus it{strToUint(x[0]), strToUint(x[1]), x[2], x[3], x[4], x[5], x[6]};
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + uintToStr(pk_investor) + "] could not be retrieved")
+        }
+        Bonus it{strToUint(x[0]), inv, x[2], x[3], x[4], x[5], x[6]};
         vec_bon.push_back(it);
     }
 
@@ -727,25 +683,9 @@ bool Model::get_bonus_subjects(const unsigned int pk_bonus, std::vector<Subject>
 }
 
 bool Model::get_invested_money_by_investor(const std::string &name, std::vector<InvestedMoney> &vec_mon){
-
     std::string name_local {name}; makeStrLower(name_local);
-
-    std::string sql {"SELECT * FROM invested_money WHERE fk_investor = (SELECT pk_investor FROM investors WHERE name = \""};
-    sql += name_local + "\");";
-
-    strvec2 res;
-    db.exec(sql, res);
-    if (res.size() == 0){
-        return false;
-    }
-
-    for (auto x: res){
-        InvestedMoney it{strToUint(x[0]), strToUint(x[1]), strToUint(x[2]), x[3], x[4], x[5], x[6], strToDouble(x[7])};
-        vec_mon.push_back(it);
-    }
-
-    return true;
-
+    unsigned int pk_investor {get_pk_investor(name_local)};
+    return get_invested_money_by_investor(pk_investor, vec_mon);
 }
 
 bool Model::get_invested_money_by_investor(const unsigned int pk_investor, std::vector<InvestedMoney> &vec_mon){
