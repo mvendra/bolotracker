@@ -20,6 +20,8 @@ public:
 
 private:
 
+    void print_success(const std::string &msg) const;
+
     void print_happy_talk() const;
     void print_main_menu() const;
     void print_add_menu() const;
@@ -41,6 +43,12 @@ private:
     void menu_remove_something() const;
 
     void menu_add_investor();
+    void menu_add_currency();
+    void menu_add_subject();
+    void menu_add_invested_time();
+    void menu_add_invested_asset();
+    void menu_add_bonus();
+    void menu_add_invested_money();
 
 };
 

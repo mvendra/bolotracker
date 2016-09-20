@@ -100,6 +100,24 @@ void Tui::menu_add_something(){
         case 1:
             menu_add_investor();
             break;
+        case 2:
+            menu_add_currency();
+            break;
+        case 3:
+            menu_add_subject();
+            break;
+        case 4:
+            menu_add_invested_time();
+            break;
+        case 5:
+            menu_add_invested_asset();
+            break;
+        case 6:
+            menu_add_bonus();
+            break;
+        case 7:
+            menu_add_invested_money();
+            break;
         case 0:
             // returns to main menu
             break;
@@ -120,7 +138,7 @@ void Tui::menu_remove_something() const {
 
 void Tui::menu_add_investor() {
 
-    std::cout << std::endl << "Enter investor name, separated by comma" << std::endl;
+    std::cout << std::endl << "Enter investor info, separated by comma" << std::endl;
     std::cout << "(name, email, description)" << std::endl;
 
     std::string inv_info {get_input_line()};
@@ -148,14 +166,64 @@ void Tui::menu_add_investor() {
     std::cout << "email: [" << email << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
         model.add_investor(name, email, desc, DateHelper{});
-        std::cout << "Investor added" << std::endl;
+        print_success("Investor added");
     } else {
         std::cout << "Aborted" << std::endl;
     }
 
+}
+
+void Tui::menu_add_currency(){
+
+    std::cout << std::endl << "Enter currency info, separated by comma" << std::endl;
+    std::cout << "(label, description)" << std::endl;
+
+    std::string curr_info {get_input_line()};
+
+    std::string label;
+    std::string desc;
+
+    if (!getSub(curr_info, label)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse currency's label")
+    }
+    label = trim(label);
+
+    getSub(curr_info, desc); // this should return false, as it is the last entry
+    desc = trim(desc);
+
+    // request confirmation
+    std::cout << std::endl << "About to add currency: " << std::endl;
+    std::cout << "label: [" << label << "]" << std::endl;
+    std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
+    std::string proceed {get_input_line()};
+    if (proceed == "confirm"){
+        model.add_currency(label, desc, DateHelper{});
+        print_success("Currency added");
+    } else {
+        std::cout << "Aborted" << std::endl;
+    }
+
+}
+
+void Tui::menu_add_subject(){
+}
+
+void Tui::menu_add_invested_time(){
+}
+
+void Tui::menu_add_invested_asset(){
+}
+
+void Tui::menu_add_bonus(){
+}
+
+void Tui::menu_add_invested_money(){
 }
 
 bool Tui::getSub(std::string &source, std::string &next, const char delim){
@@ -204,4 +272,12 @@ std::string Tui::rtrim(const std::string &source){
 
 std::string Tui::trim(const std::string &source){
     return ltrim(rtrim(source));
+}
+
+void Tui::print_success(const std::string &msg) const {
+
+    std::string white {"\033[0m"};
+    std::string green {"\033[32m"};
+    std::cout << green << msg << white << std::endl;
+
 }
