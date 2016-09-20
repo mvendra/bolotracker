@@ -391,7 +391,7 @@ void Tui::menu_add_bonus(){
     std::cout << std::endl << "Enter bonus info, separated by comma" << std::endl;
     std::cout << "(investor name, short name, description, comment, reward)" << std::endl;
 
-    std::string inv_bonus_info {get_input_line()};
+    std::string bonus_info {get_input_line()};
 
     std::string inv_name;
     std::string short_name;
@@ -400,31 +400,31 @@ void Tui::menu_add_bonus(){
     std::string reward;
 
     // investor name
-    if (!getSub(inv_bonus_info, inv_name)){
+    if (!getSub(bonus_info, inv_name)){
         EX_THROW(Ex_Tui_Error, "Unable to parse bonus's investor name")
     }
     inv_name = trim(inv_name);
 
     // short name
-    if (!getSub(inv_bonus_info, short_name)){
+    if (!getSub(bonus_info, short_name)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's short name")
     }
     short_name = trim(short_name);
 
     // description
-    if (!getSub(inv_bonus_info, desc)){
+    if (!getSub(bonus_info, desc)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's description")
     }
     desc = trim(desc);
 
     // comment
-    if (!getSub(inv_bonus_info, comment)){
+    if (!getSub(bonus_info, comment)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's comment")
     }
     comment = trim(comment);
 
     // reward
-    getSub(inv_bonus_info, reward);
+    getSub(bonus_info, reward);
     reward = trim(reward);
 
     // request confirmation
@@ -447,6 +447,73 @@ void Tui::menu_add_bonus(){
 }
 
 void Tui::menu_add_invested_money(){
+
+    std::cout << std::endl << "Enter invested money info, separated by comma" << std::endl;
+    std::cout << "(investor name, currency label, short name, description, comment, amount)" << std::endl;
+
+    std::string inv_money_info {get_input_line()};
+
+    std::string inv_name;
+    std::string curr_label;
+    std::string short_name;
+    std::string desc;
+    std::string comment;
+    double amount;
+
+    // investor name
+    if (!getSub(inv_money_info, inv_name)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's investor name")
+    }
+    inv_name = trim(inv_name);
+
+    // currency label
+    if (!getSub(inv_money_info, curr_label)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's currency label")
+    }
+    curr_label = trim(curr_label);
+
+    // short name
+    if (!getSub(inv_money_info, short_name)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's short name")
+    }
+    short_name = trim(short_name);
+
+    // description
+    if (!getSub(inv_money_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's description")
+    }
+    desc = trim(desc);
+
+    // comment
+    if (!getSub(inv_money_info, comment)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's comment")
+    }
+    comment = trim(comment);
+
+    // amount
+    std::string amount_str;
+    getSub(inv_money_info, amount_str);
+    amount_str = trim(amount_str);
+    amount = strToUint(amount_str);
+
+    // request confirmation
+    std::cout << std::endl << "About to add invested money: " << std::endl;
+    std::cout << "investor name: [" << inv_name << "]" << std::endl;
+    std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "short name: [" << short_name << "]" << std::endl;
+    std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "comment: [" << comment << "]" << std::endl;
+    std::cout << "amount: [" << amount_str << "]" << std::endl;
+    std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
+    std::string proceed {get_input_line()};
+    if (proceed == "confirm"){
+        model.add_invested_money(inv_name, curr_label, DateHelper{}, short_name, desc, comment, amount);
+        print_success("Invested money added");
+    } else {
+        std::cout << "Aborted" << std::endl;
+    }
+
 }
 
 bool Tui::getSub(std::string &source, std::string &next, const char delim){
