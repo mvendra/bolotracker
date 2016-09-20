@@ -246,6 +246,75 @@ void Tui::menu_add_subject(){
 }
 
 void Tui::menu_add_invested_time(){
+
+    std::cout << std::endl << "Enter invested time info, separated by comma" << std::endl;
+    std::cout << "(investor name, currency label, description, comment, minutes, price per unit)" << std::endl;
+
+    std::string inv_time_info {get_input_line()};
+
+    std::string inv_name;
+    std::string curr_label;
+    std::string desc;
+    std::string comment;
+    unsigned int minutes;
+    double price_per_unit;
+
+    // investor name
+    if (!getSub(inv_time_info, inv_name)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's investor name")
+    }
+    inv_name = trim(inv_name);
+
+    // currency label
+    if (!getSub(inv_time_info, curr_label)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's currency label")
+    }
+    curr_label = trim(curr_label);
+
+    // description
+    if (!getSub(inv_time_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's description")
+    }
+    desc = trim(desc);
+
+    // comment
+    if (!getSub(inv_time_info, comment)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's comment")
+    }
+    comment = trim(comment);
+
+    // minutes
+    std::string minutes_str;
+    if (!getSub(inv_time_info, minutes_str)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's minutes")
+    }
+    minutes_str = trim(minutes_str);
+    minutes = strToUint(minutes_str);
+
+    // price per unit
+    std::string price_per_unit_str;
+    getSub(inv_time_info, price_per_unit_str);
+    price_per_unit_str = trim(price_per_unit_str);
+    price_per_unit = strToUint(price_per_unit_str);
+
+    // request confirmation
+    std::cout << std::endl << "About to add invested time: " << std::endl;
+    std::cout << "investor name: [" << inv_name << "]" << std::endl;
+    std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "comment: [" << comment << "]" << std::endl;
+    std::cout << "minutes: [" << minutes_str << "]" << std::endl;
+    std::cout << "price_per_unit: [" << price_per_unit_str << "]" << std::endl;
+    std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
+    std::string proceed {get_input_line()};
+    if (proceed == "confirm"){
+        model.add_invested_time(inv_name, curr_label, DateHelper{}, desc, comment, minutes, price_per_unit);
+        print_success("Invested time added");
+    } else {
+        std::cout << "Aborted" << std::endl;
+    }
+
 }
 
 void Tui::menu_add_invested_asset(){
