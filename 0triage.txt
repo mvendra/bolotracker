@@ -1,7 +1,5 @@
 
-[
-@finish the TUI
-]
+* throughly check the tui wiring. just caught a couple bugs.
 
 [
 * try running static alanysis tools too. check for dead code and whatnot.
