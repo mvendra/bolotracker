@@ -46,6 +46,7 @@
       <File Name="../../src/exceptions/ex_database_error.h"/>
       <File Name="../../src/exceptions/ex_model_error.h"/>
       <File Name="../../src/exceptions/ex_tests_error.h"/>
+      <File Name="../../src/exceptions/ex_tui_error.h"/>
     </VirtualDirectory>
     <File Name="../../src/model.cpp"/>
     <File Name="../../src/model.h"/>
