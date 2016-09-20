@@ -212,6 +212,37 @@ void Tui::menu_add_currency(){
 }
 
 void Tui::menu_add_subject(){
+
+    std::cout << std::endl << "Enter subject info, separated by comma" << std::endl;
+    std::cout << "(tag, description)" << std::endl;
+
+    std::string subj_info {get_input_line()};
+
+    std::string tag;
+    std::string desc;
+
+    if (!getSub(subj_info, tag)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse subject's tag")
+    }
+    tag = trim(tag);
+
+    getSub(subj_info, desc); // this should return false, as it is the last entry
+    desc = trim(desc);
+
+    // request confirmation
+    std::cout << std::endl << "About to add subject: " << std::endl;
+    std::cout << "tag: [" << tag << "]" << std::endl;
+    std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
+    std::string proceed {get_input_line()};
+    if (proceed == "confirm"){
+        model.add_subject(tag, desc, DateHelper{});
+        print_success("Subject added");
+    } else {
+        std::cout << "Aborted" << std::endl;
+    }
+
 }
 
 void Tui::menu_add_invested_time(){
