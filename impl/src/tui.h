@@ -25,6 +25,7 @@ private:
     void print_happy_talk() const;
     void print_main_menu() const;
     void print_add_menu() const;
+    void print_list_menu() const;
 
     template <typename T>
     T get_option() const;
@@ -39,8 +40,8 @@ private:
 
     // submenus
     void menu_add_something();
-    void menu_list_something() const;
-    void menu_remove_something() const;
+    void menu_list_something();
+    void menu_remove_something();
 
     void menu_add_investor();
     void menu_add_currency();
@@ -49,6 +50,14 @@ private:
     void menu_add_invested_asset();
     void menu_add_bonus();
     void menu_add_invested_money();
+
+    void menu_list_investors();
+    void menu_list_currencies();
+    void menu_list_subjects();
+    void menu_list_invested_time();
+    void menu_list_invested_assets();
+    void menu_list_bonuses();
+    void menu_list_invested_money();
 
 };
 

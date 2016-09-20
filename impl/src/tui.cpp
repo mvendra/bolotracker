@@ -45,6 +45,20 @@ void Tui::print_add_menu() const {
 
 }
 
+void Tui::print_list_menu() const {
+
+    std::cout << std::endl << "Choose what to list" << std::endl;
+    std::cout << "1. Investors" << std::endl;
+    std::cout << "2. Currencies" << std::endl;
+    std::cout << "3. Subjects" << std::endl;
+    std::cout << "4. Invested time" << std::endl;
+    std::cout << "5. Invested assets" << std::endl;
+    std::cout << "6. Bonuses" << std::endl;
+    std::cout << "7. Invested money" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+}
+
 template <typename T>
 T Tui::get_option() const {
     T opt;
@@ -129,10 +143,43 @@ void Tui::menu_add_something(){
 
 }
 
-void Tui::menu_list_something() const {
+void Tui::menu_list_something() {
+
+    print_list_menu();
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_investors();
+            break;
+        case 2:
+            menu_list_currencies();
+            break;
+        case 3:
+            menu_list_subjects();
+            break;
+        case 4:
+            menu_list_invested_time();
+            break;
+        case 5:
+            menu_list_invested_assets();
+            break;
+        case 6:
+            menu_list_bonuses();
+            break;
+        case 7:
+            menu_list_invested_money();
+            break;
+        case 0:
+            // returns to main menu
+            break;
+        default:
+            std::cout << "Invalid option." << std::endl;
+            break;
+    }
+
 }
 
-void Tui::menu_remove_something() const {
+void Tui::menu_remove_something() {
     std::cout << "Removal is currently not implemented" << std::endl;
 }
 
@@ -514,6 +561,27 @@ void Tui::menu_add_invested_money(){
         std::cout << "Aborted" << std::endl;
     }
 
+}
+
+void Tui::menu_list_investors(){
+}
+
+void Tui::menu_list_currencies(){
+}
+
+void Tui::menu_list_subjects(){
+}
+
+void Tui::menu_list_invested_time(){
+}
+
+void Tui::menu_list_invested_assets(){
+}
+
+void Tui::menu_list_bonuses(){
+}
+
+void Tui::menu_list_invested_money(){
 }
 
 bool Tui::getSub(std::string &source, std::string &next, const char delim){
