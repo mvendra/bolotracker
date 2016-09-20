@@ -318,6 +318,72 @@ void Tui::menu_add_invested_time(){
 }
 
 void Tui::menu_add_invested_asset(){
+
+    std::cout << std::endl << "Enter invested asset info, separated by comma" << std::endl;
+    std::cout << "(investor name, currency label, short name, description, comment, price)" << std::endl;
+
+    std::string inv_asset_info {get_input_line()};
+
+    std::string inv_name;
+    std::string curr_label;
+    std::string short_name;
+    std::string desc;
+    std::string comment;
+    double price;
+
+    // investor name
+    if (!getSub(inv_asset_info, inv_name)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's investor name")
+    }
+    inv_name = trim(inv_name);
+
+    // currency label
+    if (!getSub(inv_asset_info, curr_label)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's currency label")
+    }
+    curr_label = trim(curr_label);
+
+    // short name
+    if (!getSub(inv_asset_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's description")
+    }
+    desc = trim(desc);
+
+    // description
+    if (!getSub(inv_asset_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's description")
+    }
+    desc = trim(desc);
+
+    // comment
+    if (!getSub(inv_asset_info, comment)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's comment")
+    }
+    comment = trim(comment);
+
+    // price
+    std::string price_str;
+    getSub(inv_asset_info, price_str);
+    price_str = trim(price_str);
+    price = strToUint(price_str);
+
+    // request confirmation
+    std::cout << std::endl << "About to add invested asset: " << std::endl;
+    std::cout << "investor name: [" << inv_name << "]" << std::endl;
+    std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "comment: [" << comment << "]" << std::endl;
+    std::cout << "price: [" << price_str << "]" << std::endl;
+    std::cout << "Type in \"confirm\" to proceed." << std::endl;
+
+    std::string proceed {get_input_line()};
+    if (proceed == "confirm"){
+        model.add_invested_asset(inv_name, curr_label, DateHelper{}, short_name, desc, comment, price);
+        print_success("Invested asset added");
+    } else {
+        std::cout << "Aborted" << std::endl;
+    }
+
 }
 
 void Tui::menu_add_bonus(){
