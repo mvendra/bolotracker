@@ -706,10 +706,10 @@ void Tui::menu_list_bonuses(){
     int opt {get_option<int>()};
     switch (opt){
         case 1:
-            menu_list_one_invested_bonus();
+            menu_list_one_bonus();
             break;
         case 2:
-            menu_list_all_invested_bonuses();
+            menu_list_all_bonuses();
             break;
         case 0:
             return;
@@ -728,7 +728,21 @@ void Tui::menu_list_invested_money(){
     std::cout << "2. List all invested money" << std::endl;
     std::cout << "0. Return to main menu" << std::endl;
 
-    // mvtodo
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_invested_money();
+            break;
+        case 2:
+            menu_list_all_invested_money();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
 
 }
 
@@ -910,7 +924,7 @@ void Tui::menu_list_all_invested_assets(){
 
 }
 
-void Tui::menu_list_one_invested_bonus(){
+void Tui::menu_list_one_bonus(){
 
     std::cout << std::endl <<"Enter investor's name:" << std::endl;
     std::string inv_name {get_input_line()};
@@ -924,13 +938,38 @@ void Tui::menu_list_one_invested_bonus(){
 
 }
 
-void Tui::menu_list_all_invested_bonuses(){
+void Tui::menu_list_all_bonuses(){
 
     std::vector<Bonus> vec_bon;
     model.get_all_bonuses(vec_bon);
 
     for (auto x: vec_bon){
         print_bonus(x);
+    }
+
+}
+
+void Tui::menu_list_one_invested_money(){
+
+    std::cout << std::endl <<"Enter investor's name:" << std::endl;
+    std::string inv_name {get_input_line()};
+
+    std::vector<InvestedMoney> vec_inv_money;
+    model.get_invested_money_by_investor(inv_name, vec_inv_money);
+
+    for (auto x: vec_inv_money){
+        print_invested_money(x);
+    }
+
+}
+
+void Tui::menu_list_all_invested_money(){
+
+    std::vector<InvestedMoney> vec_inv_money;
+    model.get_all_invested_money(vec_inv_money);
+
+    for (auto x: vec_inv_money){
+        print_invested_money(x);
     }
 
 }

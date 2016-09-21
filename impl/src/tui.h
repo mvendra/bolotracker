@@ -74,8 +74,11 @@ private:
     void menu_list_one_invested_asset();
     void menu_list_all_invested_assets();
 
-    void menu_list_one_invested_bonus();
-    void menu_list_all_invested_bonuses();
+    void menu_list_one_bonus();
+    void menu_list_all_bonuses();
+
+    void menu_list_one_invested_money();
+    void menu_list_all_invested_money();
 
     // printer helpers
     void print_investor(const Investor &inv);
