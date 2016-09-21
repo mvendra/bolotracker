@@ -194,16 +194,19 @@ void Tui::menu_add_investor() {
     std::string email;
     std::string desc;
 
+    // investor name
     if (!getSub(inv_info, name)){
         EX_THROW(Ex_Tui_Error, "Unable to parse investor's name")
     }
     name = trim(name);
 
+    // email
     if (!getSub(inv_info, email)){
         EX_THROW(Ex_Tui_Error, "Unable to parse investor's email")
     }
     email = trim(email);
 
+    // description
     getSub(inv_info, desc); // this should return false, as it is the last entry
     desc = trim(desc);
 
@@ -234,11 +237,13 @@ void Tui::menu_add_currency(){
     std::string label;
     std::string desc;
 
+    // currency label
     if (!getSub(curr_info, label)){
         EX_THROW(Ex_Tui_Error, "Unable to parse currency's label")
     }
     label = trim(label);
 
+    // description
     getSub(curr_info, desc); // this should return false, as it is the last entry
     desc = trim(desc);
 
@@ -268,11 +273,13 @@ void Tui::menu_add_subject(){
     std::string tag;
     std::string desc;
 
+    // subject tag
     if (!getSub(subj_info, tag)){
         EX_THROW(Ex_Tui_Error, "Unable to parse subject's tag")
     }
     tag = trim(tag);
 
+    // description
     getSub(subj_info, desc); // this should return false, as it is the last entry
     desc = trim(desc);
 
@@ -394,7 +401,7 @@ void Tui::menu_add_invested_asset(){
     if (!getSub(inv_asset_info, short_name)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's short name")
     }
-    desc = trim(desc);
+    short_name = trim(short_name);
 
     // description
     if (!getSub(inv_asset_info, desc)){
@@ -418,6 +425,7 @@ void Tui::menu_add_invested_asset(){
     std::cout << std::endl << "About to add invested asset: " << std::endl;
     std::cout << "investor name: [" << inv_name << "]" << std::endl;
     std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "short name: [" << short_name << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
     std::cout << "price: [" << price_str << "]" << std::endl;
@@ -454,19 +462,19 @@ void Tui::menu_add_bonus(){
 
     // short name
     if (!getSub(bonus_info, short_name)){
-        EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's short name")
+        EX_THROW(Ex_Tui_Error, "Unable to parse bonus's short name")
     }
     short_name = trim(short_name);
 
     // description
     if (!getSub(bonus_info, desc)){
-        EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's description")
+        EX_THROW(Ex_Tui_Error, "Unable to parse bonus's description")
     }
     desc = trim(desc);
 
     // comment
     if (!getSub(bonus_info, comment)){
-        EX_THROW(Ex_Tui_Error, "Unable to parse invested bonus's comment")
+        EX_THROW(Ex_Tui_Error, "Unable to parse bonus's comment")
     }
     comment = trim(comment);
 
