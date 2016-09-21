@@ -68,6 +68,12 @@ private:
     void menu_list_one_subject();
     void menu_list_all_subjects();
 
+    void menu_list_one_invested_time();
+    void menu_list_all_invested_time();
+
+    void menu_list_one_invested_asset();
+    void menu_list_all_invested_assets();
+
     // printer helpers
     void print_investor(const Investor &inv);
     void print_currency(const Currency &curr);

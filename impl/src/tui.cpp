@@ -349,7 +349,7 @@ void Tui::menu_add_invested_time(){
     std::string price_per_unit_str;
     getSub(inv_time_info, price_per_unit_str);
     price_per_unit_str = trim(price_per_unit_str);
-    price_per_unit = strToUint(price_per_unit_str);
+    price_per_unit = strToDouble(price_per_unit_str);
 
     // request confirmation
     std::cout << std::endl << "About to add invested time: " << std::endl;
@@ -419,7 +419,7 @@ void Tui::menu_add_invested_asset(){
     std::string price_str;
     getSub(inv_asset_info, price_str);
     price_str = trim(price_str);
-    price = strToUint(price_str);
+    price = strToDouble(price_str);
 
     // request confirmation
     std::cout << std::endl << "About to add invested asset: " << std::endl;
@@ -549,7 +549,7 @@ void Tui::menu_add_invested_money(){
     std::string amount_str;
     getSub(inv_money_info, amount_str);
     amount_str = trim(amount_str);
-    amount = strToUint(amount_str);
+    amount = strToDouble(amount_str);
 
     // request confirmation
     std::cout << std::endl << "About to add invested money: " << std::endl;
@@ -647,15 +647,75 @@ void Tui::menu_list_subjects(){
 }
 
 void Tui::menu_list_invested_time(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one investor's invested time" << std::endl;
+    std::cout << "2. List all invested time" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_invested_time();
+            break;
+        case 2:
+            menu_list_all_invested_time();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
+
 }
 
 void Tui::menu_list_invested_assets(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one investor's invested assets" << std::endl;
+    std::cout << "2. List all invested assets" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_invested_asset();
+            break;
+        case 2:
+            menu_list_all_invested_assets();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
+
 }
 
 void Tui::menu_list_bonuses(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one investor's bonuses" << std::endl;
+    std::cout << "2. List all bonuses" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    // mvtodo
+
 }
 
 void Tui::menu_list_invested_money(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one investor's invested money" << std::endl;
+    std::cout << "2. List all invested money" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    // mvtodo
+
 }
 
 bool Tui::getSub(std::string &source, std::string &next, const char delim){
@@ -784,6 +844,48 @@ void Tui::menu_list_all_subjects(){
         print_subject(i);
     }
 
+}
+
+void Tui::menu_list_one_invested_time(){
+
+    std::cout << std::endl <<"Enter investor's name:" << std::endl;
+    std::string inv_name {get_input_line()};
+
+    std::vector<InvestedTime> vec_inv_time;
+    model.get_invested_time_by_investor(inv_name, vec_inv_time);
+
+    for (auto x: vec_inv_time){
+        print_invested_time(x);
+    }
+
+}
+
+void Tui::menu_list_all_invested_time(){
+
+    std::vector<InvestedTime> vec_inv_time;
+    model.get_all_invested_time(vec_inv_time);
+
+    for (auto x: vec_inv_time){
+        print_invested_time(x);
+    }
+
+}
+
+void Tui::menu_list_one_invested_asset(){
+
+    std::cout << std::endl <<"Enter investor's name:" << std::endl;
+    std::string inv_name {get_input_line()};
+
+    std::vector<InvestedAsset> vec_inv_as;
+    model.get_invested_assets_by_investor(inv_name, vec_inv_as);
+
+    for (auto x: vec_inv_as){
+        print_invested_asset(x);
+    }
+
+}
+
+void Tui::menu_list_all_invested_assets(){
 }
 
 void Tui::print_investor(const Investor &inv){
