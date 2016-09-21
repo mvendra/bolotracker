@@ -1,6 +1,4 @@
 
-* conduct full code review of read ops wiring (listers, tui)
-
 [
 @gui, first strike
 * just fltk, listing all three basic tables
