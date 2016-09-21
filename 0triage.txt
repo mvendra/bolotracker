@@ -1,5 +1,4 @@
 
-* finish the tui listers/read ops
 * conduct full code review of read ops wiring (listers, tui)
 
 [
