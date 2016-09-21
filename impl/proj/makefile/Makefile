@@ -7,7 +7,7 @@ BASE_SRC=../../src
 BASE_OBJ=../../build
 RUN=../../run
 
-SRC=main.cpp bolotracker.cpp controller_interface.cpp database.cpp model.cpp tui.cpp /exceptions/ex_base.cpp /tests/bolotracker_tests.cpp /tests/datehelper_tests.cpp /utils/conversions.cpp /utils/datehelper.cpp /utils/sysutils.cpp
+SRC=main.cpp bolotracker.cpp controller_interface.cpp database.cpp model.cpp tui.cpp /exceptions/ex_base.cpp /tests/bolotracker_tests.cpp /tests/datehelper_tests.cpp /tests/database_tests.cpp /tests/model_tests.cpp /utils/conversions.cpp /utils/datehelper.cpp /utils/sysutils.cpp /dataobjects/bonus.cpp /dataobjects/currency.cpp /dataobjects/invested_assets_subjects_link.cpp /dataobjects/invested_time.cpp /dataobjects/investor.cpp /dataobjects/bonuses_subjects_link.cpp /dataobjects/invested_asset.cpp /dataobjects/invested_money.cpp /dataobjects/invested_time_subjects_link.cpp /dataobjects/subject.cpp
 
 SRC_SQLITE=../../lib/third_party/sqlite/src/sqlite3.c
 #SRC_FULL=$(addprefix $(BASE_SRC)/, $(SRC))
@@ -79,6 +79,7 @@ FULL_APP_NAME=$(RUN_FULL)/$(APPNAME)
 all: compile link 
 
 compile:
+	@mkdir -p $(BASE_OBJ_FULL)
 	$(foreach src,$(SRC),$(COMPILER) $(INCLUDES) $(CPPFLAGS) -c $(BASE_SRC)/$(src) -o $(BASE_OBJ_FULL)/$(notdir $(src:.cpp=.o));)
 	$(C_COMPILER) $(INCLUDES) $(SQLITE_CPPFLAGS) -c $(SRC_SQLITE) -o $(BASE_OBJ_FULL)/$(notdir $(SRC_SQLITE:.c=.o))
 
