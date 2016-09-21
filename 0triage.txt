@@ -1,10 +1,5 @@
 
-* throughly check the tui wiring. just caught a couple bugs.
-
-[
-* try running static alanysis tools too. check for dead code and whatnot.
-* Will have to update bolotrackers makefile
-]
+* finish the tui listers/read ops
 
 [
 @gui, first strike
@@ -14,6 +9,11 @@
 ]
 
 * can all mvtags
+
+[
+* try running static alanysis tools too. check for dead code and whatnot.
+* Will have to update bolotrackers makefile
+]
 
 [
 @gui priority list
