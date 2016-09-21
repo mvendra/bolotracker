@@ -65,6 +65,9 @@ private:
     void menu_list_one_currency();
     void menu_list_all_currencies();
 
+    void menu_list_one_subject();
+    void menu_list_all_subjects();
+
     // printer helpers
     void print_investor(const Investor &inv);
     void print_currency(const Currency &curr);

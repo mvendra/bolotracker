@@ -622,6 +622,28 @@ void Tui::menu_list_currencies(){
 }
 
 void Tui::menu_list_subjects(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one specific subject" << std::endl;
+    std::cout << "2. List all subjects" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_subject();
+            break;
+        case 2:
+            menu_list_all_subjects();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
+
 }
 
 void Tui::menu_list_invested_time(){
@@ -736,6 +758,30 @@ void Tui::menu_list_all_currencies(){
     model.get_all_currencies(currs);
     for (auto i: currs){
         print_currency(i);
+    }
+
+}
+
+void Tui::menu_list_one_subject(){
+
+    std::cout << std::endl << "Enter subject's tag:" << std::endl;
+    std::string subj_tag {get_input_line()};
+
+    Subject subj{0, "", "", DateHelper{}};
+    if (model.get_subject_info(subj_tag, subj)){
+        print_subject(subj);
+    } else {
+        std::cout << "Subject with the tag " << subj_tag << " not found" << std::endl; 
+    }
+
+}
+
+void Tui::menu_list_all_subjects(){
+
+    std::vector<Subject> subjs;
+    model.get_all_subjects(subjs);
+    for (auto i: subjs){
+        print_subject(i);
     }
 
 }
