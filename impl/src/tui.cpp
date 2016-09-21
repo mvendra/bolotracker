@@ -694,7 +694,7 @@ void Tui::print_success(const std::string &msg) const {
 
 void Tui::menu_list_one_investor(){
 
-    std::cout << "Enter investor's name:" << std::endl;
+    std::cout << std::endl <<"Enter investor's name:" << std::endl;
     std::string inv_name {get_input_line()};
 
     Investor inv{0, "", "", "", DateHelper{}};
@@ -717,65 +717,90 @@ void Tui::menu_list_all_investors(){
 }
 
 void Tui::menu_list_one_currency(){
+
+    std::cout << std::endl << "Enter currency's label:" << std::endl;
+    std::string curr_label {get_input_line()};
+
+    Currency curr{0, "", "", DateHelper{}};
+    if (model.get_currency_info(curr_label, curr)){
+        print_currency(curr);
+    } else {
+        std::cout << "Currency labeled " << curr_label << " not found" << std::endl; 
+    }
+
 }
 
 void Tui::menu_list_all_currencies(){
+
+    std::vector<Currency> currs;
+    model.get_all_currencies(currs);
+    for (auto i: currs){
+        print_currency(i);
+    }
+
 }
 
 void Tui::print_investor(const Investor &inv){
+    std::cout << std::endl;
     std::cout << "Investor name: [" << inv.name << "]" << std::endl;
     std::cout << "Investor email: [" << inv.email << "]" << std::endl;
     std::cout << "Investor description: [" << inv.description << "]" << std::endl;
-    std::cout << "Investor date of inclusion: [" << inv.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    std::cout << "Investor date of inclusion: [" << inv.date_of_inclusion.getDateString() << "]" << std::endl;
 }
 
 void Tui::print_currency(const Currency &curr){
+    std::cout << std::endl;
     std::cout << "Currency label: [" << curr.label << "]" << std::endl;
     std::cout << "Currency description: [" << curr.description << "]" << std::endl;
-    std::cout << "Currency date of inclusion: [" << curr.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    std::cout << "Currency date of inclusion: [" << curr.date_of_inclusion.getDateString() << "]" << std::endl;
 }
 
 void Tui::print_subject(const Subject &subj){
+    std::cout << std::endl;
     std::cout << "Subject tag: [" << subj.tag << "]" << std::endl;
     std::cout << "Subject description: [" << subj.description << "]" << std::endl;
-    std::cout << "Subject date of inclusion: [" << subj.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
+    std::cout << "Subject date of inclusion: [" << subj.date_of_inclusion.getDateString() << "]" << std::endl;
 }
 
 void Tui::print_invested_time(const InvestedTime &inv_time){
+    std::cout << std::endl;
     std::cout << "Invested time investor name: [" << inv_time.investor.name << "]" << std::endl;
     std::cout << "Invested time currency label: [" << inv_time.currency.label << "]" << std::endl;
     std::cout << "Invested time date: [" << inv_time.date.getDateString() << "]" << std::endl;
     std::cout << "Invested time description: [" << inv_time.description << "]" << std::endl;
     std::cout << "Invested time comment: [" << inv_time.comment << "]" << std:: endl;
     std::cout << "Invested time minutes: [" << inv_time.minutes << "]" << std::endl;
-    std::cout << "Invested time price per unit: [" << inv_time.price_per_unit << "]" << std::endl << std::endl;
+    std::cout << "Invested time price per unit: [" << inv_time.price_per_unit << "]" << std::endl;
 }
 
 void Tui::print_invested_asset(const InvestedAsset &inv_asset){
+    std::cout << std::endl;
     std::cout << "Invested asset investor name: [" << inv_asset.investor.name << "]" << std::endl;
     std::cout << "Invested asset currency label: [" << inv_asset.currency.label << "]" << std::endl;
     std::cout << "Invested asset date: [" << inv_asset.date.getDateString() << "]" << std::endl;
     std::cout << "Invested asset short name: [" << inv_asset.short_name << "]" << std::endl;
     std::cout << "Invested asset description: [" << inv_asset.description << "]" << std::endl;
     std::cout << "Invested asset comment: [" << inv_asset.comment << "]" << std::endl;
-    std::cout << "Invested asset price: [" << inv_asset.price << "]" << std::endl << std::endl;
+    std::cout << "Invested asset price: [" << inv_asset.price << "]" << std::endl;
 }
 
 void Tui::print_bonus(const Bonus &bon){
+    std::cout << std::endl;
     std::cout << "Bonus investor name: [" << bon.investor.name << "]" << std::endl;
     std::cout << "Bonus date: [" << bon.date.getDateString() << "]" << std::endl;
     std::cout << "Bonus short name: [" << bon.short_name << "]" << std::endl;
     std::cout << "Bonus description: [" << bon.description << "]" << std::endl;
     std::cout << "Bonus comment: [" << bon.comment << "]" << std::endl;
-    std::cout << "Bonus reward: [" << bon.reward << "]" << std::endl << std::endl;
+    std::cout << "Bonus reward: [" << bon.reward << "]" << std::endl;
 }
 
 void Tui::print_invested_money(const InvestedMoney &inv_money){
+    std::cout << std::endl;
     std::cout << "Invested money investor name: [" << inv_money.investor.name << "]" << std::endl;
     std::cout << "Invested money currency label: [" << inv_money.currency.label << "]" << std::endl;
     std::cout << "Invested money date: [" << inv_money.date.getDateString() << "]" << std::endl;
     std::cout << "Invested money short name: [" << inv_money.short_name << "]" << std::endl;
     std::cout << "Invested money description: [" << inv_money.description << "]" << std::endl;
     std::cout << "Invested money comment: [" << inv_money.comment << "]" << std::endl;
-    std::cout << "Invested money amount: [" << inv_money.amount << "]" << std::endl << std::endl;
+    std::cout << "Invested money amount: [" << inv_money.amount << "]" << std::endl;
 }
