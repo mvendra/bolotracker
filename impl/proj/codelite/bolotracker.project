@@ -96,6 +96,8 @@
       <File Name="../../src/dataobjects/invested_money.cpp"/>
       <File Name="../../src/dataobjects/dataobjects.h"/>
     </VirtualDirectory>
+    <File Name="../../src/gui_fltk.cpp"/>
+    <File Name="../../src/gui_fltk.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="lib">
     <VirtualDirectory Name="third_party">
