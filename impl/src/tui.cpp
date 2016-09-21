@@ -572,6 +572,28 @@ void Tui::menu_add_invested_money(){
 }
 
 void Tui::menu_list_investors(){
+
+    std::cout << std::endl << "Make your choice" << std::endl;
+    std::cout << "1. List one specific investor" << std::endl;
+    std::cout << "2. List all investors" << std::endl;
+    std::cout << "0. Return to main menu" << std::endl;
+
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_investor();
+            break;
+        case 2:
+            menu_list_all_investors();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
+
 }
 
 void Tui::menu_list_currencies(){
@@ -645,5 +667,38 @@ void Tui::print_success(const std::string &msg) const {
     std::string white {"\033[0m"};
     std::string green {"\033[32m"};
     std::cout << green << msg << white << std::endl;
+
+}
+
+void Tui::menu_list_one_investor(){
+
+    std::cout << "Enter investor's name:" << std::endl;
+    std::string inv_name {get_input_line()};
+
+    Investor inv{0, "", "", "", DateHelper{}};
+    if (model.get_investor_info(inv_name, inv)){
+        print_investor(inv);
+    } else {
+        std::cout << "Investor named " << inv_name << " not found" << std::endl; 
+    }
+
+}
+
+void Tui::menu_list_all_investors(){
+
+    std::vector<Investor> invs;
+    model.get_all_investors(invs);
+    for (auto i: invs){
+        print_investor(i);
+    }
+
+}
+
+void Tui::print_investor(const Investor &inv){
+
+    std::cout << "Investor name: [" << inv.name << "]" << std::endl;
+    std::cout << "Investor email: [" << inv.email << "]" << std::endl;
+    std::cout << "Investor description: [" << inv.description << "]" << std::endl;
+    std::cout << "Investor date of inclusion: [" << inv.date_of_inclusion.getDateString() << "]" << std::endl << std::endl;
 
 }

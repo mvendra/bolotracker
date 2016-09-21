@@ -59,6 +59,12 @@ private:
     void menu_list_bonuses();
     void menu_list_invested_money();
 
+    void menu_list_one_investor();
+    void menu_list_all_investors();
+
+    // printer helpers
+    void print_investor(const Investor &inv);
+
 };
 
 #endif // __TUI_H__
