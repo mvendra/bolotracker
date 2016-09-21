@@ -703,7 +703,21 @@ void Tui::menu_list_bonuses(){
     std::cout << "2. List all bonuses" << std::endl;
     std::cout << "0. Return to main menu" << std::endl;
 
-    // mvtodo
+    int opt {get_option<int>()};
+    switch (opt){
+        case 1:
+            menu_list_one_invested_bonus();
+            break;
+        case 2:
+            menu_list_all_invested_bonuses();
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            std::cout << "Invalid option" << std::endl;
+            break;
+    }
 
 }
 
@@ -886,6 +900,39 @@ void Tui::menu_list_one_invested_asset(){
 }
 
 void Tui::menu_list_all_invested_assets(){
+
+    std::vector<InvestedAsset> vec_inv_as;
+    model.get_all_invested_assets(vec_inv_as);
+
+    for (auto x: vec_inv_as){
+        print_invested_asset(x);
+    }
+
+}
+
+void Tui::menu_list_one_invested_bonus(){
+
+    std::cout << std::endl <<"Enter investor's name:" << std::endl;
+    std::string inv_name {get_input_line()};
+
+    std::vector<Bonus> vec_bon;
+    model.get_bonuses_by_investor(inv_name, vec_bon);
+
+    for (auto x: vec_bon){
+        print_bonus(x);
+    }
+
+}
+
+void Tui::menu_list_all_invested_bonuses(){
+
+    std::vector<Bonus> vec_bon;
+    model.get_all_bonuses(vec_bon);
+
+    for (auto x: vec_bon){
+        print_bonus(x);
+    }
+
 }
 
 void Tui::print_investor(const Investor &inv){
