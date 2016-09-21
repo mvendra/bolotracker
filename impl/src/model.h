@@ -143,6 +143,11 @@ public:
     void get_all_subjects(std::vector<Subject> &subjs);
     void get_all_currencies(std::vector<Currency> &currs);
 
+    void get_all_invested_time(std::vector<InvestedTime> &vec_inv_time);
+    void get_all_invested_assets(std::vector<InvestedAsset> &vec_inv_as);
+    void get_all_bonuses(std::vector<Bonus> &vec_bon);
+    void get_all_invested_money(std::vector<InvestedMoney> &vec_inv_mon);
+
     ///////////////////////
     /* DELETE OPERATIONS */
     ///////////////////////

@@ -540,6 +540,86 @@ void Model::get_all_currencies(std::vector<Currency> &currs){
 
 }
 
+void Model::get_all_invested_time(std::vector<InvestedTime> &vec_inv_time){
+
+    std::string sql {"SELECT * FROM invested_time;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
+        }
+        Currency curr{0, "", "", DateHelper{}};
+        if (!get_currency_info(strToUint(x[2]), curr)){
+            EX_THROW(Ex_Model_Error, "Currency with pk [" + x[2] + "] could not be retrieved")
+        }
+        InvestedTime it{strToUint(x[0]), inv, curr, x[3], x[4], x[5], strToUint(x[6]), strToDouble(x[7])};
+        vec_inv_time.push_back(it);
+    }
+
+}
+
+void Model::get_all_invested_assets(std::vector<InvestedAsset> &vec_inv_as){
+
+    std::string sql {"SELECT * FROM invested_assets;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
+        }
+        Currency curr{0, "", "", DateHelper{}};
+        if (!get_currency_info(strToUint(x[2]), curr)){
+            EX_THROW(Ex_Model_Error, "Currency with pk [" + x[2] + "] could not be retrieved")
+        }
+        InvestedAsset it{strToUint(x[0]), inv, curr, x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_inv_as.push_back(it);
+    }
+
+}
+
+void Model::get_all_bonuses(std::vector<Bonus> &vec_bon){
+
+    std::string sql {"SELECT * FROM bonuses;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
+        }
+        Bonus it{strToUint(x[0]), inv, x[2], x[3], x[4], x[5], x[6]};
+        vec_bon.push_back(it);
+    }
+
+}
+
+void Model::get_all_invested_money(std::vector<InvestedMoney> &vec_inv_mon){
+
+    std::string sql {"SELECT * FROM invested_money;"};
+    strvec2 res;
+    db.exec(sql, res);
+
+    for (auto x: res){
+        Investor inv{0, "", "", "", DateHelper{}};
+        if (!get_investor_info(strToUint(x[1]), inv)){
+            EX_THROW(Ex_Model_Error, "Investor with pk [" + x[1] + "] could not be retrieved")
+        }
+        Currency curr{0, "", "", DateHelper{}};
+        if (!get_currency_info(strToUint(x[2]), curr)){
+            EX_THROW(Ex_Model_Error, "Currency with pk [" + x[2] + "] could not be retrieved")
+        }
+        InvestedMoney it{strToUint(x[0]), inv, curr, x[3], x[4], x[5], x[6], strToDouble(x[7])};
+        vec_inv_mon.push_back(it);
+    }
+
+}
+
 bool Model::get_invested_time_by_investor(const std::string &name, std::vector<InvestedTime> &vec_inv_time){
     std::string name_local {name}; makeStrLower(name_local);
     unsigned int pk_investor {get_pk_investor(name_local)};
