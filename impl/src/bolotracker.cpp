@@ -10,8 +10,8 @@
 
 #include <memory>
 
-//#define USE_TUI
-#define USE_GUI_FLTK
+#define USE_TUI
+//#define USE_GUI_FLTK
 
 BoloTracker::BoloTracker(int _argc, char *_argv[]):argc{_argc}, argv{_argv}, dbpath{get_db_path(parse_cmdline_args(_argc, _argv))}{
     // mvtodo: need to check if file exists, and is a file (and not a directory)?
