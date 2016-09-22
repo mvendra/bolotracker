@@ -186,13 +186,15 @@ void Tui::menu_remove_something() {
 void Tui::menu_add_investor() {
 
     std::cout << std::endl << "Enter investor info, separated by comma" << std::endl;
-    std::cout << "(name, email, description)" << std::endl;
+    std::cout << "(name, email, description, date (dd/mm/yyy - type \"now\" for now))" << std::endl;
 
     std::string inv_info {get_input_line()};
 
     std::string name;
     std::string email;
     std::string desc;
+    std::string date_str;
+    DateHelper date;
 
     // investor name
     if (!getSub(inv_info, name)){
@@ -207,19 +209,29 @@ void Tui::menu_add_investor() {
     email = trim(email);
 
     // description
-    getSub(inv_info, desc); // this should return false, as it is the last entry
+    if (!getSub(inv_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse investor's description")
+    }
     desc = trim(desc);
+
+    // date
+    getSub(inv_info, date_str);
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
 
     // request confirmation
     std::cout << std::endl << "About to add investor: " << std::endl;
     std::cout << "name: [" << name << "]" << std::endl;
     std::cout << "email: [" << email << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "Type in \"confirm\" to proceed." << std::endl;
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_investor(name, email, desc, DateHelper{});
+        model.add_investor(name, email, desc, date);
         print_success("Investor added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -230,7 +242,7 @@ void Tui::menu_add_investor() {
 void Tui::menu_add_currency(){
 
     std::cout << std::endl << "Enter currency info, separated by comma" << std::endl;
-    std::cout << "(label, description)" << std::endl;
+    std::cout << "(label, description, date (dd/mm/yyy - type \"now\" for now))" << std::endl;
 
     std::string curr_info {get_input_line()};
 
@@ -266,7 +278,7 @@ void Tui::menu_add_currency(){
 void Tui::menu_add_subject(){
 
     std::cout << std::endl << "Enter subject info, separated by comma" << std::endl;
-    std::cout << "(tag, description)" << std::endl;
+    std::cout << "(tag, description, date (dd/mm/yyy - type \"now\" for now))" << std::endl;
 
     std::string subj_info {get_input_line()};
 
@@ -302,7 +314,7 @@ void Tui::menu_add_subject(){
 void Tui::menu_add_invested_time(){
 
     std::cout << std::endl << "Enter invested time info, separated by comma" << std::endl;
-    std::cout << "(investor name, currency label, description, comment, minutes, price per unit)" << std::endl;
+    std::cout << "(investor name, currency label, date (dd/mm/yyy - type \"now\" for now), description, comment, minutes, price per unit)" << std::endl;
 
     std::string inv_time_info {get_input_line()};
 
@@ -374,7 +386,7 @@ void Tui::menu_add_invested_time(){
 void Tui::menu_add_invested_asset(){
 
     std::cout << std::endl << "Enter invested asset info, separated by comma" << std::endl;
-    std::cout << "(investor name, currency label, short name, description, comment, price)" << std::endl;
+    std::cout << "(investor name, currency label, date (dd/mm/yyy - type \"now\" for now), short name, description, comment, price)" << std::endl;
 
     std::string inv_asset_info {get_input_line()};
 
@@ -444,7 +456,7 @@ void Tui::menu_add_invested_asset(){
 void Tui::menu_add_bonus(){
 
     std::cout << std::endl << "Enter bonus info, separated by comma" << std::endl;
-    std::cout << "(investor name, short name, description, comment, reward)" << std::endl;
+    std::cout << "(investor name, date (dd/mm/yyy - type \"now\" for now), short name, description, comment, reward)" << std::endl;
 
     std::string bonus_info {get_input_line()};
 
@@ -504,7 +516,7 @@ void Tui::menu_add_bonus(){
 void Tui::menu_add_invested_money(){
 
     std::cout << std::endl << "Enter invested money info, separated by comma" << std::endl;
-    std::cout << "(investor name, currency label, short name, description, comment, amount)" << std::endl;
+    std::cout << "(investor name, currency label, date (dd/mm/yyy - type \"now\" for now), short name, description, comment, amount)" << std::endl;
 
     std::string inv_money_info {get_input_line()};
 
