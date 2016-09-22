@@ -31,6 +31,8 @@ void bootstrap(int _argc, char *_argv[]){
 
 int main_delegate(int _argc, char *_argv[]){
 
+    (void)_argc; (void)_argv;
+
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY
     runtests();
