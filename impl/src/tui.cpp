@@ -193,7 +193,6 @@ void Tui::menu_add_investor() {
     std::string name;
     std::string email;
     std::string desc;
-    std::string date_str;
     DateHelper date;
 
     // investor name
@@ -215,6 +214,7 @@ void Tui::menu_add_investor() {
     desc = trim(desc);
 
     // date
+    std::string date_str;
     getSub(inv_info, date_str);
     date_str = trim(date_str);
     if (date_str != "now"){
@@ -248,6 +248,7 @@ void Tui::menu_add_currency(){
 
     std::string label;
     std::string desc;
+    DateHelper date;
 
     // currency label
     if (!getSub(curr_info, label)){
@@ -256,18 +257,29 @@ void Tui::menu_add_currency(){
     label = trim(label);
 
     // description
-    getSub(curr_info, desc); // this should return false, as it is the last entry
+    if (!getSub(curr_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse investor's description")
+    }
     desc = trim(desc);
+
+    // date
+    std::string date_str;
+    getSub(curr_info, date_str);
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
 
     // request confirmation
     std::cout << std::endl << "About to add currency: " << std::endl;
     std::cout << "label: [" << label << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "Type in \"confirm\" to proceed." << std::endl;
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_currency(label, desc, DateHelper{});
+        model.add_currency(label, desc, date);
         print_success("Currency added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -284,6 +296,7 @@ void Tui::menu_add_subject(){
 
     std::string tag;
     std::string desc;
+    DateHelper date;
 
     // subject tag
     if (!getSub(subj_info, tag)){
@@ -292,18 +305,29 @@ void Tui::menu_add_subject(){
     tag = trim(tag);
 
     // description
-    getSub(subj_info, desc); // this should return false, as it is the last entry
+    if (!getSub(subj_info, desc)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse investor's description")
+    }
     desc = trim(desc);
+
+    // date
+    std::string date_str;
+    getSub(subj_info, date_str);
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
 
     // request confirmation
     std::cout << std::endl << "About to add subject: " << std::endl;
     std::cout << "tag: [" << tag << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "Type in \"confirm\" to proceed." << std::endl;
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_subject(tag, desc, DateHelper{});
+        model.add_subject(tag, desc, date);
         print_success("Subject added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -320,6 +344,7 @@ void Tui::menu_add_invested_time(){
 
     std::string inv_name;
     std::string curr_label;
+    DateHelper date;
     std::string desc;
     std::string comment;
     unsigned int minutes;
@@ -367,6 +392,7 @@ void Tui::menu_add_invested_time(){
     std::cout << std::endl << "About to add invested time: " << std::endl;
     std::cout << "investor name: [" << inv_name << "]" << std::endl;
     std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
     std::cout << "minutes: [" << minutes_str << "]" << std::endl;
@@ -375,7 +401,7 @@ void Tui::menu_add_invested_time(){
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_invested_time(inv_name, curr_label, DateHelper{}, desc, comment, minutes, price_per_unit);
+        model.add_invested_time(inv_name, curr_label, date, desc, comment, minutes, price_per_unit);
         print_success("Invested time added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -392,6 +418,7 @@ void Tui::menu_add_invested_asset(){
 
     std::string inv_name;
     std::string curr_label;
+    DateHelper date;
     std::string short_name;
     std::string desc;
     std::string comment;
@@ -437,6 +464,7 @@ void Tui::menu_add_invested_asset(){
     std::cout << std::endl << "About to add invested asset: " << std::endl;
     std::cout << "investor name: [" << inv_name << "]" << std::endl;
     std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "short name: [" << short_name << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
@@ -445,7 +473,7 @@ void Tui::menu_add_invested_asset(){
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_invested_asset(inv_name, curr_label, DateHelper{}, short_name, desc, comment, price);
+        model.add_invested_asset(inv_name, curr_label, date, short_name, desc, comment, price);
         print_success("Invested asset added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -461,6 +489,7 @@ void Tui::menu_add_bonus(){
     std::string bonus_info {get_input_line()};
 
     std::string inv_name;
+    DateHelper date;
     std::string short_name;
     std::string desc;
     std::string comment;
@@ -497,6 +526,7 @@ void Tui::menu_add_bonus(){
     // request confirmation
     std::cout << std::endl << "About to add bonus: " << std::endl;
     std::cout << "investor name: [" << inv_name << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "short name: [" << short_name << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
@@ -505,7 +535,7 @@ void Tui::menu_add_bonus(){
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_bonus(inv_name, DateHelper{}, short_name, desc, comment, reward);
+        model.add_bonus(inv_name, date, short_name, desc, comment, reward);
         print_success("Bonus added");
     } else {
         std::cout << "Aborted" << std::endl;
@@ -522,6 +552,7 @@ void Tui::menu_add_invested_money(){
 
     std::string inv_name;
     std::string curr_label;
+    DateHelper date;
     std::string short_name;
     std::string desc;
     std::string comment;
@@ -567,6 +598,7 @@ void Tui::menu_add_invested_money(){
     std::cout << std::endl << "About to add invested money: " << std::endl;
     std::cout << "investor name: [" << inv_name << "]" << std::endl;
     std::cout << "currency label: [" << curr_label << "]" << std::endl;
+    std::cout << "date: [" << date.getDateString() << "]" << std::endl;
     std::cout << "short name: [" << short_name << "]" << std::endl;
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
@@ -575,7 +607,7 @@ void Tui::menu_add_invested_money(){
 
     std::string proceed {get_input_line()};
     if (proceed == "confirm"){
-        model.add_invested_money(inv_name, curr_label, DateHelper{}, short_name, desc, comment, amount);
+        model.add_invested_money(inv_name, curr_label, date, short_name, desc, comment, amount);
         print_success("Invested money added");
     } else {
         std::cout << "Aborted" << std::endl;
