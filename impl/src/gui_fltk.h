@@ -8,7 +8,7 @@ class Gui_FLTK final: public ControllerInterface {
 
 public:
 
-    Gui_FLTK(Model &md);
+    Gui_FLTK(int _argc, char *_argv[], Model &md);
     ~Gui_FLTK();
 
     Gui_FLTK(const Gui_FLTK&) = delete;

@@ -9,7 +9,7 @@ class BoloTracker final {
 
 public:
 
-    BoloTracker(const std::vector<std::string> &cmdline_params);
+    BoloTracker(int argc, char *argv[]);
     ~BoloTracker();
 
     BoloTracker(const BoloTracker&) = delete;
@@ -21,8 +21,13 @@ public:
 
 private:
 
+    std::vector<std::string> parse_cmdline_args(const int argc, char *const argv[]);
     std::string get_db_path(const std::vector<std::string> &cmdline_params);
+
+    int argc;
+    char **argv;
     std::string dbpath;
+
 
 };
 

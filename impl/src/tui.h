@@ -8,7 +8,7 @@ class Tui final: public ControllerInterface {
 
 public:
 
-    Tui(Model &md);
+    Tui(int _argc, char *_argv[], Model &md);
     ~Tui();
 
     Tui(const Tui&) = delete;

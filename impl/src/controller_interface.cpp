@@ -1,7 +1,7 @@
 
 #include "controller_interface.h"
 
-ControllerInterface::ControllerInterface(Model &md):model{md}{
+ControllerInterface::ControllerInterface(int _argc, char *_argv[], Model &md):argc{_argc}, argv{_argv}, model{md}{
 }
 
 ControllerInterface::~ControllerInterface(){

@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-Tui::Tui(Model &md):ControllerInterface{md}{
+Tui::Tui(int _argc, char *_argv[], Model &md):ControllerInterface{_argc, _argv, md}{
     print_happy_talk();
 }
 

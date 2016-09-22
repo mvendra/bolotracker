@@ -13,11 +13,23 @@
 //#define USE_TUI
 #define USE_GUI_FLTK
 
-BoloTracker::BoloTracker(const std::vector<std::string> &cmdline_params):dbpath{get_db_path(cmdline_params)}{
+BoloTracker::BoloTracker(int _argc, char *_argv[]):argc{_argc}, argv{_argv}, dbpath{get_db_path(parse_cmdline_args(_argc, _argv))}{
     // mvtodo: need to check if file exists, and is a file (and not a directory)?
 }
 
 BoloTracker::~BoloTracker(){
+}
+
+std::vector<std::string> BoloTracker::parse_cmdline_args(const int argc, char *const argv[]){
+
+    std::vector<std::string> ret;
+    std::string cmdp;
+    for (int i=0; i<argc; i++){
+        cmdp = argv[i];
+        ret.push_back(cmdp);
+    }
+    return ret;
+
 }
 
 std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_params){
@@ -47,11 +59,14 @@ std::string BoloTracker::get_db_path(const std::vector<std::string> &cmdline_par
 void BoloTracker::run(){
 
     Model md{dbpath};
+
+// micro ad-hoc inline factory
 #if defined(USE_TUI)
-    std::unique_ptr<ControllerInterface> controller {std::make_unique<Tui>(md)};
+    std::unique_ptr<ControllerInterface> controller {std::make_unique<Tui>(argc, argv, md)};
 #elif defined(USE_GUI_FLTK)
-    std::unique_ptr<ControllerInterface> controller {std::make_unique<Gui_FLTK>(md)};
+    std::unique_ptr<ControllerInterface> controller {std::make_unique<Gui_FLTK>(argc, argv, md)};
 #endif
+
     while (controller->run()){}
 
 }

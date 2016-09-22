@@ -24,28 +24,12 @@ void runtests(){
 }
 #endif
 
-using vstr = std::vector<std::string>;
-
-void bootstrap(const vstr& cmdline_params){
-    BoloTracker bt {cmdline_params};
+void bootstrap(int _argc, char *_argv[]){
+    BoloTracker bt {_argc, _argv};
     bt.run();
 }
 
-vstr parse_cmdline_args(const int argc, char * const argv[]){
-
-    vstr ret;
-    std::string cmdp;
-    for (int i=0; i<argc; i++){
-        cmdp = argv[i];
-        ret.push_back(cmdp);
-    }
-    return ret;
-
-}
-
-int main_delegate(int argc, char *argv[]){
-
-    vstr r {parse_cmdline_args(argc, argv)};
+int main_delegate(int _argc, char *_argv[]){
 
 #if defined(TEST_ONLY) || defined(TEST_AND_RUN)
 #ifndef RUN_ONLY
@@ -59,7 +43,7 @@ int main_delegate(int argc, char *argv[]){
 #if defined(TEST_AND_RUN) || defined(RUN_ONLY)
 #ifndef TEST_ONLY
 
-    bootstrap(r);
+    bootstrap(_argc, _argv);
     return 0;
 
 #endif
