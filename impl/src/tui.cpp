@@ -362,6 +362,16 @@ void Tui::menu_add_invested_time(){
     }
     curr_label = trim(curr_label);
 
+    // date
+    std::string date_str;
+    if (!getSub(inv_time_info, date_str)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested time's date")
+    }
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
+
     // description
     if (!getSub(inv_time_info, desc)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested time's description")
@@ -436,6 +446,16 @@ void Tui::menu_add_invested_asset(){
     }
     curr_label = trim(curr_label);
 
+    // date
+    std::string date_str;
+    if (!getSub(inv_asset_info, date_str)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's date")
+    }
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
+
     // short name
     if (!getSub(inv_asset_info, short_name)){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested asset's short name")
@@ -500,6 +520,16 @@ void Tui::menu_add_bonus(){
         EX_THROW(Ex_Tui_Error, "Unable to parse bonus's investor name")
     }
     inv_name = trim(inv_name);
+
+    // date
+    std::string date_str;
+    if (!getSub(bonus_info, date_str)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse bonus's date")
+    }
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
 
     // short name
     if (!getSub(bonus_info, short_name)){
@@ -569,6 +599,16 @@ void Tui::menu_add_invested_money(){
         EX_THROW(Ex_Tui_Error, "Unable to parse invested money's currency label")
     }
     curr_label = trim(curr_label);
+
+    // date
+    std::string date_str;
+    if (!getSub(inv_money_info, date_str)){
+        EX_THROW(Ex_Tui_Error, "Unable to parse invested money's date")
+    }
+    date_str = trim(date_str);
+    if (date_str != "now"){
+        date.setDate(date_str);
+    }
 
     // short name
     if (!getSub(inv_money_info, short_name)){
