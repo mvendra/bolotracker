@@ -406,7 +406,7 @@ void Tui::menu_add_invested_time(){
     std::cout << "description: [" << desc << "]" << std::endl;
     std::cout << "comment: [" << comment << "]" << std::endl;
     std::cout << "minutes: [" << minutes_str << "]" << std::endl;
-    std::cout << "price_per_unit: [" << price_per_unit_str << "]" << std::endl;
+    std::cout << "price per unit: [" << price_per_unit_str << "]" << std::endl;
     std::cout << "Type in \"confirm\" to proceed." << std::endl;
 
     std::string proceed {get_input_line()};
