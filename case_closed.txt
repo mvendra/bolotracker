@@ -1,0 +1,16 @@
+
+[
+@gui priority list
+* CEGUI
+* wxwidgets
+* gtk+
+* qt
+* tkinder+python
+* could even be served via python+flask (rest api) and have a html+css frontend
+]
+
+[
+@future
+* publish it later
+]
+
