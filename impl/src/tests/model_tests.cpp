@@ -101,7 +101,7 @@ bool test_model(){
             test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1998");
             test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "otter desc");
             test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some comment");
-            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, 1222);
+            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, static_cast<unsigned int>(1222));
             test_eq(total, "Added invested time's price per unit must match", vec_inv_time[1].price_per_unit, 99.76);
         };
 
@@ -129,7 +129,7 @@ bool test_model(){
             test_eq(total, "Added invested time's date must match", vec_inv_time[1].date.getDateString(), "01/02/1994");
             test_eq(total, "Added invested time's description must match", vec_inv_time[1].description, "outer space");
             test_eq(total, "Added invested time's comment must match", vec_inv_time[1].comment, "some milk");
-            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, 44);
+            test_eq(total, "Added invested time's minutes must match", vec_inv_time[1].minutes, static_cast<unsigned int>(44));
             test_eq(total, "Added invested time's price per unit must match", vec_inv_time[1].price_per_unit, 13.8);
         };
 
