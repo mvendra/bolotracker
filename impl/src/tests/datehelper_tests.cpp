@@ -8,6 +8,8 @@
 
 #include "testforecho.h"
 
+using namespace testforecho;
+
 bool test_datehelper(){
 
     // test date validator
@@ -51,14 +53,14 @@ bool test_datehelper(){
 
     // should throw exacly that type of exception
     {
-        auto p = []() { DateHelper dh{7, 80, 1978}; };
-        test_ex<Ex_Invalid_Date>(total, "Should raise exception", p);
+        T4E_MAKE_0(p, {DateHelper dh{7, 80, 1978};} )
+        test_ex<Ex_Invalid_Date>(total, "Should raise exception", T4E_GET(p));
     }
 
     // should throw exception when trying to set bad date
     {
-        auto p = []() { DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); };
-        test_ex<Ex_Invalid_Date>(total, "Should raise exception", p);
+        T4E_MAKE_0(p, { DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); } )
+        test_ex<Ex_Invalid_Date>(total, "Should raise exception", T4E_GET(p));
     }
 
     // should return the same text date as the one passed during construction
@@ -68,8 +70,10 @@ bool test_datehelper(){
         test_eq(total, "Init date and later fetched date should match", templ, dh.getDateString());
     }
 
-    test_ex<Ex_Invalid_Date>(total, "Should raise exception", [](){ DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); });
-    test_no_ex<Ex_Invalid_Date>(total, "Should not raise exception", [](){ DateHelper dh{7, 5, 1985}; });
+    T4E_MAKE_0(p_inv_date, { DateHelper dh{7, 5, 1985}; dh.setDate("35/20/2000"); } )
+    test_ex<Ex_Invalid_Date>(total, "Should raise exception", T4E_GET(p_inv_date));
+    T4E_MAKE_0(p_v_date, { DateHelper dh{7, 5, 1985}; } )
+    test_no_ex<Ex_Invalid_Date>(total, "Should not raise exception", T4E_GET(p_v_date));
 
     // should be able to set its own date with the present
     {

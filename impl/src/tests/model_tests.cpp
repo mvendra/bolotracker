@@ -8,6 +8,8 @@
 
 #include "testforecho.h"
 
+using namespace testforecho;
+
 bool test_model(){
 
     bool total {true};

@@ -7,6 +7,8 @@
 
 #include "testforecho.h"
 
+using namespace testforecho;
+
 using strvec = std::vector<std::string>;
 using strvec2 = std::vector<strvec>;
 
@@ -101,6 +103,7 @@ bool test_database(){
             auto p = [&dbt]() {
                 dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(1, 4, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);");
             };
+            //T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(1, 4, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);")}) // mvtodo
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", p);
             res.clear();
         }

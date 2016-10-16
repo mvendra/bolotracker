@@ -2,7 +2,7 @@
 <CodeLite_Project Name="bolotracker" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
-      <![CDATA[00020001N0015Linux x64 Debug0000000000000001N0017Linux x64 Release000000000000]]>
+      <![CDATA[00040001N0015Linux x64 Debug0000000000000001N0022Linux x64 Debug (LLVM)0000000000000001N0017Linux x64 Release0000000000000001N0024Linux x64 Release (LLVM)000000000000]]>
     </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
@@ -15,7 +15,25 @@
   "arguments": [],
   "parentProject": ""
  }, {
+  "name": "Linux x64 Debug (LLVM)",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }, {
   "name": "Linux x64 Release",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }, {
+  "name": "Linux x64 Release (LLVM)",
   "enabled": false,
   "buildDirectory": "build",
   "sourceDirectory": "$(ProjectPath)",
@@ -266,6 +284,8 @@
     <VirtualDirectory Name="testforecho">
       <VirtualDirectory Name="src">
         <File Name="../../lib/testforecho/src/testforecho.h"/>
+        <File Name="../../lib/testforecho/src/testforecho_compat.h"/>
+        <File Name="../../lib/testforecho/src/testforecho_internal.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -338,6 +358,64 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
+    <Configuration Name="Linux x64 Debug (LLVM)" CompilerType="clang( tags/RELEASE_390/final )" DebuggerType="LLDB Debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="../../lib/third_party/sqlite/src"/>
+        <IncludePath Value="../../lib/third_party/fltk/src"/>
+        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../src"/>
+        <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>
+      </Compiler>
+      <Linker Options="" Required="yes">
+        <LibraryPath Value="../../lib/third_party/fltk/lib/linux_x64_debug"/>
+        <Library Value="pthread"/>
+        <Library Value="dl"/>
+        <Library Value="fltk"/>
+        <Library Value="fltk_forms"/>
+        <Library Value="fltk_images"/>
+        <Library Value="fltk_jpeg"/>
+        <Library Value="X11"/>
+        <Library Value="Xcursor"/>
+        <Library Value="Xfixes"/>
+        <Library Value="Xext"/>
+        <Library Value="Xft"/>
+        <Library Value="fontconfig"/>
+        <Library Value="Xinerama"/>
+        <Library Value="m"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../run/linux_x64_debug/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="yes" EnableCpp14="yes">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
     <Configuration Name="Linux x64 Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
@@ -345,6 +423,65 @@
         <IncludePath Value="../../lib/testforecho/src"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
+      </Compiler>
+      <Linker Options="" Required="yes">
+        <LibraryPath Value="../../lib/third_party/fltk/lib/linux_x64_release"/>
+        <Library Value="pthread"/>
+        <Library Value="dl"/>
+        <Library Value="fltk"/>
+        <Library Value="fltk_forms"/>
+        <Library Value="fltk_images"/>
+        <Library Value="fltk_jpeg"/>
+        <Library Value="X11"/>
+        <Library Value="Xcursor"/>
+        <Library Value="Xfixes"/>
+        <Library Value="Xext"/>
+        <Library Value="Xft"/>
+        <Library Value="fontconfig"/>
+        <Library Value="Xinerama"/>
+        <Library Value="m"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../run/linux_x64_release/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Linux x64 Release (LLVM)" CompilerType="clang( tags/RELEASE_390/final )" DebuggerType="LLDB Debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="../../lib/third_party/sqlite/src"/>
+        <IncludePath Value="../../lib/third_party/fltk/src"/>
+        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../src"/>
+        <Preprocessor Value="NDEBUG"/>
+        <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>
       </Compiler>
       <Linker Options="" Required="yes">
         <LibraryPath Value="../../lib/third_party/fltk/lib/linux_x64_release"/>
