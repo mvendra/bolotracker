@@ -96,20 +96,18 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // invalid currency, must throw exception for violating a constraint
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(1, 4, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
         // invalid investor, must throw exception for violating a constraint
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_time(fk_investor, fk_currency, date, description, comment, minutes, price_per_unit) VALUES(10, 2, \"07/02/2014\", \"test\", \"no comment\", 20, 1.25);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -118,13 +116,12 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // invalid invested time entry, must throw exception for violating a constraint
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_time_subjects_link(fk_invested_time, fk_subject) VALUES(50, 25);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -133,20 +130,18 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test inserting valid asset
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES(3, 3, \"03/06/1967\", \"artsy stuff\", \"nope\", \"irrelevant\", 80);");})
             test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", T4E_GET(p));
-            res.clear();
         }
 
         // test inserting invalid asset
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_assets(fk_investor, fk_currency, date, short_name, description, comment, price) VALUES(30, 3, \"03/06/1967\", \"artsy stuff\", \"nope\", \"irrelevant\", 80);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -155,13 +150,12 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test attempted constraint violation
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_assets_subjects_link(fk_invested_asset, fk_subject) VALUES(45, 20);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -170,20 +164,18 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test inserting valid bonus
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES(3, \"08/08/2007\", \"a little something\", \"ok\", \"commenting\", \"time off\");");})
             test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", T4E_GET(p));
-            res.clear();
         }
 
         // test inserting invalid bonus
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO bonuses(fk_investor, date, short_name, description, comment, reward) VALUES(7, \"08/08/2007\", \"a little something\", \"ok\", \"commenting\", \"time off\");");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -192,13 +184,12 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test attempted constraint violation
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO bonuses_subjects_link(fk_bonus, fk_subject) VALUES(45, 20);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -207,20 +198,18 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test inserting valid invested money
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES(1, 1, \"22/03/1996\", \"cash\", \"cold hard cash\", \"nop\", 350.75);");})
             test_no_ex<Ex_Database_Error>(total, "Should not throw exception when inserting a valid, constraint-compliant entry", T4E_GET(p));
-            res.clear();
         }
 
         // test inserting invalid asset
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_money(fk_investor, fk_currency, date, short_name, description, comment, amount) VALUES(30, 22, \"22/03/1996\", \"cash\", \"cold hard cash\", \"nop\", 350.75);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
@@ -229,13 +218,12 @@ bool test_database(){
     {
 
         // setup
-        DatabaseTestInternal dbt{}; strvec2 res;
+        DatabaseTestInternal dbt{};
 
         // test attempted constraint violation
         {
             T4E_MAKE_1(p, DatabaseTestInternal, dbt, {dbt.db.exec("INSERT INTO invested_money_subjects_link(fk_invested_money, fk_subject) VALUES(45, 24);");})
             test_ex<Ex_Database_Error>(total, "Should throw exception when trying to violate a foreign key constraint", T4E_GET(p));
-            res.clear();
         }
 
     }
