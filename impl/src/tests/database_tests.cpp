@@ -233,7 +233,8 @@ bool test_database(){
 }
 
 DatabaseTestInternal::DatabaseTestInternal():
-db_path{"/tmp/test.db"}, db{}
+db_path{ getSysTmpDir() + "test.db" },
+db{}
 {
 
     if (fileExists(db_path)){
@@ -246,8 +247,11 @@ db_path{"/tmp/test.db"}, db{}
 }
 
 DatabaseTestInternal::~DatabaseTestInternal(){
+	db.close_database();
     if (fileExists(db_path)){
-        fileDelete(db_path);
+        if (!fileDelete(db_path)){
+			EX_THROW(Ex_Tests_Error, "Fatal testing error: " + db_path + " cannot be deleted")
+		}
     }
 }
 
