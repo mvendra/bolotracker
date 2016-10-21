@@ -224,5 +224,8 @@
     <ClInclude Include="..\..\lib\testforecho\src\testforecho_internal.h">
       <Filter>Source Files\lib/testforecho</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_failed_closing_database.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

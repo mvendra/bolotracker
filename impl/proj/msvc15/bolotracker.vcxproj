@@ -194,6 +194,7 @@
     <ClInclude Include="..\..\src\dataobjects\subject.h" />
     <ClInclude Include="..\..\src\exceptions\ex_base.h" />
     <ClInclude Include="..\..\src\exceptions\ex_database_error.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_failed_closing_database.h" />
     <ClInclude Include="..\..\src\exceptions\ex_failed_opening_database.h" />
     <ClInclude Include="..\..\src\exceptions\ex_invalid_date.h" />
     <ClInclude Include="..\..\src\exceptions\ex_invalid_file.h" />
