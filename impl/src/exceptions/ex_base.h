@@ -2,7 +2,11 @@
 #ifndef __EX_BASE_H__
 #define __EX_BASE_H__
 
+#ifdef _WIN32
+#define EX_THROW(CLASS, MSG) throw CLASS(MSG, __FUNCSIG__, __LINE__);
+#else
 #define EX_THROW(CLASS, MSG) throw CLASS(MSG, __PRETTY_FUNCTION__, __LINE__);
+#endif
 
 #include <string>
 
