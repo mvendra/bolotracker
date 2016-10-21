@@ -19,11 +19,12 @@ public:
                const unsigned short _month,
                const unsigned short _year);
 
+	DateHelper(DateHelper&&);
+
     ~DateHelper(){}
 
     DateHelper(const DateHelper&);
     DateHelper& operator=(const DateHelper&);
-    DateHelper(DateHelper&&) = delete;
     DateHelper& operator=(DateHelper&&) = delete;
 
     static bool isValidDate(const std::string &textdate);

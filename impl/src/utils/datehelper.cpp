@@ -62,6 +62,14 @@ day{0}, month{0}, year{0}
     setDate(_day, _month, _year);
 }
 
+DateHelper::DateHelper(DateHelper &&other):
+day{ std::move(other.day) },
+month{ std::move(other.month) },
+year{ std::move(other.year) }
+{
+	setDate(day, month, year);
+}
+
 DateHelper::DateHelper(const std::string &textdate):
 day{0}, month{0}, year{0}
 {
@@ -82,8 +90,17 @@ DateHelper& DateHelper::operator=(const DateHelper &other){
 
 bool DateHelper::isValidDate(const std::string &textdate) {
 
+#ifdef _WIN32
+	unsigned short _day;
+	unsigned short _month;
+	unsigned short _year;
+	convertFromText(textdate, _day, _month, _year);
+	if (_day >= 1 && _day <= 30 && _month >= 1 && _month <= 12 && _year >= 1970 && _year <= 2080) { return true; }
+	else { return false; }
+#else
     tm aux;
     return strptime(textdate.c_str(), "%d/%m/%Y", &aux);
+#endif
 
 }
 
@@ -91,9 +108,14 @@ bool DateHelper::isValidDate(const unsigned short _day,
                  const unsigned short _month,
                  const unsigned short _year) {
 
+#ifdef _WIN32
+	if (_day >= 1 && _day <= 30 && _month >= 1 && _month <= 12 && _year >= 1970 && _year <= 2080) { return true; }
+	else { return false; }
+#else
     std::string txtdate = convertFromNumbers(_day, _month, _year);
     tm aux;
     return strptime(txtdate.c_str(), "%d/%m/%Y", &aux);
+#endif
 
 }
 
