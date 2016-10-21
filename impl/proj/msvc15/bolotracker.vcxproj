@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A2EDB6A1-138F-40B6-9928-088A1FE2D17A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>bolotracker</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\run\windows_$(PlatformTarget)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\windows_$(PlatformTarget)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\run\windows_$(PlatformTarget)_$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\windows_$(PlatformTarget)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\lib\third_party\fltk\src;..\..\lib\testforecho\src;..\..\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\lib\testforecho\src;..\..\src;..\..\lib\third_party\fltk\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\third_party\sqlite\src\sqlite3.c" />
+    <ClCompile Include="..\..\src\bolotracker.cpp" />
+    <ClCompile Include="..\..\src\controller_interface.cpp" />
+    <ClCompile Include="..\..\src\database.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\bonus.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\bonuses_subjects_link.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\currency.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\invested_asset.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\invested_assets_subjects_link.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\invested_money.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\invested_time.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\invested_time_subjects_link.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\investor.cpp" />
+    <ClCompile Include="..\..\src\dataobjects\subject.cpp" />
+    <ClCompile Include="..\..\src\exceptions\ex_base.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\model.cpp" />
+    <ClCompile Include="..\..\src\tests\bolotracker_tests.cpp" />
+    <ClCompile Include="..\..\src\tests\database_tests.cpp" />
+    <ClCompile Include="..\..\src\tests\datehelper_tests.cpp" />
+    <ClCompile Include="..\..\src\tests\model_tests.cpp" />
+    <ClCompile Include="..\..\src\tui.cpp" />
+    <ClCompile Include="..\..\src\utils\conversions.cpp" />
+    <ClCompile Include="..\..\src\utils\datehelper.cpp" />
+    <ClCompile Include="..\..\src\utils\sysutils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho.h" />
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho_compat.h" />
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho_internal.h" />
+    <ClInclude Include="..\..\src\bolotracker.h" />
+    <ClInclude Include="..\..\src\controller_interface.h" />
+    <ClInclude Include="..\..\src\database.h" />
+    <ClInclude Include="..\..\src\dataobjects\bonus.h" />
+    <ClInclude Include="..\..\src\dataobjects\bonuses_subjects_link.h" />
+    <ClInclude Include="..\..\src\dataobjects\currency.h" />
+    <ClInclude Include="..\..\src\dataobjects\dataobjects.h" />
+    <ClInclude Include="..\..\src\dataobjects\invested_asset.h" />
+    <ClInclude Include="..\..\src\dataobjects\invested_assets_subjects_link.h" />
+    <ClInclude Include="..\..\src\dataobjects\invested_money.h" />
+    <ClInclude Include="..\..\src\dataobjects\invested_time.h" />
+    <ClInclude Include="..\..\src\dataobjects\invested_time_subjects_link.h" />
+    <ClInclude Include="..\..\src\dataobjects\investor.h" />
+    <ClInclude Include="..\..\src\dataobjects\subject.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_base.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_database_error.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_failed_opening_database.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_invalid_date.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_invalid_file.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_model_error.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_notreached.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_tests_error.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_tui_error.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_unsupported_platform.h" />
+    <ClInclude Include="..\..\src\exceptions\ex_utils_error.h" />
+    <ClInclude Include="..\..\src\model.h" />
+    <ClInclude Include="..\..\src\tests\bolotracker_tests.h" />
+    <ClInclude Include="..\..\src\tests\database_tests.h" />
+    <ClInclude Include="..\..\src\tests\datehelper_tests.h" />
+    <ClInclude Include="..\..\src\tests\model_tests.h" />
+    <ClInclude Include="..\..\src\tui.h" />
+    <ClInclude Include="..\..\src\utils\conversions.h" />
+    <ClInclude Include="..\..\src\utils\datehelper.h" />
+    <ClInclude Include="..\..\src\utils\managedbuffer.h" />
+    <ClInclude Include="..\..\src\utils\sysutils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{6fd36112-a041-477d-b3fa-1402fb43c0f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tests">
+      <UniqueIdentifier>{814d5520-4a41-4e3c-82b8-e57986f96a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exceptions">
+      <UniqueIdentifier>{e0174a1e-fb34-4b51-a802-b45f36bd7368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dataobjects">
+      <UniqueIdentifier>{b5c09ccf-c10b-4e0d-b399-c016e113f550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib/testforecho">
+      <UniqueIdentifier>{666f7394-a391-4f63-b7c2-11598425f851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib/sqlite">
+      <UniqueIdentifier>{9945f96a-0d83-43db-a822-3266e914b6ae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\bolotracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\controller_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\conversions.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\datehelper.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\sysutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\bolotracker_tests.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\database_tests.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\datehelper_tests.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\model_tests.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\exceptions\ex_base.cpp">
+      <Filter>Source Files\exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\bonus.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\bonuses_subjects_link.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\currency.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\invested_asset.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\invested_assets_subjects_link.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\invested_money.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\invested_time.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\invested_time_subjects_link.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\investor.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dataobjects\subject.cpp">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\third_party\sqlite\src\sqlite3.c">
+      <Filter>Source Files\lib/sqlite</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\bolotracker.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\controller_interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\database.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tui.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utils\conversions.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utils\datehelper.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utils\managedbuffer.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utils\sysutils.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tests\bolotracker_tests.h">
+      <Filter>Source Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tests\database_tests.h">
+      <Filter>Source Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tests\datehelper_tests.h">
+      <Filter>Source Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tests\model_tests.h">
+      <Filter>Source Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_base.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_database_error.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_failed_opening_database.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_invalid_date.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_invalid_file.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_model_error.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_notreached.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_tests_error.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_tui_error.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_unsupported_platform.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\exceptions\ex_utils_error.h">
+      <Filter>Source Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\bonus.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\bonuses_subjects_link.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\currency.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\dataobjects.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\invested_asset.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\invested_assets_subjects_link.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\invested_money.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\invested_time.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\invested_time_subjects_link.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\investor.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dataobjects\subject.h">
+      <Filter>Source Files\dataobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho.h">
+      <Filter>Source Files\lib/testforecho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho_compat.h">
+      <Filter>Source Files\lib/testforecho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\testforecho\src\testforecho_internal.h">
+      <Filter>Source Files\lib/testforecho</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
