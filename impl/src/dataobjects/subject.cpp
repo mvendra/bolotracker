@@ -10,5 +10,12 @@ Subject::Subject(const Subject &other):
 pk_subject{other.pk_subject}, tag{other.tag}, description{other.description}, date_of_inclusion{other.date_of_inclusion}
 {}
 
+Subject::Subject(Subject &&other):
+pk_subject{ std::move(other.pk_subject) },
+tag{ std::move(other.tag) },
+description{ std::move(other.description) },
+date_of_inclusion{ std::move(other.date_of_inclusion) }
+{}
+
 Subject::~Subject(){}
 

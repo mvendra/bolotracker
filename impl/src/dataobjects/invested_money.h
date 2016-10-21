@@ -17,10 +17,10 @@ public:
                   const std::string &_comment, const double _amount);
 
     InvestedMoney(const InvestedMoney&);
+	InvestedMoney(InvestedMoney&&);
     ~InvestedMoney();
 
     InvestedMoney() = delete;
-    InvestedMoney(InvestedMoney&&) = delete;
     InvestedMoney& operator=(const InvestedMoney&) = delete;
     InvestedMoney& operator=(InvestedMoney&&) = delete;
 

@@ -12,5 +12,15 @@ pk_bonus{_other.pk_bonus}, investor{_other.investor}, date{_other.date}, short_n
 description{_other.description}, comment{_other.comment}, reward{_other.reward}
 {}
 
+Bonus::Bonus(Bonus &&_other):
+pk_bonus{ std::move(_other.pk_bonus) },
+investor{ std::move(_other.investor) },
+date{ std::move(_other.date) },
+short_name{ std::move(_other.short_name) },
+description{ std::move(_other.description) },
+comment{ std::move(_other.comment) },
+reward{ std::move(_other.reward) }
+{}
+
 Bonus::~Bonus(){
 }

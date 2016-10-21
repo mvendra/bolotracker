@@ -14,5 +14,16 @@ date{_other.date}, short_name{_other.short_name}, description{_other.description
 comment{_other.comment}, amount{_other.amount}
 {}
 
+InvestedMoney::InvestedMoney(InvestedMoney &&_other):
+pk_invested_money{ std::move(_other.pk_invested_money) },
+investor{ std::move(_other.investor) },
+currency{ std::move(_other.currency) },
+date{ std::move(_other.date) },
+short_name{ std::move(_other.short_name) },
+description{ std::move(_other.description) },
+comment{ std::move(_other.comment) },
+amount{ std::move(_other.amount) }
+{}
+
 InvestedMoney::~InvestedMoney(){
 }

@@ -13,12 +13,12 @@ public:
             const std::string &_description, const DateHelper &_date_of_inclusion);
 
     Subject(const Subject&);
+	Subject(Subject&&);
 
     ~Subject();
 
     Subject() = delete;
     Subject& operator=(const Subject&) = delete;
-    Subject(Subject&&) = delete;
     Subject& operator=(Subject&&) = delete;
 
     unsigned int pk_subject;

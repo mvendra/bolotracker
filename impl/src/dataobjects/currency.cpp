@@ -9,4 +9,9 @@ Currency::Currency(const Currency &other):
 pk_currency{other.pk_currency}, label{other.label}, description{other.description}, date_of_inclusion{other.date_of_inclusion}
 {}
 
+Currency::Currency(Currency &&other):
+pk_currency{std::move(other.pk_currency)}, label{ std::move(other.label) },
+description{ std::move(other.description) }, date_of_inclusion{ std::move(other.date_of_inclusion) }
+{}
+
 Currency::~Currency(){}

@@ -15,6 +15,17 @@ date{_other.date}, description{_other.description}, comment{_other.comment},
 minutes{_other.minutes}, price_per_unit{_other.price_per_unit}
 {}
 
+InvestedTime::InvestedTime(InvestedTime &&_other):
+pk_invested_time{ std::move(_other.pk_invested_time) },
+investor{ std::move(_other.investor) },
+currency{ std::move(_other.currency) },
+date{ std::move(_other.date) },
+description{ std::move(_other.description) },
+comment{ std::move(_other.comment) },
+minutes{ std::move(_other.minutes) },
+price_per_unit{ std::move(_other.price_per_unit) }
+{}
+
 InvestedTime::~InvestedTime(){
 }
 

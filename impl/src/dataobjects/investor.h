@@ -13,10 +13,10 @@ public:
              const std::string &_email, const std::string &_description, const DateHelper &_date_of_inclusion);
 
     Investor(const Investor&);
+	Investor(Investor&&);
     ~Investor();
 
     Investor() = delete;
-    Investor(Investor&&) = delete;
     Investor& operator=(const Investor&) = delete;
     Investor& operator=(Investor&&) = delete;
 

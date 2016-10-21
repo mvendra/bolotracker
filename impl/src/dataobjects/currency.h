@@ -11,11 +11,11 @@ public:
 
     Currency(const unsigned int _pk_currency, const std::string &_label, const std::string &_description, const DateHelper &_date_of_inclusion);
     Currency(const Currency&);
+	Currency(Currency&&);
 
     ~Currency();
 
     Currency() = delete;    
-    Currency(Currency&&) = delete;
     Currency& operator=(const Currency&) = delete;
     Currency& operator=(Currency&&) = delete;
 
