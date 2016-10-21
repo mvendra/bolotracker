@@ -6,6 +6,7 @@
 #include "utils/managedbuffer.h"
 
 #include "exceptions/ex_failed_opening_database.h"
+#include "exceptions/ex_failed_closing_database.h"
 #include "exceptions/ex_database_error.h"
 
 #include <vector>
@@ -46,7 +47,10 @@ void Database::open_database(){
 
 void Database::close_database(){
     if (sqlite_con){
-        sqlite3_close(sqlite_con);
+        int r = sqlite3_close(sqlite_con);
+		if (r != SQLITE_OK) {
+			EX_THROW(Ex_FailedClosingDatabase, "Could not close database")
+		}
         sqlite_con = 0;
     }
 }
