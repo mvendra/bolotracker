@@ -13,7 +13,7 @@ public:
             const std::string &_description, const DateHelper &_date_of_inclusion);
 
     Subject(const Subject&);
-	Subject(Subject&&);
+    Subject(Subject&&);
 
     ~Subject();
 

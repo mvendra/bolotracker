@@ -17,7 +17,7 @@ public:
                   const std::string &_comment, const double _price);
 
     InvestedAsset(const InvestedAsset &_other);
-	InvestedAsset(InvestedAsset&&);
+    InvestedAsset(InvestedAsset&&);
     ~InvestedAsset();
 
     InvestedAsset() = delete;

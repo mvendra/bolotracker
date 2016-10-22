@@ -48,9 +48,9 @@ void Database::open_database(){
 void Database::close_database(){
     if (sqlite_con){
         int r = sqlite3_close(sqlite_con);
-		if (r != SQLITE_OK) {
-			EX_THROW(Ex_FailedClosingDatabase, "Could not close database")
-		}
+        if (r != SQLITE_OK) {
+            EX_THROW(Ex_FailedClosingDatabase, "Could not close database")
+        }
         sqlite_con = 0;
     }
 }

@@ -13,7 +13,7 @@ public:
 
     Bonus(const unsigned int _pk_bonus, const Investor &_investor, const DateHelper &_date, const std::string &_short_name,
           const std::string &_description, const std::string &_comment, const std::string &_reward);
-	Bonus(Bonus&&);
+    Bonus(Bonus&&);
     Bonus(const Bonus&);
     ~Bonus();
 

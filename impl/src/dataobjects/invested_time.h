@@ -17,7 +17,7 @@ public:
                  const unsigned int _minutes, const double &_price_per_unit);
 
     InvestedTime(const InvestedTime&);
-	InvestedTime(InvestedTime&&);
+    InvestedTime(InvestedTime&&);
     ~InvestedTime();
 
     InvestedTime() = delete;

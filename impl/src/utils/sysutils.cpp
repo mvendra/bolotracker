@@ -30,17 +30,17 @@ std::string getAppWorkingDir(){
         EX_THROW(Ex_Utils_Error, "Unable to get app working dir")
     }
 #elif _WIN32
-	LPWSTR buffer = nullptr;
-	buffer = new WCHAR[2048];
-	memset(buffer, 0x00, 2048);
-	if (GetCurrentDirectory(2048, buffer) > 0) {
-		std::string r = CW2A(buffer);
-		delete []buffer;
-		return r;
-	} else {
-		if (buffer != nullptr) { delete [] buffer; }
-		EX_THROW(Ex_Utils_Error, "Unable to get app working dir")
-	}
+    LPWSTR buffer = nullptr;
+    buffer = new WCHAR[2048];
+    memset(buffer, 0x00, 2048);
+    if (GetCurrentDirectory(2048, buffer) > 0) {
+        std::string r = CW2A(buffer);
+        delete []buffer;
+        return r;
+    } else {
+        if (buffer != nullptr) { delete [] buffer; }
+        EX_THROW(Ex_Utils_Error, "Unable to get app working dir")
+    }
 #else
     EX_THROW(Ex_Unsupported_Platform, "Working directory detection not implemented on this platform")
 #endif
@@ -51,9 +51,9 @@ std::string getAppWorkingDir(){
 
 std::string getSysTmpDir() {
 #ifdef _WIN32
-	return "C:\\tmp\\";
+    return "C:\\tmp\\";
 #else
-	return "/tmp/";
+    return "/tmp/";
 #endif
 }
 
@@ -84,12 +84,12 @@ bool fileExists(const std::string &fn){
 
 bool fileDelete(const std::string &fn){
 #ifdef _WIN32
-	std::wstring stemp = std::wstring(fn.begin(), fn.end());
-	BOOL r = DeleteFile(stemp.c_str());
-	if (r == 0) {
-		int v = GetLastError();
-	}
-	return r;
+    std::wstring stemp = std::wstring(fn.begin(), fn.end());
+    BOOL r = DeleteFile(stemp.c_str());
+    if (r == 0) {
+        int v = GetLastError();
+    }
+    return r;
 #else
     return !(std::remove(fn.c_str()));
 #endif

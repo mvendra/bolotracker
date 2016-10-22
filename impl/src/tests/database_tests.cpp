@@ -247,11 +247,11 @@ db{}
 }
 
 DatabaseTestInternal::~DatabaseTestInternal(){
-	db.close_database();
+    db.close_database();
     if (fileExists(db_path)){
         if (!fileDelete(db_path)){
-			EX_THROW(Ex_Tests_Error, "Fatal testing error: " + db_path + " cannot be deleted")
-		}
+            EX_THROW(Ex_Tests_Error, "Fatal testing error: " + db_path + " cannot be deleted")
+        }
     }
 }
 
