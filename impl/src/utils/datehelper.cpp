@@ -34,19 +34,13 @@ DateHelper::DateHelper():day{0}, month{0}, year{0}{
     this->year = tm->tm_year + 1900;
 
 #elif _WIN32
+
     SYSTEMTIME stSysTime;
     GetLocalTime(&stSysTime);
 
-    /*sysTime.m_seconds = stSysTime.wSecond;
-    sysTime.m_minutes = stSysTime.wMinute;
-    sysTime.m_hours = stSysTime.wHour;
-    sysTime.m_monthday = stSysTime.wDay;
-    sysTime.m_month = stSysTime.wMonth;
-    sysTime.m_year = stSysTime.wYear%100;*/
-
     this->day = stSysTime.wDay;
     this->month = stSysTime.wMonth;
-    this->year = stSysTime.wYear + 1900;
+    this->year = stSysTime.wYear;
 
 #else
     EX_THROW(Ex_Unsupported_Platform, "Present-date probing not implemented on this platform")
