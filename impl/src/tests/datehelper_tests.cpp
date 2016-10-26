@@ -10,10 +10,10 @@
 
 using namespace testforecho;
 
-bool test_datehelper(){
+unsigned int test_datehelper(){
 
     // test date validator
-    bool total {true};
+    unsigned int total {0};
 
     PRINT_INFO("Testing DateHelper...")
 

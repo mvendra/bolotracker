@@ -4,7 +4,7 @@
 
 #include "database.h"
 
-bool test_database();
+unsigned int test_database();
 
 class DatabaseTestInternal final {
 

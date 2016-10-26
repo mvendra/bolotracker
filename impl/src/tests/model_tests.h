@@ -4,7 +4,7 @@
 
 #include "model.h"
 
-bool test_model();
+unsigned int test_model();
 
 class ModelTestInternal final {
 

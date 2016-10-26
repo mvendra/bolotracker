@@ -1,6 +1,7 @@
 
 #include "bolotracker.h"
 
+#include "utils/conversions.h"
 #include "exceptions/ex_base.h"
 
 #include <string>
@@ -16,10 +17,11 @@
 #include "tests/bolotracker_tests.h"
 
 void runtests(){
-    if (test_all()){
+    unsigned int r = test_all();
+    if (r == 0){
         std::cout << "Result: Success." << std::endl; 
     } else {
-        std::cout << "Result: Fail." << std::endl; 
+        std::cout << "Result: " << uintToStr(r) << " failures." << std::endl; 
     }
 }
 #endif

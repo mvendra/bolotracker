@@ -5,13 +5,13 @@
 #include "tests/database_tests.h"
 #include "tests/model_tests.h"
 
-void test_accrue(bool &flag_holder, bool func){
-    flag_holder &= func;
+void test_accrue(unsigned int &counter, unsigned int func){
+    counter += func;
 }
 
-bool test_all(){
+unsigned int test_all(){
 
-    bool result {true};
+    unsigned int result {0};
 
     test_accrue(result, test_datehelper());
     test_accrue(result, test_database());

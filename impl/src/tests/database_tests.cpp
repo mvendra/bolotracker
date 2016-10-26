@@ -12,9 +12,9 @@ using namespace testforecho;
 using strvec = std::vector<std::string>;
 using strvec2 = std::vector<strvec>;
 
-bool test_database(){
+unsigned int test_database(){
 
-    bool total {true};
+    unsigned int total {0};
 
     PRINT_INFO("Testing database...")
 

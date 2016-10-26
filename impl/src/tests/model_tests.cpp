@@ -10,9 +10,9 @@
 
 using namespace testforecho;
 
-bool test_model(){
+unsigned int test_model(){
 
-    bool total {true};
+    unsigned int total {0};
 
     PRINT_INFO("Testing model...")
 
