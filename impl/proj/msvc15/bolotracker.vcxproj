@@ -105,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\lib\third_party\fltk\src;..\..\lib\testforecho\src;..\..\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\lib\third_party\fltk\src;..\..\lib\testforecho\include;..\..\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +138,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;COMPILER_NO_CONCEPTS_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\lib\testforecho\src;..\..\src;..\..\lib\third_party\fltk\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\lib\testforecho\include;..\..\src;..\..\lib\third_party\fltk\src;..\..\lib\third_party\sqlite\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -175,9 +175,9 @@
     <ClCompile Include="..\..\src\utils\sysutils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho.h" />
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho_compat.h" />
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho_internal.h" />
+    <ClInclude Include="..\..\lib\testforecho\include\testforecho.h" />
+    <ClInclude Include="..\..\lib\testforecho\include\testforecho_compat.h" />
+    <ClInclude Include="..\..\lib\testforecho\include\testforecho_internal.h" />
     <ClInclude Include="..\..\src\bolotracker.h" />
     <ClInclude Include="..\..\src\controller_interface.h" />
     <ClInclude Include="..\..\src\database.h" />
