@@ -282,10 +282,10 @@
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="testforecho">
-      <VirtualDirectory Name="src">
-        <File Name="../../lib/testforecho/src/testforecho.h"/>
-        <File Name="../../lib/testforecho/src/testforecho_compat.h"/>
-        <File Name="../../lib/testforecho/src/testforecho_internal.h"/>
+      <VirtualDirectory Name="include">
+        <File Name="../../lib/testforecho/include/testforecho.h"/>
+        <File Name="../../lib/testforecho/include/testforecho_compat.h"/>
+        <File Name="../../lib/testforecho/include/testforecho_internal.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -305,7 +305,7 @@
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../lib/testforecho/include"/>
         <IncludePath Value="../../src"/>
       </Compiler>
       <Linker Options="" Required="yes">
@@ -362,7 +362,7 @@
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../lib/testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>
       </Compiler>
@@ -420,7 +420,7 @@
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../lib/testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
@@ -478,7 +478,7 @@
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/src"/>
+        <IncludePath Value="../../lib/testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
         <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>

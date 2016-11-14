@@ -46,9 +46,9 @@ unsigned int test_datehelper(){
     {
         unsigned short d{3}, m{4}, y{2005};
         DateHelper::convertFromText("nope", d, m, y);
-        test_ne(total, "Conversion should fail", 3, d);
-        test_ne(total, "Conversion should fail", 4, m);
-        test_ne(total, "Conversion should fail", 2005, y);
+        test_neq(total, "Conversion should fail", 3, d);
+        test_neq(total, "Conversion should fail", 4, m);
+        test_neq(total, "Conversion should fail", 2005, y);
     }
 
     // should throw exacly that type of exception
