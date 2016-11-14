@@ -109,7 +109,7 @@ CPPFLAGSS = $(INTFLAGS)
 endif
 
 
-INCLUDES=-I$(BASE_SRC) -I../../lib/third_party/sqlite/src -I../../lib/testforecho/src -I../../lib/third_party/fltk/src -I../../lib/third_party/fltk/src/images
+INCLUDES=-I$(BASE_SRC) -I../../lib/third_party/sqlite/src -I../../lib/testforecho/include -I../../lib/third_party/fltk/src -I../../lib/third_party/fltk/src/images
 LDFLAGS=-lpthread -ldl $(FLTK_LDFLAGS)
 
 BASE_OBJ_FULL=$(BASE_OBJ)/$(PLAT)_x$(ARCH)_$(MODE)
