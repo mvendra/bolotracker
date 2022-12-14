@@ -6,9 +6,9 @@
 
 #include "exceptions/ex_tests_error.h"
 
-#include "testforecho.h"
+#include "legacy_testforecho.h"
 
-using namespace testforecho;
+using namespace legacy_testforecho;
 
 unsigned int test_model(){
 

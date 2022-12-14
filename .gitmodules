@@ -1,3 +1,0 @@
-[submodule "impl/lib/testforecho"]
-	path = impl/lib/testforecho
-	url = git@bitbucket.org:mvendra/testforecho.git

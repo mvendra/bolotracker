@@ -25,7 +25,7 @@
     <Filter Include="Source Files\dataobjects">
       <UniqueIdentifier>{b5c09ccf-c10b-4e0d-b399-c016e113f550}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\lib/testforecho">
+    <Filter Include="Source Files\lib/legacy_testforecho">
       <UniqueIdentifier>{666f7394-a391-4f63-b7c2-11598425f851}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\lib/sqlite">
@@ -215,14 +215,14 @@
     <ClInclude Include="..\..\src\dataobjects\subject.h">
       <Filter>Source Files\dataobjects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho.h">
-      <Filter>Source Files\lib/testforecho</Filter>
+    <ClInclude Include="..\..\lib\legacy_testforecho\src\legacy_testforecho.h">
+      <Filter>Source Files\lib/legacy_testforecho</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho_compat.h">
-      <Filter>Source Files\lib/testforecho</Filter>
+    <ClInclude Include="..\..\lib\legacy_testforecho\src\legacy_testforecho_compat.h">
+      <Filter>Source Files\lib/legacy_testforecho</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\testforecho\src\testforecho_internal.h">
-      <Filter>Source Files\lib/testforecho</Filter>
+    <ClInclude Include="..\..\lib\legacy_testforecho\src\legacy_testforecho_internal.h">
+      <Filter>Source Files\lib/legacy_testforecho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\exceptions\ex_failed_closing_database.h">
       <Filter>Source Files\exceptions</Filter>

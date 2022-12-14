@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="bolotracker" InternalType="Console">
+<CodeLite_Project Name="bolotracker" InternalType="Console" Version="11000">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00040001N0015Linux x64 Debug0000000000000001N0022Linux x64 Debug (LLVM)0000000000000001N0017Linux x64 Release0000000000000001N0024Linux x64 Release (LLVM)000000000000]]>
@@ -281,11 +281,11 @@
         <File Name="../../lib/third_party/fltk/src/fltk_wrapper.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
-    <VirtualDirectory Name="testforecho">
+    <VirtualDirectory Name="legacy_testforecho">
       <VirtualDirectory Name="include">
-        <File Name="../../lib/testforecho/include/testforecho.h"/>
-        <File Name="../../lib/testforecho/include/testforecho_compat.h"/>
-        <File Name="../../lib/testforecho/include/testforecho_internal.h"/>
+        <File Name="../../lib/legacy_testforecho/include/legacy_testforecho.h"/>
+        <File Name="../../lib/legacy_testforecho/include/legacy_testforecho_compat.h"/>
+        <File Name="../../lib/legacy_testforecho/include/legacy_testforecho_internal.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -305,7 +305,7 @@
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/include"/>
+        <IncludePath Value="../../lib/legacy_testforecho/include"/>
         <IncludePath Value="../../src"/>
       </Compiler>
       <Linker Options="" Required="yes">
@@ -327,6 +327,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../run/linux_x64_debug/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -362,7 +363,7 @@
       <Compiler Options="-g;-O0;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/include"/>
+        <IncludePath Value="../../lib/legacy_testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>
       </Compiler>
@@ -385,6 +386,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="../../run/linux_x64_debug/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_debug" Command="../../run/linux_x64_debug/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_debug" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -420,7 +422,7 @@
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/include"/>
+        <IncludePath Value="../../lib/legacy_testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
@@ -443,6 +445,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../run/linux_x64_release/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -478,7 +481,7 @@
       <Compiler Options="-O2;-pedantic;-W;-std=c++14;-Wall;-Wextra;-Weffc++;-Werror;-fPIC" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="../../lib/third_party/sqlite/src"/>
         <IncludePath Value="../../lib/third_party/fltk/src"/>
-        <IncludePath Value="../../lib/testforecho/include"/>
+        <IncludePath Value="../../lib/legacy_testforecho/include"/>
         <IncludePath Value="../../src"/>
         <Preprocessor Value="NDEBUG"/>
         <Preprocessor Value="COMPILER_NO_CONCEPTS_SUPPORT"/>
@@ -502,6 +505,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="../../run/linux_x64_release/$(ProjectName)" IntermediateDirectory="../../build/linux_x64_release" Command="../../run/linux_x64_release/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../run/linux_x64_release" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>

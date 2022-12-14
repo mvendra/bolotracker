@@ -6,9 +6,9 @@
 #include "exceptions/ex_invalid_date.h"
 #include "exceptions/ex_notreached.h"
 
-#include "testforecho.h"
+#include "legacy_testforecho.h"
 
-using namespace testforecho;
+using namespace legacy_testforecho;
 
 unsigned int test_datehelper(){
 

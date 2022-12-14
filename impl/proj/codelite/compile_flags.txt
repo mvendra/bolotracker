@@ -1,0 +1,15 @@
+-I/home/mateus/mvbase/Repositories/Dev/bolotracker/impl/proj/codelite
+-I/home/mateus/mvbase/Repositories/Dev/bolotracker/impl/lib/third_party/sqlite/src
+-I/home/mateus/mvbase/Repositories/Dev/bolotracker/impl/lib/third_party/fltk/src
+-I/home/mateus/mvbase/Repositories/Dev/bolotracker/impl/lib/legacy_testforecho/include
+-I/home/mateus/mvbase/Repositories/Dev/bolotracker/impl/src
+-I/usr/include/c++/9
+-I/usr/include/x86_64-linux-gnu/c++/9
+-I/usr/include/c++/9/backward
+-I/usr/lib/gcc/x86_64-linux-gnu/9/include
+-I/usr/local/include
+-I/usr/include/x86_64-linux-gnu
+-I/usr/include
+-std=c++14
+-target
+x86_64-linux-gnu

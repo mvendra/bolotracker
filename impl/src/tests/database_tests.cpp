@@ -5,9 +5,9 @@
 #include "exceptions/ex_tests_error.h"
 #include "exceptions/ex_database_error.h"
 
-#include "testforecho.h"
+#include "legacy_testforecho.h"
 
-using namespace testforecho;
+using namespace legacy_testforecho;
 
 using strvec = std::vector<std::string>;
 using strvec2 = std::vector<strvec>;
